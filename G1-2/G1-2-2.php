@@ -1,6 +1,12 @@
 <!-- 新規登録画面(任意) -->
-<?php require 'header.php'; ?>
-<?php require 'db-connect.php'; ?> 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>フジカワライヤーズ</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
 <div class = "logo">
     <img src="logo.png" >
@@ -18,4 +24,9 @@
 
 <a href="G1-2-1.phpbutton type="submit">新しいアカウントを作成</button></a>
 
-<?php require 'footer.php'; ?>
+</body>
+</html>
+
+<?php
+ $pdo = null;   //DB切断
+ ?>

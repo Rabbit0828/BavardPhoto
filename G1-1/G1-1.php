@@ -9,7 +9,7 @@
 <body>
 
 <div class = "logo">
-    <img src="logo.png" >
+    <img src="../images/logo.png" style="height:70px; width:200px;">
 </div>
 
 <form action="G2-1.php" method="post">

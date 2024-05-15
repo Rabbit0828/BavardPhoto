@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.menu-toggle {
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.menu-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.menu-toggle-button {
+  display: block;
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.menu-toggle-button span {
+  display: block;
+  width: 30px;
+  height: 4px;
+  background-color: #333;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease-out;
+}
+
+.menu-toggle-button span:nth-child(1) {
+  transform-origin: top left;
+}
+
+.menu-toggle-button span:nth-child(2) {
+  transform-origin: center;
+}
+
+.menu-toggle-button span:nth-child(3) {
+  transform-origin: bottom left;
+}
+
+.menu-toggle input:checked + .menu-toggle-button span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle input:checked + .menu-toggle-button span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle input:checked + .menu-toggle-button span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #f1f1f1;
+  width: 150px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.menu-toggle input:checked ~ .menu {
+  max-height: 300px; /* Adjust the height as needed */
+}
+
+.menu li {
+  padding: 15px 20px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.menu li a:hover {
+  color: #666;
+}
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.Header .logo,
+.Header .search-container,
+.Header .menu-toggle {
+  display: inline-block;
+}
+
+.Header .icon-container {
+  display: flex;
+  justify-content: flex-end; /* アイコン要素を右端に配置 */
+  align-items: center;
+  flex-grow: 1; /* アイコン要素の余白を利用 */
+}
+
+.Header .icon-container .icon {
+  margin-left: 10px; /* アイコン間の間隔 */
+}
+
+.Header .menu-toggle {
+  order: 2; /* メニュートグルを一番右に配置 */
+}
+.search-container {
+  text-align: center;
+}
+
+.search-container form {
+  display: inline-block;
+}
+

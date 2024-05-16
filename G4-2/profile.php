@@ -18,6 +18,12 @@
         echo '<div class="follow"><a href=followyou.php>フォロー</a></div>';
         echo '<div class="message"><a href=message.php>メッセージ</a></div>';
         echo '<div class="private-name">', $row['private_name'],'</div>';
-        echo '<div class="vio">', $row['private_name'],'</div>';
+        echo '<div class="vio">', $row['syokai'],'</div>';
+        echo '<hr>';
+    } 
+
+    if(){}
+    $sql = $pdo->prepare('select * from Post where user_id=?');
+    $sql->execute([$_GET['id']]);
 </body>
 </html>

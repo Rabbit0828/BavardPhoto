@@ -11,6 +11,7 @@
         <h1>アカウントを検索</h1>
         <p>メールアドレスまたはユーザーネームを入力してください。</p>
         <input type="text" id="usernameOrEmail" class="input-box" placeholder="メールアドレスまたはユーザーネーム">
+        <div class="spacer"></div>
         <button id="nextButton" class="action-button">次へ</button>
     </div>
 
@@ -18,7 +19,9 @@
         <h1>パスワードを再設定</h1>
         <p>新しいパスワードを入力してください。</p>
         <input type="password" id="newPassword" class="input-box" placeholder="新しいパスワード">
+        <div class="spacer"></div>
         <input type="password" id="confirmPassword" class="input-box" placeholder="パスワードを確認">
+        <div class="spacer"></div>
         <button id="resetButton" class="action-button">パスワードを変更</button>
     </div>
 

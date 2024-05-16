@@ -1,15 +1,24 @@
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
 }
 
 .container {
+    width: 100%;
     max-width: 400px;
-    margin: 0 auto;
     padding: 20px;
-    text-align: center;
+    text-align: left;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
 .input-box {
@@ -19,6 +28,10 @@ body {
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.spacer {
+    height: 5em; /* 5行分のスペースを確保 */
 }
 
 .action-button {

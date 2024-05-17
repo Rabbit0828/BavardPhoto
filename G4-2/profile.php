@@ -25,9 +25,9 @@
 
         if ($user) {
             echo '<div class="profile_head">';
-            echo '<div class="profile_head_icon"><img src="', htmlspecialchars($user['icon']), '"></div>';
+            echo '<div class="profile_head_icon"><img src="', htmlspecialchars($user['icon'] ?? ''), '"></div>';
             echo '<div>';
-            echo '<div class="profile_name">', htmlspecialchars($user['user_name']), '</div>';
+            echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
             echo '<div class="profile_head_count">';
             echo '3'; // 投稿数をここで取得して表示する必要があります
@@ -48,8 +48,8 @@
             echo '</div>';
             echo '</div>';
             echo '</div>';
-            echo '<div class="private-name">', htmlspecialchars($user['private_name']), '</div>';
-            echo '<div class="vio">', htmlspecialchars($user['syoukai']), '</div>';
+            echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
+            echo '<div class="vio">', htmlspecialchars($user['syoukai'] ?? ''), '</div>';
             echo '<hr>';
 
             $post_sql = 'SELECT * FROM Post WHERE user_id = :user_id';
@@ -60,7 +60,10 @@
             if ($posts) {
                 echo '<div class="post">';
                 foreach ($posts as $post) {
-                    echo '<a href="post.php?id=', htmlspecialchars($post['id']), '"><img src="', htmlspecialchars($post['image_path']), '" alt="', htmlspecialchars($post['image_name']), '"></a>';
+                    $image_path = htmlspecialchars($post['image_path'] ?? '');
+                    $image_name = htmlspecialchars($post['image_name'] ?? '');
+                    $post_id = htmlspecialchars($post['id'] ?? '');
+                    echo '<a href="post.php?id=', $post_id, '"><img src="', $image_path, '" alt="', $image_name, '"></a>';
                 }
                 echo '</div>';
             } else {

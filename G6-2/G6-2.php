@@ -9,7 +9,7 @@
 <body>
     <h1>パスワード変更</h1>
     <p>新しいパスワードを入力してください。</p>
-    <input type="password" id="newPassword" class="input-box" placeholder="新しいパスワード">
+    <input type="password" id="newPassword" class="input-box" placeholder="">
     <div class="spacer"></div>
     <button id="resetButton" class="action-button">完了</button>
 

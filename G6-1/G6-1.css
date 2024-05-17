@@ -2,9 +2,9 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Ensure content uses full viewport height */
+    height: 80vh; /* Reduced height to 80% of viewport height */
     display: flex;
-    justify-content: flex-start; /* Align content to the left */
+    justify-content: center;
     align-items: center;
     background-color: #f0f0f0;
     text-align: left; /* Ensure text is left-aligned */
@@ -13,19 +13,19 @@ body {
 .input-box {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 20px 0; /* Increased margin for better spacing */
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 .spacer {
-    height: 1em; /* Reduced height for better spacing */
+    height: 2em; /* Doubled height for spacing */
 }
 
 .action-button {
     padding: 10px 20px; /* Keep original button size */
-    margin: 20px 0; /* Increase margin for better spacing */
+    margin: 40px 0; /* Doubled margin for better spacing */
     background-color: #FB3FFF; /* Button color */
     color: white;
     border: none;

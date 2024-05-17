@@ -60,10 +60,7 @@
             if ($posts) {
                 echo '<div class="post">';
                 foreach ($posts as $post) {
-                    $image_path = htmlspecialchars($post['image_path'] ?? '');
-                    $image_name = htmlspecialchars($post['image_name'] ?? '');
-                    $post_id = htmlspecialchars($post['id'] ?? '');
-                    echo '<a href="post.php?id=', $post_id, '"><img src="', $image_path, '" alt="', $image_name, '"></a>';
+                    echo '<a href="post.php?id=', $post_id, '"><img src="', htmlspecialchars($post['image_name'] ?? ''), '"></a>';
                 }
                 echo '</div>';
             } else {

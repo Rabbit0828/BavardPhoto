@@ -2,13 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    height: 15vh; /* Reduced height to 80% of viewport height */
+    height: 80vh; /* Reduced height to 80% of viewport height */
     display: flex;
     justify-content: flex-start; /* Align content to the left */
     align-items: center;
     background-color: #f0f0f0;
     text-align: left; /* Ensure text is left-aligned */
-    padding-left: 5%; /* Add left padding */
+    padding-left: 10%; /* Add left padding */
 }
 
 .input-box {
@@ -38,3 +38,4 @@ body {
 .action-button:hover {
     background-color: #E234D4; /* Slightly darker shade for hover effect */
 }
+

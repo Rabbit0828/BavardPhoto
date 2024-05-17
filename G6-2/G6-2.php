@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>パスワード再設定</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="G6-2.css">
 </head>
 <body>
     <h1>パスワード変更</h1>

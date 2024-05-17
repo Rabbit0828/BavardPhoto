@@ -18,16 +18,39 @@
     }
 
     try {
+        $pdo = new PDO($connect, user, pass, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
+
         $user_sql = 'SELECT * FROM UserTable WHERE user_id = :user_id';
         $user_stmt = $pdo->prepare($user_sql);
         $user_stmt->execute([':user_id' => $user_id]);
         $user = $user_stmt->fetch();
 
         if ($user) {
-            echo '<div class="user-name">', htmlspecialchars($user['user_name']), '</div>';
-            echo '<div class="profile-image"><img src="', htmlspecialchars($user['icon']), '"></div>';
-            echo '<div class="follow"><a href="followyou.php">フォロー</a></div>';
-            echo '<div class="message"><a href="message.php">メッセージ</a></div>';
+            echo '<div class="profile_head">';
+            echo '<div class="profile_name">', htmlspecialchars($user['user_name']), '</div>';
+            echo '<div class="profile_head_icon"><img src="', htmlspecialchars($user['icon']), '"></div>';
+            echo '<div class="profile_head_text">';
+            echo '<div class="profile_head_count">';
+            echo '3'; // 投稿数をここで取得して表示する必要があります
+            echo '<span>投稿</span>';
+            echo '</div>';
+            echo '<div class="profile_head_count">';
+            echo '700,000'; // フォロワー数をここで取得して表示する必要があります
+            echo '<span>フォロワー</span>';
+            echo '</div>';
+            echo '<div class="profile_head_count">';
+            echo '600'; // フォロー中の数をここで取得して表示する必要があります
+            echo '<span>フォロー中</span>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '<div class="profile_body_edit">';
+            echo '<span><a href="">フォロー</a></span>';
+            echo '<span><a href="">メッセージ</a></span>';
+            echo '</div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name']), '</div>';
             echo '<div class="vio">', htmlspecialchars($user['syoukai']), '</div>';
             echo '<hr>';
@@ -38,9 +61,11 @@
             $posts = $post_stmt->fetchAll();
 
             if ($posts) {
+                echo '<div class="post">';
                 foreach ($posts as $post) {
-                    echo '<div class="post"><a href="post.php?id=', htmlspecialchars($post['id']), '">', htmlspecialchars($post['image_name']), '</a></div>';
+                    echo '<a href="post.php?id=', htmlspecialchars($post['id']), '"><img src="', htmlspecialchars($post['image_path']), '" alt="', htmlspecialchars($post['image_name']), '"></a>';
                 }
+                echo '</div>';
             } else {
                 echo '投稿がありません';
             }

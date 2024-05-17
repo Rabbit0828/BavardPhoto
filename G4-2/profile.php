@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -8,6 +9,9 @@
 <body>
     <?php require 'dbconnect.php'; ?> 
     <?php 
+    $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 0;
+    $user_id = $_GET['id'];
+
     $pdo = new PDO($connect, user, pass);
     $sql = $pdo->prepare('select * from UserTable where user_id = ?');
     $sql->execute([$_GET['id']]);
@@ -22,8 +26,21 @@
         echo '<hr>';
     } 
 
-    if(){}
-    $sql = $pdo->prepare('select * from Post where user_id=?');
-    $sql->execute([$_GET['id']]);
+    $post_sql = "SELECT * FROM Post WHERE user_id = :user_id";
+    $post_stmt = $pdo->prepare($post_sql);
+    $post_stmt->execute([':user_id' => $user_id]);
+    $posts = $post_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if(!empty($posts)){
+        $sql = $pdo->prepare('select * from Post where user_id=?');
+        $sql->execute($user_id);
+        foreach ($sql as $row) {
+            echo '<div class="post"><a href="post.php?id=', $id, '">', $row['image_name'], '</a></div>';
+        }
+    }else{
+        echo '投稿がありません';
+    }
+    ?>
+    
 </body>
 </html>

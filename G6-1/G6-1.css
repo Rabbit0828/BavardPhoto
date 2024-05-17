@@ -4,10 +4,11 @@ body {
     padding: 0;
     height: 80vh; /* Reduced height to 80% of viewport height */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Align content to the left */
     align-items: center;
     background-color: #f0f0f0;
     text-align: left; /* Ensure text is left-aligned */
+    padding-left: 10%; /* Add left padding */
 }
 
 .input-box {

@@ -10,19 +10,6 @@ body {
     flex-direction: column; /* Allow vertical stacking if needed */
 }
 
-.container {
-    width: 100%;
-    max-width: 600px; /* Increased max-width for a wider container */
-    padding: 20px;
-    text-align: left; /* Ensure text is left-aligned */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch; /* Make sure children take full width */
-    box-sizing: border-box; /* Ensure padding is included in the width */
-}
 
 .input-box {
     width: 100%;

@@ -4,7 +4,7 @@ body {
     padding: 0;
     min-height: 100vh; /* Ensure content uses full viewport height */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Align content to the left */
     align-items: center;
     background-color: #f0f0f0;
     text-align: left; /* Ensure text is left-aligned */

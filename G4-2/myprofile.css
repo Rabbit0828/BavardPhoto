@@ -1,3 +1,8 @@
+.profile_name{
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+}
 .profile_head{   
     display: flex;
     align-items: center;
@@ -26,29 +31,20 @@
     font-weight: normal;
     display:block;
 }
-p{
-    font-size: 25px;
-    margin-left: 3%;
-}
+
 
 .profile_body{
     display:flex;
 }
-.profile_body_text a{
-    color: #6f6969;
-    text-decoration: none;
+.name{
+    font-size: 25px;
+    margin-left: 3%;
 }
-.profile_body_text ul li{
-    font-size: 15px;
-    padding-left: 1em;
-    position: relative;
-    list-style: none;
+.introduction{
+    font-size: 20px;
+    max-width: 15em;
 }
-.profile_body_text ul li::before{
-    content:"-";
-    position: absolute;
-    inset: 0 auto auto 0;
-}
+
 .profile_body_edit a{
     display: flex;
 	justify-content: center;

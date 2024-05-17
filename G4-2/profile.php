@@ -42,10 +42,8 @@
             echo '</div>';
             echo '</div>';
             echo '</div>';
-            echo '<div class="profile_body_edit">';
-            echo '<span><a href="">フォロー</a></span>';
-            echo '<span><a href="">メッセージ</a></span>';
-            echo '</div>';
+            echo '<span class="follow"><a href="">フォロー</a></span>';
+            echo '<span><a href="message">メッセージ</a></span>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name']), '</div>';
             echo '<div class="vio">', htmlspecialchars($user['syoukai']), '</div>';
             echo '<hr>';

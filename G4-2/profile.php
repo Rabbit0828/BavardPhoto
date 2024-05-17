@@ -25,8 +25,9 @@
 
         if ($user) {
             echo '<div class="profile_head">';
-            echo '<div class="profile_name">', htmlspecialchars($user['user_name']), '</div>';
             echo '<div class="profile_head_icon"><img src="', htmlspecialchars($user['icon']), '"></div>';
+            echo '<div>';
+            echo '<div class="profile_name">', htmlspecialchars($user['user_name']), '</div>';
             echo '<div class="profile_head_text">';
             echo '<div class="profile_head_count">';
             echo '3'; // 投稿数をここで取得して表示する必要があります
@@ -41,9 +42,12 @@
             echo '<span>フォロー中</span>';
             echo '</div>';
             echo '</div>';
+            echo '<div class="profile_actions">';
+            echo '<div class="follow"><a href="">フォロー</a></div>';
+            echo '<div class="message"><a href="">メッセージ</a></div>';
             echo '</div>';
-            echo '<span class="follow"><a href="">フォロー</a></span>';
-            echo '<span><a href="message">メッセージ</a></span>';
+            echo '</div>';
+            echo '</div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name']), '</div>';
             echo '<div class="vio">', htmlspecialchars($user['syoukai']), '</div>';
             echo '<hr>';

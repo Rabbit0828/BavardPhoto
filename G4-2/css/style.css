@@ -53,19 +53,24 @@ p {
     position: absolute;
     inset: 0 auto auto 0;
 }
-.follow a {
+.profile_actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.profile_actions .follow a,
+.profile_actions .message a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 250px;
-    height: 65px;
+    width: 100px;
+    height: 30px;
     color: #333;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 700;
     text-decoration: none;
     background-color: #c5c5c5;
-    border-radius: 20px;
-    margin: 15% 180%;
+    border-radius: 10px;
 }
 .post {
     display: grid;

@@ -18,11 +18,6 @@
     }
 
     try {
-        $pdo = new PDO($connect, user, pass, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-        ]);
-
         $user_sql = 'SELECT * FROM UserTable WHERE user_id = :user_id';
         $user_stmt = $pdo->prepare($user_sql);
         $user_stmt->execute([':user_id' => $user_id]);

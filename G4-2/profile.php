@@ -29,7 +29,7 @@
             echo '<div class="follow"><a href="followyou.php">フォロー</a></div>';
             echo '<div class="message"><a href="message.php">メッセージ</a></div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name']), '</div>';
-            echo '<div class="vio">', htmlspecialchars($user['syokai']), '</div>';
+            echo '<div class="vio">', htmlspecialchars($user['syoukai']), '</div>';
             echo '<hr>';
 
             $post_sql = 'SELECT * FROM Post WHERE user_id = :user_id';

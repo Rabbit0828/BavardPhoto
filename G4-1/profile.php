@@ -35,16 +35,16 @@
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
             echo '<div class="profile_head_count">';
-            echo htmlspecialchars($post_count);
             echo '<span>投稿</span>';
+            echo htmlspecialchars($post_count);
             echo '</div>';
             echo '<div class="profile_head_count">';
-            echo '700,000'; // フォロワー数をここで取得して表示する必要があります
             echo '<span>フォロワー</span>';
+            echo '700,000'; // フォロワー数をここで取得して表示する必要があります
             echo '</div>';
             echo '<div class="profile_head_count">';
-            echo '600'; // フォロー中の数をここで取得して表示する必要があります
             echo '<span>フォロー中</span>';
+            echo '600'; // フォロー中の数をここで取得して表示する必要があります
             echo '</div>';
             echo '</div>';
             echo '<div class="profile_actions">';

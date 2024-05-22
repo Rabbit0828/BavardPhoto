@@ -16,7 +16,7 @@ h1, p {
 }
 
 .input-box {
-    width: 75%;
+    width: 50%; 
     padding: 10px;
     margin: 20px 0;
     box-sizing: border-box;

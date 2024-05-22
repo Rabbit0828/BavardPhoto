@@ -8,10 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
         // データベース接続
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "your_database";
+      $servername = "mysql304.phy.lolipop.lan";
+    $username = "LAA1517469";
+    $password = "Pass1234";
+    $dbname = "LAA1517469-photos";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
 

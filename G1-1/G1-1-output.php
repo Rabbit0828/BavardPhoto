@@ -19,7 +19,7 @@ if ($row && $_POST['password'] === $row['password']) {
         'mail_address' => $row['mail_address'] // 修正: 'address'を'mail_address'に変更
     ];
     
-    header('Location: index.php');
+    header('Location: G2-1.php');
     exit;
 } else {
     $_SESSION['login_error'] = "メールアドレスまたはパスワードが違います";

@@ -23,8 +23,8 @@
 
 </form>
 
-<form action="G1-2-1.php" method="post">
-    <div class = "box">
+<form action="../G1-2/G1-2-1-input.php" method="post">
+    <div class = "box2">
         <button type="submit" id="button">新しいアカウントを作成</button>
     </div>
 </form>
@@ -54,6 +54,14 @@
         justify-content: center; 
         align-items: center; 
         height: 60vh;
+        margin-bottom: 50px;
+    }
+
+    .box2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center; 
         margin-bottom: 50px;
     }
 

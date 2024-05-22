@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>フォロー画面</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/edit.css">
     </head>
     <body>
     <div class="header">

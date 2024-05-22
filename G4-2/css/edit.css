@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.back-button {
+    width: 30px;
+    height: 30px;
+    background-color: #E91E63;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+.username {
+    margin-left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.stats {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.stats div {
+    margin: 0 10px;
+    font-size: 18px;
+}
+.stats .followers {
+    color: black;
+}
+.stats .following {
+    color: #E91E63;
+}
+.list {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.list-item:last-child {
+    border-bottom: none;
+}
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.profile-info {
+    flex-grow: 1;
+}
+.profile-info .name {
+    font-size: 16px;
+    font-weight: bold;
+}
+.profile-info .details {
+    color: #777;
+}
+.follow-button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+}

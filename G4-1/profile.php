@@ -24,22 +24,27 @@
         $user = $user_stmt->fetch();
 
         if ($user) {
+            $post_count_sql = 'SELECT COUNT(*) FROM Post WHERE user_id = :user_id';
+            $post_count_stmt = $pdo->prepare($post_count_sql);
+            $post_count_stmt->execute([':user_id' => $user_id]);
+            $post_count = $post_count_stmt->fetchColumn();
+
             echo '<div class="profile_head">';
             echo '<div class="profile_head_icon"><img src="', htmlspecialchars($user['icon'] ?? ''), '"></div>';
             echo '<div>';
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
             echo '<div class="profile_head_count">';
-            echo '3'; // 投稿数をここで取得して表示する必要があります
             echo '<span>投稿</span>';
+            echo htmlspecialchars($post_count);
             echo '</div>';
             echo '<div class="profile_head_count">';
-            echo '700,000'; // フォロワー数をここで取得して表示する必要があります
             echo '<span>フォロワー</span>';
+            echo '700,000'; // フォロワー数をここで取得して表示する必要があります
             echo '</div>';
             echo '<div class="profile_head_count">';
-            echo '600'; // フォロー中の数をここで取得して表示する必要があります
             echo '<span>フォロー中</span>';
+            echo '600'; // フォロー中の数をここで取得して表示する必要があります
             echo '</div>';
             echo '</div>';
             echo '<div class="profile_actions">';

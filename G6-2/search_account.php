@@ -2,7 +2,6 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usernameOrEmail = $_POST['usernameOrEmail'];
 
-    // データベース接続
     $servername = "mysql304.phy.lolipop.lan";
     $username = "LAA1517469";
     $password = "Pass1234";
@@ -15,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // アカウント検索処理
     $sql = "SELECT * FROM users WHERE email='$usernameOrEmail' OR username='$usernameOrEmail'";
     $result = $conn->query($sql);
 
@@ -27,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn->close();
 
-    // 結果を表示するためにリダイレクト
     header("Location: result.php?message=" . urlencode($message));
     exit();
 }

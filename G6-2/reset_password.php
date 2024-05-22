@@ -2,12 +2,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newPassword = $_POST['newPassword'];
 
-    // パスワードのバリデーション
+   
     if (strlen($newPassword) >= 8) {
-        // パスワードのハッシュ化
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-        // データベース接続
       $servername = "mysql304.phy.lolipop.lan";
     $username = "LAA1517469";
     $password = "Pass1234";
@@ -34,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "パスワードは8文字以上でなければなりません。";
     }
 
-    // 結果を表示するためにリダイレクト
     header("Location: result.php?message=" . urlencode($message));
     exit();
 }

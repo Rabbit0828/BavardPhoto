@@ -26,6 +26,10 @@
     font-weight: bold;
     text-align: center;
 }
+.profile_head_count a{
+    color:#333;
+    text-decoration: none;
+}
 .profile_head_count span{
     font-size: 22px;
     font-weight: normal;

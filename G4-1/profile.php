@@ -48,7 +48,16 @@
             echo '</div>';
             echo '</div>';
             echo '<div class="profile_actions">';
-            echo '<div class="follow"><a href="">フォロー</a></div>';
+            $sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE user_id = :user_id AND follow_id = :my_id';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':my_id' => $my_id, ':user_id' => $user_id]);
+            $isFollowing = $stmt->fetchColumn();
+
+            if ($isFollowing) {
+                echo '<div class="follow"><a href=follow_delete.php>フォロー中</div>';
+            } else {
+                echo '<div class="not_follow"><a href=follow.php>フォロー</div>';
+            }
             echo '<div class="message"><a href="">メッセージ</a></div>';
             echo '</div>';
             echo '</div>';

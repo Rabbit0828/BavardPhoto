@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chat Application</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="chat-box"></div>
-    <form id="chat-form">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="text" id="message" placeholder="Type a message" required>
-        <button type="submit">Send</button>
-    </form>
-    <script src="js/script.js"></script>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Type your message here...">
+        <button id="send-button">Send</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -6,12 +6,7 @@
         <title>フォロー画面</title>
         <link rel="stylesheet" href="css/follow.css">
     </head>
-    <body>
-    <div class="header">
-<div class="back-button">&lt;</div>
-<div class="username">jennie</div>
-</div>
- 
+    <body> 
 <div class="stats">
 <div class="followers">１６５フォロワー</div>
 <div class="following">１６４フォロー</div>

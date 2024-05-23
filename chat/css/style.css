@@ -2,19 +2,27 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.chat-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 #chat-box {
-    width: 300px;
-    height: 400px;
+    height: 300px;
     border: 1px solid #ccc;
     overflow-y: scroll;
     margin-bottom: 10px;
+    padding: 5px;
 }
 
-#chat-form {
-    display: flex;
-    flex-direction: column;
+#message-input {
+    width: 300px;
+    padding: 5px;
 }
 
-#chat-form input, #chat-form button {
-    margin: 5px 0;
+#send-button {
+    padding: 5px 10px;
 }

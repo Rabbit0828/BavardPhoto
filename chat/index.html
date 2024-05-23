@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="jp">
-    <head>
-        <meta charset="utf-8">
-        <title>Taru-Chat</title>
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-        <script src="./js/chat.js"></script>
-
-        <link href="./css/chat.css" rel="stylesheet">
-     </head>
- 
-    <body>
-         <form method="post" onsubmit="writeMessage(); return false;">
-            <input id="message" name="message" type="text" value="" />
-            <input type="button" value="送信" onclick="writeMessage()">
-        </form>
-         <div id="messageTextBox"></div>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="chat-box"></div>
+    <form id="chat-form">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="text" id="message" placeholder="Type a message" required>
+        <button type="submit">Send</button>
+    </form>
+    <script src="js/script.js"></script>
+</body>
 </html>

@@ -72,7 +72,7 @@
 
   <!-- ユーザー名表示-->
   <div class="user-name-container">
-    <p class="user-name">user_name</p>
+    <p class="user-name">my_page</p>
   </div>
 
   <!-- アイコンに枠線を追加 -->

@@ -1,13 +1,3 @@
-/* 親要素の中央揃え */
-body {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
 .profile_head {
     display: flex;
     align-items: center;

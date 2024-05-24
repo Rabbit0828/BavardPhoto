@@ -66,7 +66,7 @@ p {
     width: 100px;
     height: 30px;
     color: #333;
-    font-size: 12px;
+    font-size: 40px;
     font-weight: 700;
     text-decoration: none;
     background-color: #91a3ef;
@@ -84,7 +84,7 @@ p {
     width: 100px;
     height: 30px;
     color: #333;
-    font-size: 12px;
+    font-size: 40px;
     font-weight: 700;
     text-decoration: none;
     background-color: #c5c5c5;
@@ -92,12 +92,12 @@ p {
 }
 
 .private-name{
-    font-size: 35px;
-    margin-left: 40px;
+    font-size: 25px;
+    margin-left: 50px;
 }
 
 .vio{
-    margin-left: 43px;
+    margin-left: 53px;
     font-size: 15px;
 }
 

@@ -9,7 +9,7 @@
 <body>
     <?php require 'dbconnect.php'; ?>
     <?php 
-    $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 0;
+    $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 3;
     $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
     if ($user_id == 0) {
@@ -55,7 +55,7 @@
             if ($isFollowing) {
                 echo '<div class="follow"><a href=follow_delete.php>フォロー中</div>';
             } else {
-                echo '<div class="not_follow"><a href=follow.php>フォロー</div>';
+                echo '<div class="not_follow"><a href=follow.php?id=',$user_id,'>フォロー</div>';
             }
             echo '<div class="message"><a href="">メッセージ</a></div>';
             echo '</div>';

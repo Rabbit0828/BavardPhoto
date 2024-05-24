@@ -65,6 +65,7 @@ p {
     align-items: center;
     width: auto; 
     height: auto;  
+    padding: 15 30;
     color: #333;
     font-size: 30px; 
     font-weight: 700;

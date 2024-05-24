@@ -63,10 +63,11 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 30px;
+    width: auto; 
+    height: 40px; 
+    padding: 0 20px; 
     color: #333;
-    font-size: 40px;
+    font-size: 30px; 
     font-weight: 700;
     text-decoration: none;
     background-color: #91a3ef;
@@ -81,10 +82,10 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 30px;
+    width: auto;
+    height: auto;
     color: #333;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
     text-decoration: none;
     background-color: #c5c5c5;

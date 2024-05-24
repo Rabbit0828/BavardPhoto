@@ -46,6 +46,7 @@
             echo '</div>';
             echo '</div>';
             echo '<div class="profile_actions">';
+            echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
             $sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE user_id = :user_id AND follow_id = :my_id';
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':my_id' => $my_id, ':user_id' => $user_id]);
@@ -60,7 +61,6 @@
             echo '</div>';
             echo '</div>';
             echo '</div>';
-            echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
             echo '<div class="vio">', htmlspecialchars($user['syoukai'] ?? ''), '</div>';
             echo '<hr>';
 

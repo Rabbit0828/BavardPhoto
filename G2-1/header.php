@@ -47,7 +47,7 @@
     display: block;
     width: 25px;
     height: 3px;
-    background-color: #333;
+    background-color: #DC34E0; /* 三本線の色を指定 */
   }
   .menu {
     display: none;
@@ -59,7 +59,20 @@
     position: relative;
     left: -100px; /* 左に100px移動 */
   }
-  
+  .search-container {
+    display: flex;
+    justify-content: center; /* 中央揃え */
+    align-items: center; /* 縦方向の中央揃え */
+    flex-grow: 1; /* 余白を全て埋める */
+  }
+  .search-container input[type="text"] {
+    height: 40px;
+    width: 300px; /* 幅を指定 */
+    padding: 5px 10px; /* 上下に5px、左右に10pxのパディング */
+    font-size: 16px; /* フォントサイズを指定 */
+    border: 2px solid #DC34E0; /* 枠線の色と太さを指定 */
+    color: #DC34E0; /* 文字の色を指定 */
+  }
 </style>
 </head>
 <body>
@@ -73,7 +86,7 @@
   <!-- 検索ボックスを追加 -->
   <div class="search-container">
     <form method="get" action="products.php">
-      <input type="text" size="40" style="height: 40px;" placeholder="キーワード検索"> <!-- 高さを 40px に変更 -->
+      <input type="text" size="40" placeholder="キーワード検索"> <!-- 高さを 40px に変更 -->
     </form>
   </div>
 

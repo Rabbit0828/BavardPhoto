@@ -1,11 +1,7 @@
-.profile_head {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+
 .profile_name {
     text-align: center;
-    font-size: 20px;
+    font-size: 25px;
     margin-top: 5px;
 }
 .profile_head_icon img {

@@ -45,8 +45,8 @@
             echo '600'; // フォロー中の数をここで取得して表示する必要があります
             echo '</div>';
             echo '</div>';
-            echo '<div class="profile_actions">';
             echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
+            echo '<div class="profile_actions">';
             $sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE user_id = :user_id AND follow_id = :my_id';
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':my_id' => $my_id, ':user_id' => $user_id]);

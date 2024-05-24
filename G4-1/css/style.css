@@ -64,8 +64,8 @@ p {
     justify-content: center;
     align-items: center;
     width: auto; 
-    height: auto;  
-    padding: 15 30;
+    height: auto; 
+    padding: 15 30px; 
     color: #333;
     font-size: 30px; 
     font-weight: 700;

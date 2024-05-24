@@ -1,13 +1,25 @@
+/* 親要素の中央揃え */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
 .profile_head {
     display: flex;
     align-items: center;
     gap: 15px;
 }
+
 .profile_name {
     text-align: center;
     font-size: 20px;
     margin-top: 5px;
 }
+
 .profile_head_icon img {
     display: block;
     width: 150px;
@@ -15,49 +27,59 @@
     border-radius: 70%;
     margin-left: 10%;
 }
+
 .profile_head_text {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     flex: auto;
 }
+
 .profile_head_count {
     font-size: 30px;
     font-weight: bold;
     text-align: center;
 }
+
 .profile_head_count span {
     font-size: 22px;
     font-weight: normal;
     display: block;
 }
+
 p {
     font-size: 25px;
     margin-left: 3%;
 }
+
 .profile_body {
     display: flex;
 }
+
 .profile_body_text a {
     color: #6f6969;
     text-decoration: none;
 }
+
 .profile_body_text ul li {
     font-size: 15px;
     padding-left: 1em;
     position: relative;
     list-style: none;
 }
+
 .profile_body_text ul li::before {
     content: "-";
     position: absolute;
     inset: 0 auto auto 0;
 }
+
 .profile_actions {
     display: flex;
     gap: 10px;
     margin-top: 10px;
 }
+
 .profile_actions .not_follow a,
 .profile_actions .message a {
     display: flex;
@@ -92,6 +114,7 @@ p {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 5px;
 }
+
 .post img {
     display: block;
     width: 100%;

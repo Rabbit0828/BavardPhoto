@@ -53,7 +53,7 @@
             $isFollowing = $stmt->fetchColumn();
 
             if ($isFollowing) {
-                echo '<div class="follow"><a href=follow_delete.php>フォロー中</div>';
+                echo '<div class="follow"><a href=follow_delete.php?=',$user_id,'>フォロー中</div>';
             } else {
                 echo '<div class="not_follow"><a href=follow.php?id=',$user_id,'>フォロー</div>';
             }

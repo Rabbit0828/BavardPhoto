@@ -7,8 +7,8 @@ $pdo=new PDO('mysql:host=mysql304.phy.lolipop.lan;dbname=LAA1517469-photos;chars
 $sql = $pdo->prepare('select * from UserTable where user_name=? or mail_address=? or tell=? ');
 $sql->execute([$_POST['user_id'], $_POST['user_id'], $_POST['user_id']]);
 $row = $sql->fetch();
-
-if ($row && $_POST['password'] === $row['password']) {
+ 
+ if ($row && $_POST['password'] === $row['password']) {
     $_SESSION['UserTable'] = [
         'id' => $row['user_id'],
         'name' => $row['user_name'],

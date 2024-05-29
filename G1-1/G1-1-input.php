@@ -14,13 +14,11 @@
 </div>
 
 <form action="G1-1-output.php" method="post">
-
     <div class = "box">
         <input type="text" name="user_id"  placeholder="ユーザーネーム、メールまたは携帯電話でログイン">
         <input type="text" name="password" placeholder="パスワードを入力">
         <button type="submit">ログイン</button>
     </div>
-
 </form>
 
 <form action="../G1-2/G1-2-1-input.php" method="post">

@@ -10,30 +10,28 @@
 <div class="logo">
     <img src="../images/logo.png">
 </div>
+<?php session_start();
 
-<form action="G1-2-2-input.php" method="post">
-    <div class="box">
-        <div class="form-group">
-            <label>必須項目：</label>
-        </div>
-        <div class="form-group">
-            <input type="text" name="user_name" placeholder="ユーザーネームを入力">
-        </div>
-        <div class="form-group">
-            <input type="password" name="password" placeholder="パスワードを入力">
-        </div>
-        <div class="form-group">
-            <input type="password" name="password2" placeholder="確認用パスワードを入力">
-        </div>
-        <div class="form-group">
-            <input type="email" name="mail_address" placeholder="メールアドレス">
-        </div>
-        <div class="form-group">
-            <input type="text" name="tell" placeholder="電話番号を入力">
-        </div>
-        <button type="submit">次へ</button>
-    </div>
-</form>
+$name=$pass=$mail=$tell=$pass2='';
+if(isset($_SESSION['UserTable'])) {
+    $name=$_SESSION['UserTable']['user_name'];
+    $pass=$_SESSION['UserTable']['password'];
+    $mail=$_SESSION['UserTable']['mail_address'];
+    $tell=$_SESSION['UserTable']['tell'];
+}
+
+echo '<form action="G1-2-2-input.php" method="post">';
+echo '<div class="box">';
+echo '<div class="form-group"><label>必須項目：</label></div>';
+echo '<div class="form-group"><input type="text" name="user_name" value="', $name ,'" placeholder="ユーザーネームを入力"></div>';
+echo '<div class="form-group"><input type="password" name="password" value="', $pass ,'" placeholder="パスワードを入力"></div>';
+echo '<div class="form-group"><input type="password" name="password2" value="', $pass2 ,'" placeholder="確認用パスワードを入力"></div>';
+echo '<div class="form-group"><input type="email" name="mail_address" value="', $mail ,'" placeholder="メールアドレス"></div>';
+echo '<div class="form-group"><input type="text" name="tell" value="', $tell ,'" placeholder="電話番号を入力"></div>';
+echo '</div>';
+echo '<button type="submit">次へ</button>';
+echo '</form>';
+?>
 
 </body>
 </html>

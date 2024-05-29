@@ -9,8 +9,8 @@ if (isset($_POST['usernameOrEmail'])) {
     $usernameOrEmail = $_POST['usernameOrEmail'];
 
     // クエリを準備して実行
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email OR username = :username");
-    $stmt->execute(['email' => $usernameOrEmail, 'username' => $usernameOrEmail]);
+    $stmt = $pdo->prepare("SELECT * FROM UserTable WHERE mail_address = :mail_address OR user_name = :user_name");
+    $stmt->execute(['mail_address' => $usernameOrEmail, 'user_name' => $usernameOrEmail]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {

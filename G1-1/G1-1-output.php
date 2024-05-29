@@ -7,8 +7,8 @@ $pdo=new PDO('mysql:host=mysql304.phy.lolipop.lan;dbname=LAA1517469-photos;chars
 $sql = $pdo->prepare('select * from UserTable where user_name=? or mail_address=? or tell=? ');
 $sql->execute([$_POST['user_id'], $_POST['user_id'], $_POST['user_id']]);
 $row = $sql->fetch();
-
-if ($row && $_POST['password'] === $row['password']) {
+ 
+ if ($row && $_POST['password'] === $row['password']) {
     $_SESSION['UserTable'] = [
         'id' => $row['user_id'],
         'name' => $row['user_name'],
@@ -19,7 +19,7 @@ if ($row && $_POST['password'] === $row['password']) {
         'mail_address' => $row['mail_address'] // 修正: 'address'を'mail_address'に変更
     ];
     
-    header('Location: G2-1.php');
+    header('Location: ../G2-1/G2-1.php');
     exit;
 } else {
     $_SESSION['login_error'] = "メールアドレスまたはパスワードが違います";

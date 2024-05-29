@@ -21,7 +21,7 @@
     </div>
 </form>
 
-<form action="./user.php" method="post">
+<form action="./chat/user.php" method="post">
     <div class = "box2">
         <button type="submit" id="button">新しいアカウントを作成</button>
     </div>

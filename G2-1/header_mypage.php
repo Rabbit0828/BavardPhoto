@@ -47,7 +47,7 @@
     display: block;
     width: 25px;
     height: 3px;
-    background-color: #333;
+    background-color: #DC34E0;
   }
   .menu {
     display: none;
@@ -58,6 +58,14 @@
   .icon-container {
     position: relative;
     left: -100px; /* 左に100px移動 */
+  }
+  .search-container input[type="text"] {
+    height: 40px;
+    width: 300px; /* 幅を指定 */
+    padding: 5px 10px; /* 上下に5px、左右に10pxのパディング */
+    font-size: 16px; /* フォントサイズを指定 */
+    border: 2px solid #DC34E0; /* 枠線の色と太さを指定 */
+    color: #DC34E0; /* 文字の色を指定 */
   }
 </style>
 </head>

@@ -1,21 +1,22 @@
 <?php
 require 'db.php';
 
-if (isset($_POST['search'])) {
+header('Content-Type: application/json');
+
+$response = ['success' => false];
+
+if (isset($_POST['usernameOrEmail'])) {
     $usernameOrEmail = $_POST['usernameOrEmail'];
 
+    // クエリを準備して実行
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email OR username = :username");
     $stmt->execute(['email' => $usernameOrEmail, 'username' => $usernameOrEmail]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        header('Location: index.html?reset=true&user=' . urlencode($usernameOrEmail));
-        exit();
-    } else {
-        echo "<p>アカウントが見つかりませんでした。</p>";
+        $response['success'] = true;
     }
-} else {
-    header('Location: index.html');
-    exit();
 }
+
+echo json_encode($response);
 ?>

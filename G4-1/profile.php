@@ -12,6 +12,9 @@
     $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 0;
     $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
+    echo $my_id,'でログイン中</br>';
+    echo $user_id,'の画面を見ています';
+
     if ($user_id == 0) {
         echo 'ユーザーIDが無効です。';
         exit;
@@ -24,31 +27,39 @@
         $user = $user_stmt->fetch();
 
         if ($user) {
-            echo '<div class="profile_head">';
-            echo '<div class="profile_head_icon"><img src="', htmlspecialchars($user['icon'] ?? ''), '"></div>';
-            echo '<div>';
+            require 'count.php';
+
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
+            echo '<div class="profile_head_icon"><span><img src="', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
             echo '<div class="profile_head_count">';
-            echo '3'; // 投稿数をここで取得して表示する必要があります
             echo '<span>投稿</span>';
+            echo htmlspecialchars($post_count); //投稿数
             echo '</div>';
             echo '<div class="profile_head_count">';
-            echo '700,000'; // フォロワー数をここで取得して表示する必要があります
             echo '<span>フォロワー</span>';
+            echo htmlspecialchars($follower_count); //フォロワー数
             echo '</div>';
             echo '<div class="profile_head_count">';
-            echo '600'; // フォロー中の数をここで取得して表示する必要があります
             echo '<span>フォロー中</span>';
-            echo '</div>';
-            echo '</div>';
-            echo '<div class="profile_actions">';
-            echo '<div class="follow"><a href="">フォロー</a></div>';
-            echo '<div class="message"><a href="">メッセージ</a></div>';
-            echo '</div>';
-            echo '</div>';
+            echo htmlspecialchars($following_count); //フォロー数
             echo '</div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
+            echo '<div class="profile_actions">';
+            $sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE user_id = :user_id AND follow_id = :my_id';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([':my_id' => $my_id, ':user_id' => $user_id]);
+            $isFollowing = $stmt->fetchColumn();
+
+            if ($isFollowing) {
+                echo '<div class="follow"><a href=follow_delete.php?=',$user_id,'>フォロー中</div>';
+            } else {
+                echo '<div class="not_follow"><a href=follow.php?id=',$user_id,'>フォロー</div>';
+            }
+            echo '<div class="message"><a href="../chat/chat.php">メッセージ</a></div>';
+            echo '</div>';
+            echo '</div>';
+            echo '</div>';
             echo '<div class="vio">', htmlspecialchars($user['syoukai'] ?? ''), '</div>';
             echo '<hr>';
 

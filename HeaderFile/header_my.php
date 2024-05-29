@@ -47,7 +47,7 @@
     display: block;
     width: 25px;
     height: 3px;
-    background-color: #DC34E0; /* 三本線の色を指定 */
+    background-color: #DC34E0;
   }
   .menu {
     display: none;
@@ -58,12 +58,6 @@
   .icon-container {
     position: relative;
     left: -100px; /* 左に100px移動 */
-  }
-  .search-container {
-    display: flex;
-    justify-content: center; /* 中央揃え */
-    align-items: center; /* 縦方向の中央揃え */
-    flex-grow: 1; /* 余白を全て埋める */
   }
   .search-container input[type="text"] {
     height: 40px;
@@ -77,38 +71,37 @@
 </head>
 <body>
 <div class="Header">
-  <div class="logo">
-    <a href="home.php" target="_self">
-      <img src="../images/logo.png" alt="ホーム" style="height: 70px;width:200px;" border="0">
+  <!-- 戻るボタン-->
+  <div class="icon-back">
+    <a href="javascript:history.back()" target="_self">
+      <img src="../images/left_button.png" alt="戻る" border="0">
     </a>
   </div>
 
-  <!-- 検索ボックスを追加 -->
-  <div class="search-container">
-    <form method="get" action="products.php">
-      <input type="text" size="40" placeholder="キーワード検索"> <!-- 高さを 40px に変更 -->
-    </form>
+  <!-- ユーザー名表示-->
+  <div class="user-name-container">
+    <p class="user-name">my_page</p>
   </div>
 
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">
     <div class="icon icon1">
       <a href="login.php" target="_self">
-        <img src="../images/normal_icon.png" alt="ログイン" style="height: 70px; width:75px;" border="0">
+        <img src="../images/normal_icon.png" alt="ログイン" border="0">
       </a>
     </div>
 
     <!-- 位置情報に枠線を追加 -->
     <div class="icon icon2">
       <a href="favorite.php" target="_self">
-        <img src="../images/location_information.png" alt="お気に入り" style="height: 70px;width:75px;" border="0">
+        <img src="../images/location_information.png" alt="お気に入り" border="0">
       </a>
     </div>
 
     <!-- アップロードを追加 -->
     <div class="icon icon3">
       <a href="photo_upp_button.php" target="_self">
-        <img src="../images/photo_upp_button.png" alt="カート" style="height: 70px;width:75px;" border="0">
+        <img src="../images/photo_upp_button.png" alt="カート" border="0">
       </a>
     </div>
   </div>

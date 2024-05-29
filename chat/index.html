@@ -1,40 +1,18 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>チャットアプリ</title>
-    <script>
-        function sendMessage() {
-            var message = document.getElementById('message').value;
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "send_message.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById('message').value = '';
-                    loadMessages();
-                }
-            };
-            xhr.send("message=" + encodeURIComponent(message));
-        }
-
-        function loadMessages() {
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "get_messages.php", true);
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById('chat').innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        }
-
-        setInterval(loadMessages, 1000);
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat Application</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="loadMessages()">
-    <div id="chat"></div>
-    <input type="text" id="message" />
-    <button onclick="sendMessage()">送信</button>
+<body>
+    <div class="container">
+        <div id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button id="send-btn">Send</button>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

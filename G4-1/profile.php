@@ -12,6 +12,9 @@
     $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 0;
     $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
+    echo $my_id,'でログイン中</br>';
+    echo $user_id,'の画面を見ています';
+
     if ($user_id == 0) {
         echo 'ユーザーIDが無効です。';
         exit;
@@ -24,26 +27,22 @@
         $user = $user_stmt->fetch();
 
         if ($user) {
-            $post_count_sql = 'SELECT COUNT(*) FROM Post WHERE user_id = :user_id';
-            $post_count_stmt = $pdo->prepare($post_count_sql);
-            $post_count_stmt->execute([':user_id' => $user_id]);
-            $post_count = $post_count_stmt->fetchColumn();
+            require 'count.php';
 
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
             echo '<div class="profile_head_icon"><span><img src="', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
             echo '<div class="profile_head_count">';
             echo '<span>投稿</span>';
-            echo htmlspecialchars($post_count);
+            echo htmlspecialchars($post_count); //投稿数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロワー</span>';
-            echo '700,000'; // フォロワー数をここで取得して表示する必要があります
+            echo htmlspecialchars($follower_count); //フォロワー数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロー中</span>';
-            echo '600'; // フォロー中の数をここで取得して表示する必要があります
-            echo '</div>';
+            echo htmlspecialchars($following_count); //フォロー数
             echo '</div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
             echo '<div class="profile_actions">';
@@ -57,7 +56,7 @@
             } else {
                 echo '<div class="not_follow"><a href=follow.php?id=',$user_id,'>フォロー</div>';
             }
-            echo '<div class="message"><a href="">メッセージ</a></div>';
+            echo '<div class="message"><a href="../chat/chat.php">メッセージ</a></div>';
             echo '</div>';
             echo '</div>';
             echo '</div>';

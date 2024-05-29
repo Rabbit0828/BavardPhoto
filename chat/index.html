@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>チャットアプリ</title>
+    <script>
+        function sendMessage() {
+            var message = document.getElementById('message').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "send_message.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById('message').value = '';
+                    loadMessages();
+                }
+            };
+            xhr.send("message=" + encodeURIComponent(message));
+        }
+
+        function loadMessages() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "get_messages.php", true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById('chat').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+
+        setInterval(loadMessages, 1000);
+    </script>
+</head>
+<body onload="loadMessages()">
+    <div id="chat"></div>
+    <input type="text" id="message" />
+    <button onclick="sendMessage()">送信</button>
+</body>
+</html>

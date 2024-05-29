@@ -8,11 +8,14 @@
     </head>
     <body> 
         <?php require 'dbconnect.php';?>
-        <?php    
-    echo '<div class="stats">';
-    echo '<div class="followers">',$_POST['follow_id'],'フォロワー</div>';
-    echo '<div class="following">',$_POST['user_id'],'フォロー中</div>';
-    ?>
+        <?php  
+            $pdo=new PDO($connect,USER,PASS);  
+            foreach($pdo->query('select * from FollowRelationShip' as $row)){
+            echo '<div class="stats">';
+            echo '<div class="followers">',$_POST['follow_id'],'フォロワー</div>';
+            echo '<div class="following">',$_POST['user_id'],'フォロー中</div>';
+        }
+        ?>
 
      <input id="box2" name="s" type="text" placeholder="キーワードを入力" />
         <button id="btn2" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>

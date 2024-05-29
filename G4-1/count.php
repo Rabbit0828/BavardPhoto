@@ -11,6 +11,6 @@
 
     $following_count_sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE follow_id = :user_id';
     $following_count_stmt = $pdo->prepare($following_count_sql);
-    following_count_stmt->execute([':user_id' => $user_id]);
+    $following_count_stmt->execute([':user_id' => $user_id]);
     $following_count = $following_count_stmt->fetchColumn();
 ?>

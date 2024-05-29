@@ -10,7 +10,7 @@
     <div class="container" id="searchContainer">
         <h1>アカウントを検索</h1>
         <p>メールアドレスまたはユーザーネームを入力してください。</p>
-        <form id="searchForm" method="POST" action="search.php" onsubmit="return searchAccount(event)">
+        <form id="searchForm" method="POST" action="search.php">
             <input type="text" name="usernameOrEmail" class="input-box" placeholder="メールアドレスまたはユーザーネーム" required>
             <div class="spacer"></div>
             <button type="submit" name="search" class="action-button">次へ</button>
@@ -31,11 +31,9 @@
     </div>
 
     <script>
-        function searchAccount(event) {
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const form = event.target;
-            const formData = new FormData(form);
-
+            const formData = new FormData(this);
             fetch('search.php', {
                 method: 'POST',
                 body: formData
@@ -53,9 +51,7 @@
             .catch(error => {
                 console.error('Error:', error);
             });
-
-            return false;
-        }
+        });
     </script>
 </body>
 </html>

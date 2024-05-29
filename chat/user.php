@@ -5,6 +5,7 @@
      const PASS ='Pass1234';
      
     $connect = 'mysql:host='. SERVER . ';dbname='. DBNAME . ';charset=utf8';
+    $pdo=new PDO($connect,USER,PASS);
 ?>
   <!DOCTYPE html>
   <html lang="ja">

@@ -24,26 +24,22 @@
         $user = $user_stmt->fetch();
 
         if ($user) {
-            $post_count_sql = 'SELECT COUNT(*) FROM Post WHERE user_id = :user_id';
-            $post_count_stmt = $pdo->prepare($post_count_sql);
-            $post_count_stmt->execute([':user_id' => $user_id]);
-            $post_count = $post_count_stmt->fetchColumn();
+            require 'count.php';
 
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
             echo '<div class="profile_head_icon"><span><img src="', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
             echo '<div class="profile_head_count">';
             echo '<span>投稿</span>';
-            echo htmlspecialchars($post_count);
+            echo htmlspecialchars($post_count); //投稿数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロワー</span>';
-            echo '700,000'; // フォロワー数をここで取得して表示する必要があります
+            echo htmlspecialchars($follower_count); //フォロワー数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロー中</span>';
-            echo '600'; // フォロー中の数をここで取得して表示する必要があります
-            echo '</div>';
+            echo htmlspecialchars($following_count); //フォロー数
             echo '</div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
             echo '<div class="profile_actions">';

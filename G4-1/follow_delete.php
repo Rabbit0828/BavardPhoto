@@ -13,7 +13,7 @@ if ($user_id == 0) {
 }
 
 // ログインしているユーザーのIDを取得
-$my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 3;
+$my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 0;
 
 try {
     // FollowRelationship テーブルからレコードを削除

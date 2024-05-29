@@ -9,7 +9,7 @@
 <body>
     <?php require 'dbconnect.php'; ?>
     <?php 
-    $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 3;
+    $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 0;
     $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
     if ($user_id == 0) {

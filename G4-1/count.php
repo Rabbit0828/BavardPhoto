@@ -4,9 +4,12 @@
     $post_count_stmt->execute([':user_id' => $user_id]);
     $post_count = $post_count_stmt->fetchColumn();
 
+   //フォロりれに自分のidがいくつあるか
     $follower_count_sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE user_id = :user_id';
     $follower_count_stmt = $pdo->prepare($follower_count_sql);
+    
     $follower_count_stmt->execute([':user_id' => $user_id]);
+    //フォロワーの数とる
     $follower_count = $follower_count_stmt->fetchColumn();
 
     $following_count_sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE follow_id = :user_id';

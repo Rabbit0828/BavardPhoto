@@ -16,7 +16,7 @@ if ($user_id == 0) {
 $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 0;
 
 if($my_id==0){
-    header('Location: ../G1-1');
+    header('Location: ../G1-1/G-1-inupt.php');
 }
 
 try {

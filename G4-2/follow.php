@@ -7,11 +7,16 @@
         <link rel="stylesheet" href="css/follow.css">
     </head>
     <body> 
-    <div class="stats">
-        <div class="followers">１６５フォロワー</div>
-        <div class="following">１６４フォロー</div>
-    </div>
- 
+        <?php require 'dbconnect.php';?>
+        <?php    
+    echo '<div class="stats">';
+    echo '<div class="followers">',$_POST['follow_id'],'フォロワー</div>';
+    echo '<div class="following">',$_POST['user_id'],'フォロー中</div>';
+    ?>
+
+     <input id="box2" name="s" type="text" placeholder="キーワードを入力" />
+        <button id="btn2" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
     <div class="list">
     <div class="list-item">
     <div class="profile-info">

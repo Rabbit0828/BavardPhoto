@@ -21,7 +21,7 @@
     </div>
 </form>
 
-<form action="../G1-2/G1-2-1-input.php" method="post">
+<form action="./user.php" method="post">
     <div class = "box2">
         <button type="submit" id="button">新しいアカウントを作成</button>
     </div>

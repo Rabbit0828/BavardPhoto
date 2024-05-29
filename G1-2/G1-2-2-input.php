@@ -11,7 +11,7 @@
     <img src="../images/logo.png">
 </div>
 
-<form action="G1-2-2-output.php" method="post">
+<form action="G1-2-1-output.php" method="post">
     <div class="box">
         <div class="form-group">
             <label>その他の情報（任意）：</label>
@@ -28,7 +28,7 @@
     </div>
 
     <div class = "box2">
-        <button type="submit">次へ</button>
+        <button type="submit">登録</button>
     </div>
 </form>
 

@@ -56,7 +56,7 @@
             } else {
                 echo '<div class="not_follow"><a href=follow.php?id=',$user_id,'>フォロー</div>';
             }
-            echo '<div class="message"><a href="">メッセージ</a></div>';
+            echo '<div class="message"><a href="../chat/chat.php">メッセージ</a></div>';
             echo '</div>';
             echo '</div>';
             echo '</div>';

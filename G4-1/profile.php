@@ -12,8 +12,8 @@
     $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 0;
     $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-    echo 'IDが',$_SESSION['User']['user_id'],'の',$my_id,'でログイン中';
-    echo 'IDが',intval($_GET['id']),'の',$user_id,'の画面を見ています';
+    echo $my_id,'でログイン中</br>';
+    echo $user_id,'の画面を見ています';
 
     if ($user_id == 0) {
         echo 'ユーザーIDが無効です。';

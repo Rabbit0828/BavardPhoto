@@ -83,6 +83,7 @@ p {
 }
 
 .profile_actions .message a {
+    margin-left: 20px;
     background-color: #91a3ef;
 }
 

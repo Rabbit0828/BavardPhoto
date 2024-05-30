@@ -13,7 +13,7 @@
     <p><img src="../images/logo.png" style="height:70px; width:200px;"></p>
 </div>
 
-<form action="G1-1-output.php" method="post">
+<form action="./chat/user.php" method="post">
     <div class = "box">
         <input type="text" name="user_id"  placeholder="ユーザーネーム、メールまたは携帯電話でログイン">
         <input type="text" name="password" placeholder="パスワードを入力">

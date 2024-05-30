@@ -1,6 +1,6 @@
 <?php
      const SERVER = 'mysql304.phy.lolipop.lan';
-     const DBNAME = 'LAA1517469-sistem';
+     const DBNAME = 'LAA1517469-photos';
      const USER ='LAA1517469';
      const PASS ='Pass1234';
      
@@ -10,7 +10,6 @@
   <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/itiran.css">
         <title>ユーザー</title>
 </head>
 <body>

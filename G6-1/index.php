@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>パスワード再設定</title>
     <link rel="stylesheet" href="G6-1.css">
+    <script>
+        function showPasswordReset() {
+            document.getElementById('searchContainer').style.display = 'none';
+            document.getElementById('passwordResetContainer').style.display = 'block';
+        }
+    </script>
 </head>
 <body>
     <div class="container" id="searchContainer">
         <h1>アカウントを検索</h1>
         <p>メールアドレスまたはユーザーネームを入力してください。</p>
-        <form id="searchForm" method="POST" action="search.php">
+        <form id="searchForm" method="POST" action="search.php" onsubmit="showPasswordReset()">
             <input type="text" name="usernameOrEmail" class="input-box" placeholder="メールアドレスまたはユーザーネーム" required>
             <div class="spacer"></div>
             <button type="submit" name="search" class="action-button">次へ</button>
@@ -29,29 +35,5 @@
             <button type="submit" name="reset" class="action-button">パスワードを変更</button>
         </form>
     </div>
-
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            fetch('search.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('searchContainer').style.display = 'none';
-                    document.getElementById('passwordResetContainer').style.display = 'block';
-                    document.getElementById('hiddenUsernameOrEmail').value = formData.get('usernameOrEmail');
-                } else {
-                    alert('アカウントが見つかりませんでした。');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
 </body>
 </html>

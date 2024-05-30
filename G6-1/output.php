@@ -1,5 +1,17 @@
 <?php
-require 'db.php';
+// データベース接続情報
+const SERVER = 'mysql304.phy.lolipop.lan';
+const DBNAME = 'LAA1517469-photos';
+const USER = 'LAA1517469';
+const PASS = 'Pass1234';
+
+try {
+    $connect = 'mysql:host='. SERVER . ';dbname='. DBNAME . ';charset=utf8';
+    $pdo = new PDO($connect, USER, PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("データベース接続失敗: " . $e->getMessage());
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['search'])) {
@@ -16,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <html lang="ja">
             <head>
                 <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>パスワード再設定</title>
                 <link rel="stylesheet" href="G6-1.css">
             </head>

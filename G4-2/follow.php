@@ -24,20 +24,26 @@
             $user_count_stmt->execute(['user_id' => $user_id]);
             $user_count = $user_count_stmt->fetchColumn();
             echo '<div class="following">',$user_count,'フォロー中</div>';
-        }
+        }      
         ?>
-
-   
+    <form action="http://aso2201143.zombie.jp/BavardPhoto/G4-2/follow.php" method="get">
+                <input type="search" name="search" placeholder="キーワードを入力">
+               <button type="submit" name="submit" value="検索">
+               </form>
+    <?php
+    $pdo=new PDO($connect,USER,PASS);
+    foreach($pdo->query('select * from UserTable join FollowRelationship on UserTable.follow_id = FollowRelationship.follow_id') as $row){
     <div class="list">
-        <div class="list-item">
-            <div class="profile-info">
-                <div class="name">aiueo</div>
-                <div class="details">あいうえお</div>
-            </div>
-        <div class="follow-button">フォロー中</div>
-        </div>
-    <!-- Repeat the .list-item block as needed -->
+    <div class="list-item">
+    <div class="profile-info">
+    <div class="name">aiueo</div>
+    <div class="details">あいうえお</div>
     </div>
+    <div class="follow-button">フォロー中</div>
+    </div>
+    </div>           
+    }
+    ?>
  
     </body>
 </html>

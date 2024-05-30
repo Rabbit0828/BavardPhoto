@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // パスワードを更新する処理
             $stmt = $pdo->prepare("UPDATE UserTable SET password = :password WHERE mail_address = :mail_address OR user_name = :user_name");
             $stmt->execute([
-                'password' => password_hash($newPassword, PASSWORD_DEFAULT),
+                'password' => $newPassword,
                 'mail_address' => $usernameOrEmail,
                 'user_name' => $usernameOrEmail
             ]);

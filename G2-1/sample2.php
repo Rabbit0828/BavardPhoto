@@ -4,21 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>画像をクリックしてポップアップ</title>
+<title>画像の下にポップアップ</title>
 <style>
 /* ポップアップ用のスタイル */
-.popup, .comment-popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.popup {
+  display: block; /* 最初から表示 */
   background-color: white;
   padding: 20px;
   border: 2px solid black;
-  z-index: 9999;
   width: 80%;
   max-width: 800px;
+  margin: 20px auto;
 }
 
 .popup-content {
@@ -32,17 +28,6 @@
   height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
-}
-
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9998;
 }
 
 .popup .text-content {
@@ -138,12 +123,10 @@
 </head>
 <body>
 
-<!-- 画像をクリックするとポップアップ -->
-<img src="../images/pika.png" alt="ピカチュウ" onclick="openPopup()" width="100px" style="aspect-ratio: 1/1; object-fit: cover;">
+<!-- 画像 -->
+<img src="../images/pika.png" alt="ピカチュウ" width="100px" style="aspect-ratio: 1/1; object-fit: cover;">
 
-<!-- ポップアップウィンドウ -->
-<div class="overlay" onclick="closePopup()"></div>
-<div class="popup" id="popup">
+<div class="popup" id="Post">
   <div class="popup-content">
     <img src="../images/pika.png" alt="ピカチュウ">
     <div class="text-content">
@@ -173,8 +156,7 @@
 </div>
 
 <!-- コメント用ポップアップウィンドウ -->
-<div class="overlay" onclick="closeCommentPopup()"></div>
-<div class="comment-popup" id="commentPopup">
+<div class="comment-popup" id="commentPopup" style="display: none;">
   <form id="commentForm">
     <label for="name">名前:</label>
     <input type="text" id="name" name="name" required>
@@ -185,24 +167,8 @@
 </div>
 
 <script>
-function openPopup() {
-  document.getElementById("popup").style.display = "block";
-  document.getElementsByClassName("overlay")[0].style.display = "block";
-}
-
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
-  document.getElementsByClassName("overlay")[0].style.display = "none";
-}
-
 function openCommentPopup() {
   document.getElementById("commentPopup").style.display = "block";
-  document.getElementsByClassName("overlay")[1].style.display = "block";
-}
-
-function closeCommentPopup() {
-  document.getElementById("commentPopup").style.display = "none";
-  document.getElementsByClassName("overlay")[1].style.display = "none";
 }
 
 document.getElementById("commentForm").addEventListener("submit", function(event) {
@@ -215,7 +181,7 @@ document.getElementById("commentForm").addEventListener("submit", function(event
   newComment.textContent = `${name}: ${comment}`;
   commentList.appendChild(newComment);
   alert("コメントが送信されました！");
-  closeCommentPopup();
+  document.getElementById("commentPopup").style.display = "none";
 });
 
 function like() {

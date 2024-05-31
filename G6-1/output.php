@@ -93,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h1>パスワード再設定完了</h1>
                     <p>パスワードが正常に更新されました。</p>
                 </div>
+                <button type="submit" name="reset" class="action-button">トップへ戻る</button>
             </body>
             </html>';
         } else {

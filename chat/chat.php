@@ -1,79 +1,68 @@
-<?php   
-$J_file = "chatlog.json"; // ファイルパス格納
-date_default_timezone_set('Asia/Tokyo'); // タイムゾーンを日本にセット
-
-if(isset($_POST['submit']) && $_POST['submit'] === "送信"){ // #1
-    $chat = [];
-    $chat["person"] = "person1";
-    $chat["imgPath"] = "image/person1.png"; //画像ファイル名は任意
-    $chat["time"] = date("H:i");
-    $chat["text"] = htmlspecialchars($_POST['text'],ENT_QUOTES);
-
-    $chat["text"] = htmlspecialchars($_POST['text'],ENT_QUOTES);
-
-    // 入力値格納処理
-    if($file = file_get_contents($J_file)){ // #2
-      // ファイルがある場合 追記処理
-      $file = str_replace(array(" ","\n","\r"),"",$file);
-      $file = mb_substr($file,0,mb_strlen($file)-2);
-      $json = json_encode($chat);
-      $json = $file.','.$json.']}';
-      file_put_contents($J_file,$json,LOCK_EX);
-    }else{ // #2
-      // ファイルがない場合 新規作成処理
-      $json = json_encode($chat);
-      $json = '{"chatlog":['.$json.']}';
-      file_put_contents($J_file,$json,FILE_APPEND | LOCK_EX);
-    } // #2
-    // header('Location:https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/chat.php');
-    header('Location:./chat.php');
-    exit
-    // 次はここに記述していきます。
-} // #1
-if($file = file_get_contents($J_file)){
-    $file = json_decode($file);
-    $array = $file->chatlog;
-    foreach($array as $object){
-
-        if(isset($result)){
-            // 第二回目以降
-            $result =  $result.'<div class="'.$object->person.'"><p class="chat">'.str_replace("\r\n","<br>",$object->text).'<span class="chat-time">'.$object->time.'</span></p><img src="'.$object->imgPath.'"></div>';
-        }else{
-            // 第一回目
-            $result = '<div class="'.$object->person.'"><p class="chat">'.str_replace("\r\n","<br>",$object->text).'<span class="chat-time">'.$object->time.'</span></p><img src="'.$object->imgPath.'"></div>';
-        }
-
-
-    } 
-}
-?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-  <title>チャット</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/fontawesome-free-5.15.3-web/css/all.min.css">
-  <script src="js/main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+    ・・・
+    <link type="text/css" rel="stylesheet" href="css/bmesse.css" />
+</head>
+
+    <title>チャットサンプル</title>
 </head>
 <body>
-  <main class="main">
-  <div class="chat-system">
-  <div class="chat-box">
-    <div class="chat-area" id="chat-area">
-      <?php echo $result; ?>
+    <!-- 自分やユーザーの情報 -->
+    <h3 id="me" user_id="1">あなたはユーザー1です</h3>
+    <h3 id="partner" thread_id="1">相手</h3>
+    <div id="users">
+        <button class="user" user_id="2">ユーザー2</button>
     </div>
-    <!-- 最初の入力フォーム -->
-    <form class="send-box flex-box" action="chat.php#chat-area" method="post">
-      <textarea id="textarea" type="text" name="text" rows="1" required placeholder="message.."></textarea>
-      <input type="submit" name="submit" value="送信" id="search">
-      <label for="search"><i class="far fa-paper-plane"></i></label>
-    </form>
-    <!-- 最初の入力フォーム -->
-  </div>
-</div>
-    
-  </main>
+    <br>
+    <div id="your_container">
+
+        <!-- チャットの外側部分① -->
+        <div id="bms_messages_container">
+            <!-- ヘッダー部分② -->
+            <div id="bms_chat_header">
+                <!--ステータス-->
+                <div id="bms_chat_user_status">
+                    <!--ステータスアイコン-->
+                    <div id="bms_status_icon">●</div>
+                    <!--ユーザー名-->
+                    <div id="bms_chat_user_name">ユーザー</div>
+                </div>
+            </div>
+
+            <!-- タイムライン部分③ -->
+            <div id="bms_messages">
+
+                <!--メッセージ１（左側）-->
+                <div class="bms_message bms_left">
+                    <div class="bms_message_box">
+                        <div class="bms_message_content">
+                            <div class="bms_message_text">ほうほうこりゃー便利じゃないか</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bms_clear"></div><!-- 回り込みを解除（スタイルはcssで充てる） -->
+
+                <!--メッセージ２（右側）-->
+                <div class="bms_message bms_right">
+                    <div class="bms_message_box">
+                        <div class="bms_message_content">
+                            <div class="bms_message_text">うん、まあまあいけとるな</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bms_clear"></div><!-- 回り込みを解除（スタイルはcssで充てる） -->
+            </div>
+
+            <!-- テキストボックス、送信ボタン④ -->
+            <div id="bms_send">
+                <textarea id="bms_send_message"></textarea>
+                <div id="bms_send_btn">送信</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

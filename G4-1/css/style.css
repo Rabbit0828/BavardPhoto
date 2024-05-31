@@ -107,3 +107,25 @@ p {
     display: block;
     width: 100%;
 }
+
+.text-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 表示する行数 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+#read-more {
+    display: none;
+    background: none;
+    color: blue;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    background-color: white;
+}

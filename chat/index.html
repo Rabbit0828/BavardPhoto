@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
-    ・・・
-    <link type="text/css" rel="stylesheet" href="css/bmesse.css" />
-</head>
-
     <title>チャットサンプル</title>
+    <link type="text/css" rel="stylesheet" href="css/bmesse.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- 自分やユーザーの情報 -->
@@ -19,7 +16,6 @@
     </div>
     <br>
     <div id="your_container">
-
         <!-- チャットの外側部分① -->
         <div id="bms_messages_container">
             <!-- ヘッダー部分② -->
@@ -35,7 +31,6 @@
 
             <!-- タイムライン部分③ -->
             <div id="bms_messages">
-
                 <!--メッセージ１（左側）-->
                 <div class="bms_message bms_left">
                     <div class="bms_message_box">
@@ -59,10 +54,12 @@
 
             <!-- テキストボックス、送信ボタン④ -->
             <div id="bms_send">
-                <textarea id="bms_send_message"></textarea>
+                <textarea id="bms_send_message" placeholder="メッセージを入力してください"></textarea>
                 <div id="bms_send_btn">送信</div>
             </div>
         </div>
     </div>
+
+    <script src="js/chat.js"></script>
 </body>
 </html>

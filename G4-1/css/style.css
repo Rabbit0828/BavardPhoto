@@ -108,6 +108,10 @@ p {
     width: 100%;
 }
 
+.text-content-wrapper {
+    position: relative;
+}
+
 .text-content {
     display: -webkit-box;
     -webkit-line-clamp: 3; /* 表示する行数 */
@@ -115,10 +119,10 @@ p {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
+    position: relative;
 }
 
 #read-more {
-    display: none;
     background: none;
     color: blue;
     border: none;
@@ -126,6 +130,32 @@ p {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 5px;
+    padding: 0 5px;
     background-color: white;
+    display: inline;
+}
+
+.ff-switch {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ff-switch a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.ff-switch a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }

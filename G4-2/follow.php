@@ -26,32 +26,40 @@
             echo '<div class="following">',$user_count,'フォロー中</div>';
         }      
         ?>
-        <?php
-                echo '<form action="http://aso2201143.zombie.jp/BavardPhoto/G4-2/follow.php" method="get">';
-                echo '<input type="search" name="search" placeholder="キーワードを入力">';
-                echo '<button type="submit" name="submit" value="検索">';
-               echo '</form>';
-        ?>
+                <form action="follow.php" method="get">
+                <input type="search" name="search" placeholder="キーワードを入力">
+                <button type="submit" name="submit" value="検索"></button>
+                </form>
     <?php
     try{
     $pdo=new PDO($connect,USER,PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $pdo->query('SELECT UserTable.user_name, UserTable.private_name FROM UserTable 
-                         JOIN FollowRelationship ON UserTable.user_id = FollowRelationship.follow_id');
-        foreach($stmt as $row){
-        echo '<div class="list">';
-        echo '<div class="list-item">';
-        echo '<div class="profile-info">';
-        echo '<div class="name">',htmlspecialchars($row['user_name']),'</div>';
-        echo '<div class="details">',htmlspecialchars($row['private_name']),'</div>';
-        echo '</div>';
-        echo '<div class="follow-button"></div>';
-        echo '</div>';
-        echo '</div>';
-        }
-    }catch (PDOException $e) {
-        echo 'Connection failed: ' . $e->getMessage();
+    if (isset($_GET['search'])) {
+        $search = '%' . $_GET['search'] . '%';
+        $stmt = $pdo->prepare('SELECT UserTable.user_name, UserTable.private_name 
+                               FROM UserTable 
+                               JOIN FollowRelationship ON UserTable.user_id = FollowRelationship.follow_id 
+                               WHERE UserTable.user_name LIKE :search OR UserTable.private_name LIKE :search');
+        $stmt->execute(['search' => $search]);
+    } else {
+        $stmt = $pdo->query('SELECT UserTable.user_name, UserTable.private_name 
+                             FROM UserTable 
+                             JOIN FollowRelationship ON UserTable.user_id = FollowRelationship.follow_id');
     }
-    ?>
-    </body>
+
+    foreach($stmt as $row) {
+        echo '<div class="list">';
+            echo '<div class="list-item">';
+                echo '<div class="profile-info">';
+                    echo '<div class="name">', htmlspecialchars($row['user_name']), '</div>';
+                    echo '<div class="details">', htmlspecialchars($row['private_name']), '</div>';
+                echo '</div>';
+                echo '<div class="follow-button">フォローする</div>';
+            echo '</div>';
+        echo '</div>';
+    }
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+}
+?>    </body>
 </html>

@@ -53,7 +53,7 @@
 
         <section>
             <h2>8. お問い合わせ</h2>
-            <p>利用規約に関するお問い合わせは、support@bavardphoto.com までご連絡ください。</p>
+            <p>利用規約に関するお問い合わせは、<href>0120-5299-0124</href>までご連絡ください。</p>
         </section>
 
         <button type="button" class="action-button" onclick="location.href='output.php'">戻る</button>

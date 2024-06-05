@@ -38,7 +38,7 @@ ul {
 }
 
 .action-button {
-    background-color: #4CAF50;
+    background-color: #ff58d0;
     border: none;
     color: white;
     padding: 10px 20px;
@@ -52,7 +52,7 @@ ul {
 }
 
 .action-button:hover {
-    background-color: #45a049;
+    background-color: #ff58d0;
 }
 
 .spacer {

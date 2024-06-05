@@ -38,11 +38,11 @@
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロワー</span>';
-            echo htmlspecialchars($follower_count); //フォロワー数
+            echo '<a href="ff.php?user_id=', $user_id, '&type=followers">',htmlspecialchars($follower_count),'</a>'; //フォロワー数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロー中</span>';
-            echo htmlspecialchars($following_count); //フォロー数
+            echo '<a href="ff.php?user_id=', $user_id, '&type=following">',htmlspecialchars($following_count),'</a>'; //フォロー数
             echo '</div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
             echo '<div class="profile_actions">';
@@ -63,8 +63,10 @@
 
             // ここに「続きを読む」機能を追加
             echo '<div class="vio">';
+            echo '<div class="text-content-wrapper">';
             echo '<p class="text-content" id="text">', htmlspecialchars($user['syoukai'] ?? ''), '</p>';
             echo '<button id="read-more">続きを読む</button>';
+            echo '</div>';
             echo '</div>';
             echo '<hr>';
 

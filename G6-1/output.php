@@ -1,5 +1,4 @@
 <?php
-// データベース接続情報
 const SERVER = 'mysql304.phy.lolipop.lan';
 const DBNAME = 'LAA1517469-photos';
 const USER = 'LAA1517469';
@@ -17,13 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['search'])) {
         $usernameOrEmail = $_POST['usernameOrEmail'];
 
-        // ユーザーの存在確認
         $stmt = $pdo->prepare("SELECT * FROM UserTable WHERE mail_address = :mail_address OR user_name = :user_name");
         $stmt->execute(['mail_address' => $usernameOrEmail, 'user_name' => $usernameOrEmail]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            // ユーザーが存在する場合、パスワード再設定画面を表示
             echo '<!DOCTYPE html>
             <html lang="ja">
             <head>
@@ -48,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </body>
             </html>';
         } else {
-            // ユーザーが存在しない場合、エラーメッセージを表示
             echo '<!DOCTYPE html>
             <html lang="ja">
             <head>
@@ -72,13 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </html>';
         }
     } elseif (isset($_POST['reset'])) {
-        // パスワード再設定処理
         $usernameOrEmail = $_POST['usernameOrEmail'];
         $newPassword = $_POST['newPassword'];
         $confirmPassword = $_POST['confirmPassword'];
 
         if ($newPassword === $confirmPassword) {
-            // パスワードを更新する処理
             $stmt = $pdo->prepare("UPDATE UserTable SET password = :password WHERE mail_address = :mail_address OR user_name = :user_name");
             $stmt->execute([
                 'password' => $newPassword,
@@ -99,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <h1>パスワード再設定完了</h1>
                     <p>パスワードが正常に更新されました。</p>
                 </div>
+                <button type="submit" name="reset" class="action-button">トップへ戻る</button>
             </body>
             </html>';
         } else {

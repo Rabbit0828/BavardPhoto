@@ -101,7 +101,7 @@
     <!-- 位置情報に枠線を追加 -->
     <div class="icon icon2">
       <a href="favorite.php" target="_self">
-        <img src="../images/location_information.png" alt="お気に入り" style="height: 70px;width:75px;" border="0">
+        <img src="../images/gps.png" alt="お気に入り" style="height: 70px;width:75px;" border="0">
       </a>
     </div>
 

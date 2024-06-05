@@ -63,8 +63,10 @@
 
             // ここに「続きを読む」機能を追加
             echo '<div class="vio">';
+            echo '<div class="text-content-wrapper">';
             echo '<p class="text-content" id="text">', htmlspecialchars($user['syoukai'] ?? ''), '</p>';
             echo '<button id="read-more">続きを読む</button>';
+            echo '</div>';
             echo '</div>';
             echo '<hr>';
 

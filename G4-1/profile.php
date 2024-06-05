@@ -60,7 +60,12 @@
             echo '</div>';
             echo '</div>';
             echo '</div>';
-            echo '<div class="vio">', htmlspecialchars($user['syoukai'] ?? ''), '</div>';
+
+            // ここに「続きを読む」機能を追加
+            echo '<div class="vio">';
+            echo '<p class="text-content" id="text">', htmlspecialchars($user['syoukai'] ?? ''), '</p>';
+            echo '<button id="read-more">続きを読む</button>';
+            echo '</div>';
             echo '<hr>';
 
             $post_sql = 'SELECT * FROM Post WHERE user_id = :user_id';
@@ -84,5 +89,6 @@
         echo 'データベースエラー: ' . htmlspecialchars($e->getMessage());
     }
     ?>
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -55,14 +55,6 @@
         margin-bottom: 50px;
     }
 
-    .box2 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center; 
-        align-items: center; 
-        margin-bottom: 50px;
-    }
-
     .box input, .box button {
         margin-bottom: 10px; /* Adjust the value as needed for desired spacing */
     }
@@ -81,16 +73,28 @@
         
     }
 
-    button {
-        width: 70%; /* テキストボックスの横幅 */
-        height: 50px; /* テキストボックスの立幅 */
-        padding: 10px; /* テキストボックスの左側のスペース */
-        box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-        background-color: #DC34E0;
-        color: #ffffff;
-        border-radius: 10px; /* テキストボックスの角を丸くする corner radius */
-        border: 0px;
+    .box2 {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 50px 0; /* 上下にパディングを追加 */
+}
 
-    }
+button {
+    width: 70%;
+    height: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #DC34E0;
+    color: #ffffff;
+    border-radius: 10px;
+    border: 0px;
+    margin-top: 20px; /* ボタンを下側に配置するためにマージンを追加 */
+}
+
+    
     
 </style>

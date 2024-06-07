@@ -75,7 +75,7 @@
             if ($posts) {
                 echo '<div class="post">';
                 foreach ($posts as $post) {
-                    echo '<a href="post.php?id=', htmlspecialchars($post['image_id'] ?? ''), '"><img src="', htmlspecialchars($post['image_name'] ?? ''), '"></a>';
+                    echo '<a href="post.php?id=', htmlspecialchars($post['image_id'] ?? ''), '"><img src="image/', htmlspecialchars($post['image_name'] ?? ''), '"></a>';
                 }
                 echo '</div>';
             } else {

@@ -51,9 +51,9 @@
             $users = $stmt->fetchAll();
 
             if ($users) {
-                echo '<ul>';
+                echo '<ul class="user-list">';
                 foreach ($users as $user) {
-                    echo '<li>', htmlspecialchars($user['user_name'] ?? ''), '</li>';
+                    echo '<li><a href="profile.php?id=',$user['user_id'],'"><img src="', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a></li>';
                 }
                 echo '</ul>';
             } else {

@@ -1,4 +1,3 @@
-
 .profile_name {
     text-align: center;
     font-size: 30px;
@@ -87,7 +86,6 @@ p {
     background-color: #91a3ef;
 }
 
-
 .private-name{
     font-size: 30px;
     margin-left: 80px;
@@ -150,12 +148,31 @@ p {
     text-decoration: underline;
 }
 
-ul {
+ul.user-list {
     list-style: none;
     padding: 0;
 }
 
-ul li {
+ul.user-list li {
+    display: flex;
+    align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+}
+
+ul.user-list li img {
+    width: 40px; /* アイコンの幅を設定 */
+    height: 40px; /* アイコンの高さを設定 */
+    border-radius: 50%; /* 丸くする */
+    margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
+}
+
+ul.user-list li a {
+    color: black; /* リンクの文字色を黒に設定 */
+    text-decoration: none; /* アンダーラインを消す */
+}
+
+a {
+    color: black; /* リンクの文字色を黒に設定 */
+    text-decoration: none; /* アンダーラインを消す */
 }

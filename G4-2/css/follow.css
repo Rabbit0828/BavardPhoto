@@ -19,6 +19,39 @@ body {
 .stats .following {
     color: #E91E63;
 }
+.search-form {
+    width: fit-content; /* フォームの内容に合わせた幅を設定 */
+    margin: 20px auto; /* 上下20pxのマージンと左右中央寄せ */
+}
+
+.search-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    width: 300px;
+    outline: none;
+}
+
+.search-button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-left: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.search-button:active {
+    background-color: #004494;
+}
 .list {
     width: 100%;
     max-width: 600px;

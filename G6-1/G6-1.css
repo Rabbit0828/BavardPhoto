@@ -8,7 +8,10 @@ body {
     align-items: center;
     background-color: #f0f0f0;
     text-align: left; 
-    padding-left: 10%; 
+    padding-left: 10%;
+    display: flex;
+    margin: 0;
+    height: 100vh; 
 }
 
 h1, p {
@@ -41,4 +44,61 @@ h1, p {
 
 .action-button:hover {
     background-color: #E234D4; 
+}
+
+.logo {
+    margin-top: 20px; /* Adjusts the top margin of the logo */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.login {
+    margin-bottom: 5vh;
+}
+
+.login button {
+    font-size: 45px; /* Increases the size of the text */
+    padding: 15px 30px; /* Increases the size of the button */
+    border-radius: 50px; /* 丸角の大きさ */
+    background-color: #DC34E0; /* Sets the background color */
+    color: white; /* Sets the text color */
+    border: none; /* Removes the default border */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+}
+
+.login button:hover {
+    background-color: #45a049; /* Changes the background color on hover */
+}
+
+
+.sparkle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: rgb(213, 15, 15);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle 1s linear infinite;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20vh) scale(0);
+        opacity: 0;
+    }
 }

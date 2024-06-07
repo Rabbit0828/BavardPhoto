@@ -76,7 +76,7 @@ try {
                 $stmt->bindParam(':icon', $icon);
 
                 $stmt->execute();
-                header('Location: G1-2-2-input.php');
+                header('Location: ../G1-3/G1-3.php');
                 exit();
             }
         }

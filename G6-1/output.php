@@ -89,12 +89,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <link rel="stylesheet" href="G6-1.css">
             </head>
             <body>
-                <div class="container">
-                    <h1>パスワード再設定完了</h1>
-                    <p>パスワードが正常に更新されました。</p>
+
+
+            <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const sparkleCount = 100; // キラキラの数
+            const body = document.body;
+
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement("div");
+                sparkle.className = "sparkle";
+                sparkle.style.left = `${Math.random() * 100}vw`;
+                sparkle.style.top = `${Math.random() * 100}vh`;
+                sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                body.appendChild(sparkle);
+            }
+        });
+    </script>
+
+
+            
+            <div class="container">
+            <h2>パスワード再設定完了</h2>
+                <div class="login">
+                    <a href="../G1-1/G1-1-input.php">
+                        <button type="submit">LOGIN</button>
+                    </a>
                 </div>
-                <button type="submit" name="reset" class="action-button">トップへ戻る</button>
+                    <p>パスワードが正常に更新されました。<br>
+                    再度ログインしなおしてください。</p>
+                </div>
             </body>
+
+
             </html>';
         } else {
             echo '<!DOCTYPE html>

@@ -159,3 +159,7 @@ ul li {
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
+ a{
+    color: black; /* リンクの文字色を黒に設定 */
+    text-decoration: none; /* アンダーラインを消す */
+ }

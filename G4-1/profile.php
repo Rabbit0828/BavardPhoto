@@ -28,7 +28,7 @@
 
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
-            echo '<div class="profile_head_icon"><span><img src="', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
+            echo '<div class="profile_head_icon"><span><img src="image/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
             echo '<div class="profile_head_count">';
             echo '<span>投稿</span>';
             echo htmlspecialchars($post_count); //投稿数

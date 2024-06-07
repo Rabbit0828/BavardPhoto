@@ -86,7 +86,7 @@
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">
     <div class="icon icon1">
-      <a href="login.php" target="_self">
+      <a href="/G4-2/myprofeile.html" target="_self">
         <img src="../images/normal_icon.png" alt="ログイン" border="0">
       </a>
     </div>

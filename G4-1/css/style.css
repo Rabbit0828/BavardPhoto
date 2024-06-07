@@ -167,7 +167,7 @@ ul.user-list li img {
     margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
 }
 
-ul.user-list li a {
+a {
     color: black; /* リンクの文字色を黒に設定 */
     text-decoration: none; /* アンダーラインを消す */
 }

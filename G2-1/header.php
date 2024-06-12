@@ -93,7 +93,7 @@
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">
     <div class="icon icon1">
-      <a href="login.php" target="_self">
+      <a href="../G4-2/myprofile.html" target="_self">
         <img src="../images/normal_icon.png" alt="ログイン" style="height: 70px; width:75px;" border="0">
       </a>
     </div>

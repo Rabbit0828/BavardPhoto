@@ -1,4 +1,15 @@
-<?php session_start()?>
+<?php 
+session_start();
+    // セッションからユーザーIDを取得
+    if (!isset($_SESSION['UserTable']['id'])) {
+        // セッションに user_id が存在しない場合、ログインページにリダイレクト
+        header("Location: ../G1-1/G1-1-output.php");
+        exit(); // リダイレクト後に以降のコードが実行されないようにする
+    }
+
+    // セッション変数 UserTable に id が存在する場合のみ、$user_id に代入する
+    $user_id = $_SESSION['UserTable']['id'];
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,10 +23,6 @@
   try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    
-        // ユーザーIDをセッションから取得
-        $user_id = $_SESSION['user_id'];
         
     // Display follower and following counts
         echo '<div class="stats">';

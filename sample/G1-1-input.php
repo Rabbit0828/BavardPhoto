@@ -5,16 +5,6 @@
     <meta charset="UTF-8">
     <title>フジカワライヤーズ</title>
     <link rel="stylesheet" href="css/style.css">
-
-    <script>
-        // ページが戻ったときにリロードするためのスクリプト
-        window.onpageshow = function(event) {
-            if (event.persisted) {
-                window.location.reload();
-            }
-        };
-    </script>
-    
 </head>
 <body>
 

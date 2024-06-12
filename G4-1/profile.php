@@ -28,7 +28,7 @@
 
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
-            echo '<div class="profile_head_icon"><span><img src="image/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
+            echo '<div class="profile_head_icon"><span><img src="../images/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
             echo '<div class="profile_head_count">';
             echo '<span>投稿</span>';
             echo htmlspecialchars($post_count); //投稿数
@@ -75,7 +75,9 @@
             if ($posts) {
                 echo '<div class="post">';
                 foreach ($posts as $post) {
-                    echo '<a href="post.php?id=', htmlspecialchars($post['image_id'] ?? ''), '"><img src="', htmlspecialchars($post['image_name'] ?? ''), '"></a>';
+                    echo '<a href="#" class="post-link" data-image-id="', htmlspecialchars($post['image_id'] ?? ''), '">';
+                    echo '<img src="../images/', htmlspecialchars($post['image_name'] ?? ''), '">';
+                    echo '</a>';
                 }
                 echo '</div>';
             } else {
@@ -88,6 +90,12 @@
         echo 'データベースエラー: ' . htmlspecialchars($e->getMessage());
     }
     ?>
+
+    <div id="modal" class="modal">
+        <span class="close" id="close">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>

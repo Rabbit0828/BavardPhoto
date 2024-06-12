@@ -87,3 +87,5 @@ try {
 
 $pdo = null; // DB切断
 ?>
+
+

@@ -46,6 +46,33 @@
                 width: 300px; /* Adjust the width to your preference */
                 height: auto; /* Maintains the aspect ratio */
             }
+
+            .sparkle {
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                background-color: rgb(213, 15, 15);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                border-radius: 50%;
+                opacity: 0;
+                animation: sparkle 1s linear infinite;
+            }
+
+            @keyframes sparkle {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20vh) scale(0);
+                opacity: 0;
+            }
+        }
+
             
         </style>
     </head>
@@ -66,6 +93,21 @@
             <img src="../images/kk.png">
         </div>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+            const sparkleCount = 100; // キラキラの数
+            const body = document.body;
+
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement("div");
+                sparkle.className = "sparkle";
+                sparkle.style.left = `${Math.random() * 100}vw`;
+                sparkle.style.top = `${Math.random() * 100}vh`;
+                sparkle.style.animationDelay = `${Math.random() * 2}s`;
+                body.appendChild(sparkle);
+            }
+        });
+    </script>
 
     </body>
 </html>

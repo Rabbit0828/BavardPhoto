@@ -23,14 +23,19 @@ document.addEventListener('DOMContentLoaded', function() {
     var modalImage = document.getElementById("modal-image");
     var closeBtn = document.getElementById("close");
 
-    // すべてのポスト画像を取得
-    var postImages = document.querySelectorAll('.post img');
+    // すべてのポストリンクを取得
+    var postLinks = document.querySelectorAll('.post-link');
 
-    // 各ポスト画像にクリックイベントを追加
-    postImages.forEach(function(img) {
-        img.addEventListener('click', function() {
+    // 各ポストリンクにクリックイベントを追加
+    postLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // デフォルトのリンク動作をキャンセル
+            var imageId = this.dataset.imageId; // data-image-id属性から画像IDを取得
+            var imageUrl = this.querySelector('img').src; // 画像URLを取得
+
+            // モーダルを表示し、画像を設定
             modal.style.display = "block";
-            modalImage.src = this.src;
+            modalImage.src = imageUrl;
         });
     });
 
@@ -46,4 +51,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 

@@ -19,7 +19,7 @@ $row = $sql->fetch();
         'mail_address' => $row['mail_address'] // 修正: 'address'を'mail_address'に変更
     ];
     
-    header('Location: ./sample.php');
+    header('Location: ./sample.html');
     exit;
 } else {
     $_SESSION['login_error'] = "メールアドレスまたはパスワードが違います";

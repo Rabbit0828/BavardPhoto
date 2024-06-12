@@ -200,6 +200,7 @@
 <body>
 
 <?php
+// ユーザーIDをセッションから取得
 try {
     // PDOインスタンスの作成
     $pdo = new PDO($connect, USER, PASS);        

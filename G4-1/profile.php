@@ -28,7 +28,8 @@
 
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
-            echo '<div class="profile_head_icon"><span><img src="../images/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
+            echo '<div class="profile_head_icon"><span><img src="../images/guest.png"></span></div>';
+            // ', htmlspecialchars($user['icon'] ?? ''), '
             echo '<div class="profile_head_count">';
             echo '<span>投稿</span>';
             echo htmlspecialchars($post_count); //投稿数
@@ -76,8 +77,9 @@
                 echo '<div class="post">';
                 foreach ($posts as $post) {
                     echo '<a href="#" class="post-link" data-image-id="', htmlspecialchars($post['image_id'] ?? ''), '">';
-                    echo '<img src="../images/', htmlspecialchars($post['image_name'] ?? ''), '">';
+                    echo '<img src="../images/indian.png">';
                     echo '</a>';
+                    // ', htmlspecialchars($post['image_name'] ?? ''), '
                 }
                 echo '</div>';
             } else {

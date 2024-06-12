@@ -19,7 +19,7 @@ if (isset($_FILES['file']) && isset($_POST['comment'])) {
 
     // エラーチェック
     if ($file['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = 'uploads/'; // アップロードされたファイルの保存先ディレクトリ
+        $uploadDir = '../images'; // アップロードされたファイルの保存先ディレクトリ
         
         // ディレクトリが存在しない場合は作成
         if (!is_dir($uploadDir)) {

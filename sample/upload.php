@@ -38,7 +38,7 @@ if (isset($_FILES['file']) && isset($_POST['comment'])) {
             // ファイルを移動
             if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
                 // データベースに情報を挿入
-                $stmt = $pdo->prepare("INSERT INTO photos (image_name, image_name2, image_name3, image_name4, time, comment) VALUES (:image_name, :image_name2, :image_name3, :image_name4, :time, :comment)");
+                $stmt = $pdo->prepare("INSERT INTO Post (image_name, image_name2, image_name3, image_name4, time, comment) VALUES (:image_name, :image_name2, :image_name3, :image_name4, :time, :comment)");
                 $stmt->bindParam(':image_name', $newFileName);
                 $stmt->bindParam(':image_name2', $newFileName); // 必要に応じて変更
                 $stmt->bindParam(':image_name3', $newFileName); // 必要に応じて変更

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // データベース接続情報
 const SERVER = 'mysql304.phy.lolipop.lan';
 const DBNAME = 'LAA1517469-photos';
@@ -12,6 +14,12 @@ try {
     die("データベース接続に失敗しました: " . $e->getMessage());
 }
 
+// セッションからユーザーIDを取得
+if (!isset($_SESSION['UserTable']['id'])) {
+    die("ユーザーがログインしていません。");
+}
+$user_id = $_SESSION['UserTable']['id'];
+
 // アップロードされたファイルが存在するか確認
 if (isset($_FILES['file']) && isset($_POST['comment'])) {
     $file = $_FILES['file'];
@@ -19,7 +27,7 @@ if (isset($_FILES['file']) && isset($_POST['comment'])) {
 
     // エラーチェック
     if ($file['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../images'; // アップロードされたファイルの保存先ディレクトリ
+        $uploadDir = '../images/'; // アップロードされたファイルの保存先ディレクトリ
         
         // ディレクトリが存在しない場合は作成
         if (!is_dir($uploadDir)) {
@@ -38,12 +46,14 @@ if (isset($_FILES['file']) && isset($_POST['comment'])) {
             // ファイルを移動
             if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
                 // データベースに情報を挿入
-                $stmt = $pdo->prepare("INSERT INTO Post (image_name, image_name2, image_name3, image_name4, time, comment) VALUES (:image_name, :image_name2, :image_name3, :image_name4, :time, :comment)");
+                $stmt = $pdo->prepare("INSERT INTO Post (user_id, image_name, image_name2, image_name3, image_name4, time, comment) VALUES (:user_id, :image_name, :image_name2, :image_name3, :image_name4, :time, :comment)");
+                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                 $stmt->bindParam(':image_name', $newFileName);
                 $stmt->bindParam(':image_name2', $newFileName); // 必要に応じて変更
                 $stmt->bindParam(':image_name3', $newFileName); // 必要に応じて変更
                 $stmt->bindParam(':image_name4', $newFileName); // 必要に応じて変更
-                $stmt->bindParam(':time', date('Y-m-d H:i:s'));
+                $time = date('Y-m-d H:i:s');
+                $stmt->bindParam(':time', $time);
                 $stmt->bindParam(':comment', $comment);
                 
                 if ($stmt->execute()) {
@@ -64,4 +74,5 @@ if (isset($_FILES['file']) && isset($_POST['comment'])) {
     echo "ファイルまたはコメントが選択されていません。";
 }
 ?>
+
 

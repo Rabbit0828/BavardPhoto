@@ -17,3 +17,33 @@ document.addEventListener("DOMContentLoaded", function () {
         button.style.display = 'none'; // ボタンを非表示にする
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById("modal");
+    var modalImage = document.getElementById("modal-image");
+    var closeBtn = document.getElementById("close");
+
+    // すべてのポスト画像を取得
+    var postImages = document.querySelectorAll('.post img');
+
+    // 各ポスト画像にクリックイベントを追加
+    postImages.forEach(function(img) {
+        img.addEventListener('click', function() {
+            modal.style.display = "block";
+            modalImage.src = this.src;
+        });
+    });
+
+    // 閉じるボタンのクリックイベント
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+
+    // モーダルウィンドウ外のクリックイベント
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+});
+

@@ -88,6 +88,12 @@
         echo 'データベースエラー: ' . htmlspecialchars($e->getMessage());
     }
     ?>
+
+    <div id="modal" class="modal">
+        <span class="close" id="close">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>

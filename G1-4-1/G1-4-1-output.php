@@ -17,8 +17,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // セッションを破棄する
     session_destroy();
 
-    // ログアウト後のリダイレクト
-    header('Location: ../G1-1/G1-1-input.php');
+    // HTMLとJavaScriptで画像を表示し、数秒後にリダイレクト
+    echo '<!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>ログアウト</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                font-family: Arial, sans-serif;
+            }
+            img {
+                width: 200px; /* Adjust the size as needed */
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="../images/bye.png" alt="ロゴ">
+        <p>ログアウトしました。ログインページに移動します。</p>
+        <script>
+            // 3秒後にリダイレクト
+            setTimeout(function() {
+                window.location.href = "../G1-1/G1-1-input.php";
+            }, 1500);
+        </script>
+    </body>
+    </html>';
     exit();
 }
 ?>

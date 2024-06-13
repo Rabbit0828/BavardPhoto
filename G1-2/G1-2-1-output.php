@@ -34,7 +34,7 @@ try {
         $icon = ''; // Default value
         if (isset($_FILES['icon']) && $_FILES['icon']['error'] === UPLOAD_ERR_OK) {
             $icon = $_FILES['icon']['name'];
-            $upload_dir = 'path_to_upload_folder/'; // アップロード先のディレクトリ
+            $upload_dir = '../images/'; // アップロード先のディレクトリ
             if (!is_dir($upload_dir)) {
                 // ディレクトリが存在しない場合は作成する
                 mkdir($upload_dir, 0755, true);

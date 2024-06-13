@@ -28,7 +28,7 @@ try {
         $tell = isset($_POST['tell']) ? customSanitize($_POST['tell']) : '';
         $post_code = isset($_POST['post_code']) ? customSanitize($_POST['post_code']) : '';
         $address = isset($_POST['address']) ? customSanitize($_POST['address']) : '';
-        $icon = isset($_POST['icon']) ? customSanitize($_POST['icon']) : '';
+        $icon = isset($_POST['icon']) ? customSanitize($_POST['icon']) : 'guest.png';
     
          // ファイルアップロード処理
          if (isset($_FILES['icon']) && $_FILES['icon']['error'] === UPLOAD_ERR_OK) {

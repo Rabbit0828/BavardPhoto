@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
 .logo {
     display: flex;
     justify-content: center;
-    margin-bottom: 15vh;
+    margin-bottom: 12vh;
 }
 
 .tab {
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
     flex-direction: column;
     justify-content: center; 
     align-items: center;         
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .form-group {
@@ -250,13 +250,8 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 .box2 {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     display: flex;
     justify-content: center; 
-    align-items: center; 
-    padding: 50px 0; /* 上下にパディングを追加 */
 }
 
 button {

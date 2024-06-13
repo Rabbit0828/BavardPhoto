@@ -30,17 +30,21 @@ try {
         $address = isset($_POST['address']) ? customSanitize($_POST['address']) : '';
         $icon = isset($_POST['icon']) ? customSanitize($_POST['icon']) : '';
     
-        // File upload handling
-        $icon = ''; // Default value
-        if (isset($_FILES['icon']) && $_FILES['icon']['error'] === UPLOAD_ERR_OK) {
-            $icon = $_FILES['icon']['name'];
-            $upload_dir = 'path_to_upload_folder/'; // アップロード先のディレクトリ
+         // ファイルアップロード処理
+         if (isset($_FILES['icon']) && $_FILES['icon']['error'] === UPLOAD_ERR_OK) {
+            $upload_dir = '../images/'; // アップロード先のディレクトリ
             if (!is_dir($upload_dir)) {
                 // ディレクトリが存在しない場合は作成する
                 mkdir($upload_dir, 0755, true);
             }
-            if (move_uploaded_file($_FILES['icon']['tmp_name'], $upload_dir . $icon)) {
+            
+            // Generate a unique file name
+            $file_ext = pathinfo($_FILES['icon']['name'], PATHINFO_EXTENSION);
+            $unique_name = uniqid() . '.' . $file_ext;
+            
+            if (move_uploaded_file($_FILES['icon']['tmp_name'], $upload_dir . $unique_name)) {
                 // ファイルの移動が成功した場合
+                $icon = $unique_name;
                 echo "ファイルのアップロードに成功しました。";
             } else {
                 // ファイルの移動が失敗した場合

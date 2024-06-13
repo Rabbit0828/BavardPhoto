@@ -51,13 +51,10 @@
                 <label>その他の情報（任意）：</label>
             </div>
             <div class="form-group">
-            <form action="G1-2-1-output.php" method="post" enctype="multipart/form-data">
-            <label for="file">画像を選択してください:</label>
-            <input type="file" name="file" id="file">
-            <input type="submit" value="アップロード">
-            </form>
-            </div> 
-
+                <img id="icon-preview" class="icon-preview" style="display: none;">
+                <input type="file" name="icon" class="icon-input" id="icon-input">
+                <label for="icon-input" class="icon-label">アイコンを選択</label>
+            </div>
             <div class="form-group">
                 <input type="text" name="private_name" placeholder="名前を入力">
             </div>

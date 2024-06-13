@@ -25,7 +25,7 @@ if (isset($_FILES['file']) && isset($_POST['comment'])) {
     $file = $_FILES['file'];
     $comment = $_POST['comment'];
 
-    // エラーチェック
+    // エラーsチェック
     if ($file['error'] === UPLOAD_ERR_OK) {
         $uploadDir = '../images/'; // アップロードされたファイルの保存先ディレクトリ
         // ディレクトリが存在しない場合は作成

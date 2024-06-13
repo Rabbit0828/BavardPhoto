@@ -53,7 +53,7 @@
             if ($users) {
                 echo '<ul class="user-list">';
                 foreach ($users as $user) {
-                    echo '<li><a href="profile.php?id=',$user['user_id'],'"><img src="../images/ ', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a></li>';
+                    echo '<li><a href="profile.php?id=',$user['user_id'],'"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a></li>';
                 }
                 echo '</ul>';
             } else {

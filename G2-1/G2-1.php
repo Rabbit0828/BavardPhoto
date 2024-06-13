@@ -200,7 +200,6 @@
 <body>
 
 <?php
-// ユーザーIDをセッションから取得
 try {
     // PDOインスタンスの作成
     $pdo = new PDO($connect, USER, PASS);        
@@ -270,15 +269,6 @@ try {
         $comment_count_stmt->execute();
         $comment_count = $comment_count_stmt->fetch(PDO::FETCH_ASSOC)['comment_count'];
 
-        // データの確認（必要に応じて）
-        echo "Image ID: $image_id\n";
-        echo "User ID: $user_id\n";
-        echo "Image Name: $image_name\n";
-        echo "Image Name2: $image_name2\n";
-        echo "Image Name3: $image_name3\n";
-        echo "Image Name4: $image_name4\n";
-        echo "Time: $time\n";
-        echo "Comment: $comment\n";
     } else {
         echo "No data found.";
     }
@@ -301,8 +291,8 @@ try {
     <div class="text-content">
       <div>
         <div class="user-info">
-          <img src="<?php echo htmlspecialchars($user_icon); ?>" alt="ユーザーアイコン" class="user-icon">
-          <a href="#" id="username"><?php echo htmlspecialchars($user_name); ?></a>
+          <img src="../images/<?php echo htmlspecialchars($user_icon); ?>" alt="ユーザーアイコン" class="user-icon">
+          <a href="../G4-1/profile.php" id="username"><?php echo htmlspecialchars($user_name); ?></a>
         </div>
         <div class="description">
           <!-- PHPで取得したコメントを表示 -->
@@ -336,14 +326,13 @@ try {
 
 <!-- コメント用ポップアップウィンドウ -->
 <div class="comment-popup" id="commentPopup">
-  <form id="commentForm">
-    <label for="name">名前:</label>
-    <input type="text" id="name" name="name" required>
-    <label for="comment">コメント:</label>
-    <textarea id="comment" name="comment" rows="4" required></textarea>
-    <button type="submit">送信</button>
-  </form>
+    <form>
+        <label for="comment">コメント:</label>
+        <textarea id="comment" name="comment" rows="4" required></textarea>
+        <button type="button" onclick="submitComment()">送信</button>
+    </form>
 </div>
+
 
 <script>
   let slideIndex = 1;
@@ -369,7 +358,25 @@ try {
   }
 
   function like() {
-    // いいねボタンの処理をここに追加
+    const imageId = <?php echo json_encode($image_id); ?>;
+    
+    fetch('like.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image_id: imageId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // 成功した場合、いいねの数を更新する
+            document.querySelector('.count').textContent = data.like_count;
+        } else {
+            console.error('いいねの処理に失敗しました:', data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
   }
 
   function bookmark() {
@@ -379,7 +386,31 @@ try {
   function openCommentPopup() {
     document.getElementById('commentPopup').style.display = 'block';
   }
+  
+  function submitComment() {
+        // コメントを取得
+        var comment = document.getElementById('comment').value;
+        
+        // Ajaxリクエストを作成
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'submit_comment.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // 成功時の処理（何かを行う場合）
+                    alert('コメントが送信されました');
+                    // ここで必要ならば、コメントが送信された後の追加処理を記述
+                } else {
+                    // エラー時の処理
+                    alert('コメントの送信に失敗しました');
+                }
+            }
+        };
+        // パラメータを設定して送信
+        var params = 'comment=' + encodeURIComponent(comment);
+        xhr.send(params);
+    }
 </script>
-
 </body>
 </html>

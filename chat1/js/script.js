@@ -5,8 +5,13 @@ document.addEventListener("DOMContentLoaded", function() {
         sendMessage();
     });
 
-    // チャットメッセージを取得して表示
+    // 初回メッセージ取得と表示
     getAndDisplayMessages();
+
+    // 定期的にメッセージを取得して表示
+    setInterval(function() {
+        getAndDisplayMessages();
+    }, 5000); // 5秒ごとに更新
 
     // メッセージを送信する関数
     function sendMessage() {
@@ -57,4 +62,5 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
 

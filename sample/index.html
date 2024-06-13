@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Simple Chat</h1>
+    <div id="chat-box" style="border:1px solid #ccc; height:300px; overflow-y:scroll;">
+        <!-- メッセージが表示されます -->
+    </div>
+    <input type="text" id="username" placeholder="Your name">
+    <input type="text" id="message" placeholder="Your message">
+    <button id="send">Send</button>
+
+    <script>
+        function loadMessages() {
+            $.get('get_messages.php', function(data) {
+                const messages = JSON.parse(data);
+                $('#chat-box').html('');
+                messages.forEach(message => {
+                    $('#chat-box').append(`<p><strong>${message.username}:</strong> ${message.message} <em>${message.created_at}</em></p>`);
+                });
+            });
+        }
+
+        $(document).ready(function() {
+            loadMessages();
+            setInterval(loadMessages, 5000); // 5秒ごとにメッセージをロード
+
+            $('#send').click(function() {
+                const username = $('#username').val();
+                const message = $('#message').val();
+
+                if (username && message) {
+                    $.post('post_message.php', { username: username, message: message }, function(response) {
+                        if (response.status == 'success') {
+                            $('#message').val(''); // メッセージ入力フィールドをクリア
+                            loadMessages(); // メッセージを再読み込み
+                        }
+                    }, 'json');
+                } else {
+                    alert('Please enter your name and message.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

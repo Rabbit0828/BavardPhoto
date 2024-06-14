@@ -1,6 +1,6 @@
 <?php
 // dbconnect.phpを読み込む
-require 'dbconnect.php';
+require './dbconnect.php';
 
 // POSTリクエストでない場合は終了
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

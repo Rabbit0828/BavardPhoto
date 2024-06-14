@@ -1,6 +1,6 @@
 <?php
 // dbconnect.phpを読み込む
-require 'dbconnect.php';
+require './dbconnect.php';
 
 // セッションを開始
 session_start();

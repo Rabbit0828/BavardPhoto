@@ -33,32 +33,35 @@ $uploadDir = '../images/';
 // データベースに画像情報を挿入するための準備
 $stmt = $pdo->prepare("INSERT INTO Post (user_id, image_name, comment) VALUES (:user_id, :image_name, :comment)");
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-$stmt->bindParam(':image_name', $image_name);
-    // 画像のアップロード処理をループで行う
-    for ($i = 0; $i < $fileCount; $i++) {
-        $file = $_FILES['files'];
-        $fileExtension = pathinfo($file['name'][$i], PATHINFO_EXTENSION);
-        $randomNumber = rand(1000, 9999);
-        $newFileName = uniqid('img_', true) . '_' . $randomNumber . '.' . $fileExtension;
-        $uploadFile = $uploadDir . $newFileName;
+$stmt->bindParam(':image_name', $newFileName); // 画像ファイルの名前をバインドする変数に修正
+$stmt->bindParam(':comment', $comment); // コメントをバインド
 
-        // 画像ファイルかどうか確認
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (in_array($file['type'][$i], $allowedTypes)) {
-            // ファイルを移動
-            if (move_uploaded_file($file['tmp_name'][$i], $uploadFile)) {
-                // データベースに情報を挿入
-                $stmt->execute();
-            } else {
-                echo "ファイルのアップロードに失敗しました。";
-            }
+// 画像のアップロード処理をループで行う
+for ($i = 0; $i < $fileCount; $i++) {
+    $file = $_FILES['files'];
+    $fileExtension = pathinfo($file['name'][$i], PATHINFO_EXTENSION);
+    $randomNumber = rand(1000, 9999);
+    $newFileName = uniqid('img_', true) . '_' . $randomNumber . '.' . $fileExtension;
+    $uploadFile = $uploadDir . $newFileName;
+
+    // 画像ファイルかどうか確認
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (in_array($file['type'][$i], $allowedTypes)) {
+        // ファイルを移動
+        if (move_uploaded_file($file['tmp_name'][$i], $uploadFile)) {
+            // データベースに情報を挿入
+            $stmt->execute();
         } else {
-            echo "無効なファイル形式です。";
+            echo "ファイルのアップロードに失敗しました。";
         }
+    } else {
+        echo "無効なファイル形式です。";
     }
+}
 
-    echo "<h2>投稿が完了しました</h2>";
-    echo '<a href="../G2-1/G2-1.php">ホームに戻る</a>';
+echo "<h2>投稿が完了しました</h2>";
+echo '<a href="../G2-1/G2-1.php">ホームに戻る</a>';
+
 } else {
     echo "ファイルまたはコメントが選択されていません。";
 }

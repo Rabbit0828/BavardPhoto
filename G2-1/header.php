@@ -93,7 +93,7 @@
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">
     <div class="icon icon1">
-      <a href="../G4-2/myprofile.html" target="_self">
+      <a href="../G4-2/myprofile.php" target="_self">
         <img src="../images/normal_icon.png" alt="ログイン" style="height: 70px; width:75px;" border="0">
       </a>
     </div>
@@ -107,7 +107,7 @@
 
     <!-- アップロードを追加 -->
     <div class="icon icon3">
-      <a href="photo_upp_button.php" target="_self">
+      <a href="../G5-1/input.php" target="_self">
         <img src="../images/photo_upp_button.png" alt="カート" style="height: 70px;width:75px;" border="0">
       </a>
     </div>
@@ -121,12 +121,12 @@
       <span></span>
     </label>
     <ul class="menu">
-      <li><a href="#">Home</a></li>
+      <li><a href="G2-1.php">Home</a></li>
       <li><a href="#">Post</a></li>
       <li><a href="#">Toukou</a></li>
-      <li><a href="#">My Page</a></li>
+      <li><a href="../G4-2/myprofile.php">My Page</a></li>
       <li><a href="#">Option</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="../G1-2/G1-2-1-input.php">Logout</a></li>
     </ul>
   </div>
 </div>

@@ -1,8 +1,8 @@
 <?php
-// ダミーデータを返す
-$messages = [
-    ['user' => 'ユーザー2', 'message' => 'ほうほうこりゃー便利じゃないか'],
-    ['user' => 'あなた', 'message' => 'うん、まあまあいけとるな']
-];
-echo json_encode($messages);
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    // ここにメッセージを取得する処理を追加（例：データベースから取得）
+    $messages = []; // 例: $messages = $db->query("SELECT user, message FROM messages")->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($messages);
+}
 ?>
+

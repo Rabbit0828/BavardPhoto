@@ -20,7 +20,11 @@ $(document).ready(function() {
                             '</div><div class="bms_clear"></div>'
                         );
                         $('#bms_send_message').val('');
+                        $('#bms_messages').scrollTop($('#bms_messages')[0].scrollHeight); // 自動スクロール
                     }
+                },
+                error: function() {
+                    alert('メッセージの送信に失敗しました。');
                 }
             });
         }
@@ -46,6 +50,10 @@ $(document).ready(function() {
                         '</div><div class="bms_clear"></div>'
                     );
                 });
+                $('#bms_messages').scrollTop($('#bms_messages')[0].scrollHeight); // 自動スクロール
+            },
+            error: function() {
+                alert('メッセージの取得に失敗しました。');
             }
         });
     }

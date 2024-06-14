@@ -4,8 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <title>BavardPhotos</title>
-    </head>
-    <body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .centered-container {
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .home-link {
+            color: black;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
 <?php
 
 // データベース接続情報
@@ -41,7 +64,7 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
     for ($i = 0; $i < $fileCount; $i++) {
         $file = $_FILES['files'];
         
-        // エラーsチェック
+        // エラーチェック
         if ($file['error'][$i] === UPLOAD_ERR_OK) {
             // ディレクトリが存在しない場合は作成
             if (!is_dir($uploadDir)) {
@@ -102,8 +125,10 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
         }
     }
 
+    echo '<div class="centered-container">';
     echo "<h2>投稿が完了しました</h2>";
-    echo '<a href="../G2-1/G2-1.php">ホームに戻る</a>';
+    echo '<a href="../G2-1/G2-1.php" class="home-link">ホームに戻る</a>';
+    echo '</div>';
 
 } else {
     echo "ファイルまたはコメントが選択されていません。";

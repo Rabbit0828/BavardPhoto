@@ -20,11 +20,13 @@
 
         h2 {
             margin-bottom: 20px;
+            font-size: 6vw; /* 画面の幅に基づいて大きさを調整 */
         }
 
         .home-link {
             color: black;
             text-decoration: underline;
+            font-size: 4vw; /* 画面の幅に基づいて大きさを調整 */
         }
     </style>
 </head>

@@ -67,7 +67,7 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
                             $stmt = $pdo->prepare("UPDATE Post SET image_name4 = :image_name WHERE user_id = :user_id");
                             break;
                         default:
-                            continue; // 4枚目以降は無視する
+                            continue 2; // 4枚目以降は無視する
                     }
                     $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                     $stmt->bindParam(':image_name', $newFileName);

@@ -15,6 +15,14 @@
             margin-top: 50px;
         }
 
+        .upload-area {
+            display: grid;
+            grid-template-columns: 150px auto;
+            grid-gap: 20px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
         .upload-label {
             display: flex;
             align-items: center;
@@ -25,7 +33,6 @@
             border-radius: 10px;
             cursor: pointer;
             position: relative;
-            margin-bottom: 10px;
         }
 
         .upload-label::before {
@@ -33,6 +40,17 @@
             font-size: 50px;
             color: #ccc;
             position: absolute;
+        }
+
+        .upload-instructions {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .upload-instructions p {
+            margin: 5px 0;
+            color: #666;
         }
 
         #file {
@@ -81,7 +99,13 @@
 <body>
     <div class="upload-container">
         <form action="upload.php" method="post" enctype="multipart/form-data">
-            <label for="file" class="upload-label"></label>
+            <div class="upload-area">
+                <label for="file" class="upload-label"></label>
+                <div class="upload-instructions">
+                    <p>画像を選択してください</p>
+                    <p>画像は4枚まで選択できます</p>
+                </div>
+            </div>
             <input type="file" name="files[]" id="file" multiple onchange="previewFiles()">
             <div class="preview-container" id="preview-container"></div>
             <input type="text" name="comment" class="comment-box" placeholder="コメントを入力してください">

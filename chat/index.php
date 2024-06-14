@@ -1,20 +1,32 @@
+<?php
+// データベース接続ファイルを読み込む
+require 'dbconnect.php';
+
+// データベースからユーザー一覧を取得
+$stmt = $pdo->query('SELECT user_id, user_name FROM UserTable');
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャットサンプル</title>
     <link type="text/css" rel="stylesheet" href="css/bmesse.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <!-- 自分やユーザーの情報 -->
-    <h3 id="me" user_id="1">あなたはユーザー1です</h3>
-    <h3 id="partner" thread_id="1">相手</h3>
+    <h3 id="me" user_id="<?php echo $user_id; ?>">あなたは<?php echo $user_name; ?>です</h3>
+    <h3 id="partner" thread_id="1">相手を選択してください</h3>
     <div id="users">
-        <button class="user" user_id="2">ユーザー2</button>
+        <?php foreach ($users as $user): ?>
+            <button class="user" user_id="<?php echo $user['user_id']; ?>"><?php echo htmlspecialchars($user['user_name']); ?></button>
+        <?php endforeach; ?>
     </div>
     <br>
+    <!-- 以下略 -->
+
     <div id="your_container">
         <!-- チャットの外側部分① -->
         <div id="bms_messages_container">

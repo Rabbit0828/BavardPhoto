@@ -6,17 +6,17 @@
     </head>
     <body>
         <form action="edit-output.php" method="POST">
-        <div>
-            <span>名前</span>
-            <input type="text" name="name"  placeholder="名前を変更">
-        </div>
         <div>    
             <span>ユーザーネーム</span>
             <input type="text" name="user_name"  placeholder="ユーザーネームを変更">
         </div>
         <div>
+            <span>名前</span>
+            <input type="text" name="name"  placeholder="名前を変更">
+        </div>
+        <div>
             <span>自己紹介</span>
-            <input type="text" name="user_name"  placeholder="自由に変更">
+            <input type="text" name="shoukai"  placeholder="自由に変更">
         </div>
             <button type="submit">変更</button>
         </div>

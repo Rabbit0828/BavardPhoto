@@ -52,8 +52,7 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
             if (in_array($file['type'][$i], $allowedTypes)) {
                 // ファイルを移動
                 if (move_uploaded_file($file['tmp_name'][$i], $uploadFile)) {
-                    // データベースに情報を挿入
-                    
+                    // データベースに情報を挿入または更新
                     switch ($i) {
                         case 0:
                             $stmt = $pdo->prepare("INSERT INTO Post (user_id, image_name, time, comment) VALUES (:user_id, :image_name, :time, :comment)");
@@ -65,14 +64,17 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
                             break;
                         case 1:
                             $stmt = $pdo->prepare("UPDATE Post SET image_name2 = :image_name WHERE user_id = :user_id");
+                            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                             $stmt->bindParam(':image_name2', $newFileName);
                             break;
                         case 2:
                             $stmt = $pdo->prepare("UPDATE Post SET image_name3 = :image_name WHERE user_id = :user_id");
+                            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                             $stmt->bindParam(':image_name3', $newFileName);
                             break;
                         case 3:
                             $stmt = $pdo->prepare("UPDATE Post SET image_name4 = :image_name WHERE user_id = :user_id");
+                            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                             $stmt->bindParam(':image_name4', $newFileName);
                             break;
                         default:
@@ -80,9 +82,9 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
                     }
                     
                     if ($stmt->execute()) {
-                        echo "ファイルは正常にアップロードされ、データベースに保存されました。";
+                        echo "ファイルは正常にアップロードされ、データベースに保存または更新されました。";
                     } else {
-                        echo "データベースへの保存に失敗しました。";
+                        echo "データベースへの保存または更新に失敗しました。";
                     }
                 } else {
                     echo "ファイルのアップロードに失敗しました。";

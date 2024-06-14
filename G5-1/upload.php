@@ -21,18 +21,19 @@ if (!isset($_SESSION['UserTable']['id'])) {
 $user_id = $_SESSION['UserTable']['id'];
 
 // アップロードされたファイルが存在するか確認
-// アップロードされたファイルが存在するか確認
 if (!empty($_FILES['files']['name'][0]) && isset($_POST['comment'])) {
     $comment = $_POST['comment'];
     
-    // アップロードされたファイル数の取得
-    $fileCount = count($_FILES['files']['name']);
-    
-    // データベースに画像情報を挿入するための準備
-    $stmt = $pdo->prepare("INSERT INTO Post (user_id, image_name, comment) VALUES (:user_id, :image_name, :comment)");
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->bindParam(':image_name', $image_name);
+// アップロードされたファイル数の取得
+$fileCount = count($_FILES['files']['name']);
 
+// アップロード先のディレクトリ
+$uploadDir = '../images/';
+
+// データベースに画像情報を挿入するための準備
+$stmt = $pdo->prepare("INSERT INTO Post (user_id, image_name, comment) VALUES (:user_id, :image_name, :comment)");
+$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->bindParam(':image_name', $image_name);
     // 画像のアップロード処理をループで行う
     for ($i = 0; $i < $fileCount; $i++) {
         $file = $_FILES['files'];

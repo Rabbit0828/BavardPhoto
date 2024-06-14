@@ -53,7 +53,7 @@
             } else {
                 echo '<div class="not_follow"><a href=follow.php?id=',$user_id,'>フォロー</div>';
             }
-            echo '<div class="message"><a href="../chat/index.html">メッセージ</a></div>';
+            echo '<div class="profile_actions"><!-- メッセージボタン --><div class="message"><a href="../chat/index.html?partner_id=<?php echo $user_id; ?>">メッセージ</a></div></div>';
             echo '</div>';
             echo '</div>';
             echo '</div>';

@@ -1,10 +1,19 @@
 <?php
 // データベース接続ファイルを読み込む
-require 'dbconnect.php';
+require './dbconnect.php';
 
 // データベースからユーザー一覧を取得
 $stmt = $pdo->query('SELECT user_id, user_name FROM UserTable');
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// 固定の相手を指定
+$partner_user_id = 1; // 例として1を指定
+
+// 相手のユーザー名を取得
+$stmt = $pdo->prepare('SELECT user_name FROM UserTable WHERE user_id = ?');
+$stmt->execute([$partner_user_id]);
+$partner_user = $stmt->fetch(PDO::FETCH_ASSOC);
+$partner_user_name = $partner_user['user_name'];
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +27,9 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <!-- 自分やユーザーの情報 -->
     <h3 id="me" user_id="<?php echo $user_id; ?>">あなたは<?php echo $user_name; ?>です</h3>
-    <h3 id="partner" thread_id="1">相手を選択してください</h3>
-    <div id="users">
-        <?php foreach ($users as $user): ?>
-            <button class="user" user_id="<?php echo $user['user_id']; ?>"><?php echo htmlspecialchars($user['user_name']); ?></button>
-        <?php endforeach; ?>
-    </div>
+    <!-- 固定の相手のユーザー名を表示 -->
+    <h3 id="partner" thread_id="1">相手は<?php echo $partner_user_name; ?>です</h3>
+    <!-- ユーザー一覧は削除 -->
     <br>
     <!-- 以下略 -->
 

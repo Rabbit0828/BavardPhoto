@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>画像アップロード</title>
+    <title>BavardPhotos</title>
     <style>
         body {
             font-family: Arial, sans-serif;

@@ -1,5 +1,12 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>BavardPhotos</title>
+    </head>
+    <body>
 <?php
-session_start();
 
 // データベース接続情報
 const SERVER = 'mysql304.phy.lolipop.lan';
@@ -102,3 +109,6 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
     echo "ファイルまたはコメントが選択されていません。";
 }
 ?>
+
+</body>
+</html>

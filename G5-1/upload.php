@@ -53,27 +53,31 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
                 // ファイルを移動
                 if (move_uploaded_file($file['tmp_name'][$i], $uploadFile)) {
                     // データベースに情報を挿入
+                    
                     switch ($i) {
                         case 0:
                             $stmt = $pdo->prepare("INSERT INTO Post (user_id, image_name, time, comment) VALUES (:user_id, :image_name, :time, :comment)");
+                            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                            $stmt->bindParam(':image_name', $newFileName);
+                            $time = date('Y-m-d H:i:s');
+                            $stmt->bindParam(':time', $time);
+                            $stmt->bindParam(':comment', $comment);
                             break;
                         case 1:
                             $stmt = $pdo->prepare("UPDATE Post SET image_name2 = :image_name WHERE user_id = :user_id");
+                            $stmt->bindParam(':image_name2', $newFileName);
                             break;
                         case 2:
                             $stmt = $pdo->prepare("UPDATE Post SET image_name3 = :image_name WHERE user_id = :user_id");
+                            $stmt->bindParam(':image_name3', $newFileName);
                             break;
                         case 3:
                             $stmt = $pdo->prepare("UPDATE Post SET image_name4 = :image_name WHERE user_id = :user_id");
+                            $stmt->bindParam(':image_name4', $newFileName);
                             break;
                         default:
                             continue 2; // 4枚目以降は無視する
                     }
-                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                    $stmt->bindParam(':image_name', $newFileName);
-                    $time = date('Y-m-d H:i:s');
-                    $stmt->bindParam(':time', $time);
-                    $stmt->bindParam(':comment', $comment);
                     
                     if ($stmt->execute()) {
                         echo "ファイルは正常にアップロードされ、データベースに保存されました。";

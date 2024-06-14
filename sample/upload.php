@@ -21,57 +21,80 @@ if (!isset($_SESSION['UserTable']['id'])) {
 $user_id = $_SESSION['UserTable']['id'];
 
 // アップロードされたファイルが存在するか確認
-if (isset($_FILES['file']) && isset($_POST['comment'])) {
-    $file = $_FILES['file'];
+if (isset($_FILES['files']) && isset($_POST['comment'])) {
     $comment = $_POST['comment'];
+    
+    // アップロード先のディレクトリ
+    $uploadDir = '../images/';
 
-    // エラーsチェック
-    if ($file['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../images/'; // アップロードされたファイルの保存先ディレクトリ
-        // ディレクトリが存在しない場合は作成
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
+    // アップロードされたファイル数の取得
+    $fileCount = count($_FILES['files']['name']);
 
-        // 乱数を生成してファイル名に追加
-        $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $randomNumber = rand(1000, 9999);
-        $newFileName = uniqid('img_', true) . '_' . $randomNumber . '.' . $fileExtension;
-        $uploadFile = $uploadDir . $newFileName;
+    // 画像のアップロード処理をループで行う
+    for ($i = 0; $i < $fileCount; $i++) {
+        $file = $_FILES['files'];
+        
+        // エラーsチェック
+        if ($file['error'][$i] === UPLOAD_ERR_OK) {
+            // ディレクトリが存在しない場合は作成
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
 
-        // 画像ファイルかどうか確認
-        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (in_array($file['type'], $allowedTypes)) {
-            // ファイルを移動
-            if (move_uploaded_file($file['tmp_name'], $uploadFile)) {
-                // データベースに情報を挿入
-                $stmt = $pdo->prepare("INSERT INTO Post (user_id, image_name, image_name2, image_name3, image_name4, time, comment) VALUES (:user_id, :image_name, :image_name2, :image_name3, :image_name4, :time, :comment)");
-                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                $stmt->bindParam(':image_name', $newFileName);
-                $stmt->bindParam(':image_name2', $newFileName); // 必要に応じて変更
-                $stmt->bindParam(':image_name3', $newFileName); // 必要に応じて変更
-                $stmt->bindParam(':image_name4', $newFileName); // 必要に応じて変更
-                $time = date('Y-m-d H:i:s');
-                $stmt->bindParam(':time', $time);
-                $stmt->bindParam(':comment', $comment);
-                
-                if ($stmt->execute()) {
-                    echo "ファイルは正常にアップロードされ、データベースに保存されました。";
+            // 乱数を生成してファイル名に追加
+            $fileExtension = pathinfo($file['name'][$i], PATHINFO_EXTENSION);
+            $randomNumber = rand(1000, 9999);
+            $newFileName = uniqid('img_', true) . '_' . $randomNumber . '.' . $fileExtension;
+            $uploadFile = $uploadDir . $newFileName;
+
+            // 画像ファイルかどうか確認
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            if (in_array($file['type'][$i], $allowedTypes)) {
+                // ファイルを移動
+                if (move_uploaded_file($file['tmp_name'][$i], $uploadFile)) {
+                    // データベースに情報を挿入
+                    switch ($i) {
+                        case 0:
+                            $stmt = $pdo->prepare("INSERT INTO Post (user_id, image_name, time, comment) VALUES (:user_id, :image_name, :time, :comment)");
+                            break;
+                        case 1:
+                            $stmt = $pdo->prepare("UPDATE Post SET image_name2 = :image_name WHERE user_id = :user_id");
+                            break;
+                        case 2:
+                            $stmt = $pdo->prepare("UPDATE Post SET image_name3 = :image_name WHERE user_id = :user_id");
+                            break;
+                        case 3:
+                            $stmt = $pdo->prepare("UPDATE Post SET image_name4 = :image_name WHERE user_id = :user_id");
+                            break;
+                        default:
+                            continue; // 4枚目以降は無視する
+                    }
+                    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+                    $stmt->bindParam(':image_name', $newFileName);
+                    $time = date('Y-m-d H:i:s');
+                    $stmt->bindParam(':time', $time);
+                    $stmt->bindParam(':comment', $comment);
+                    
+                    if ($stmt->execute()) {
+                        echo "ファイルは正常にアップロードされ、データベースに保存されました。";
+                    } else {
+                        echo "データベースへの保存に失敗しました。";
+                    }
                 } else {
-                    echo "データベースへの保存に失敗しました。";
+                    echo "ファイルのアップロードに失敗しました。";
                 }
             } else {
-                echo "ファイルのアップロードに失敗しました。";
+                echo "無効なファイル形式です。";
             }
         } else {
-            echo "無効なファイル形式です。";
+            echo "エラーが発生しました: " . $file['error'][$i];
         }
-    } else {
-        echo "エラーが発生しました: " . $file['error'];
     }
+
+    echo "<h2>投稿が完了しました</h2>";
+    echo '<a href="../G2-1/G2-1.php">ホームに戻る</a>';
+
 } else {
     echo "ファイルまたはコメントが選択されていません。";
 }
 ?>
-
-

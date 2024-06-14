@@ -123,7 +123,7 @@
     <ul class="menu">
       <li><a href="G2-1.php">Home</a></li>
       <li><a href="#">Post</a></li>
-      <li><a href="#">Toukou</a></li>
+      <li><a href="../G5-1/input.php">Toukou</a></li>
       <li><a href="../G4-2/myprofile.php">My Page</a></li>
       <li><a href="#">Option</a></li>
       <li><a href="../G1-2/G1-2-1-input.php">Logout</a></li>

@@ -56,7 +56,8 @@ if (!empty($_FILES['files']['name'][0]) && isset($_POST['comment'])) {
         }
     }
 
-    echo "ファイルは正常にアップロードされ、データベースに保存されました。";
+    echo "<h2>投稿が完了しました</h2>";
+    echo "<a href="../G2-1/G2-1.php">ホームに戻る</a>";
 } else {
     echo "ファイルまたはコメントが選択されていません。";
 }

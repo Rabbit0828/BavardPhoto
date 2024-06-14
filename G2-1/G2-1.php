@@ -281,10 +281,12 @@ try {
   <div class="popup-content">
     <!-- PHPで取得した画像のパスを表示 -->
     <div class="slide-container">
-      <img src="<?php echo htmlspecialchars($image_name); ?>" alt="ピカチュウ">
-      <img src="<?php echo htmlspecialchars($image_name2); ?>" alt="ピカチュウ">
-      <img src="<?php echo htmlspecialchars($image_name3); ?>" alt="ピカチュウ">
-      <img src="<?php echo htmlspecialchars($image_name4); ?>" alt="ピカチュウ">
+
+    <?php echo '<img src="../images/'. htmlspecialchars($image_name) . '" alt="ピカチュウ">';?>
+    <?php echo '<img src="../images/'. htmlspecialchars($image_name2) . '" alt="ピカチュウ">';?>
+    <?php echo '<img src="../images/'. htmlspecialchars($image_name3) . '" alt="ピカチュウ">';?>
+    <?php echo '<img src="../images/'. htmlspecialchars($image_name4) . '" alt="ピカチュウ">';?>
+   
       <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>

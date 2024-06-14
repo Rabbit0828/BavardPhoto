@@ -293,8 +293,8 @@ try {
     <div class="text-content">
       <div>
         <div class="user-info">
-          <?php
-        echo '<img src="../images/' . htmlspecialchars($user_icon) . '" alt="ユーザーアイコン" class="user-icon">';
+        <?php
+        echo '<img src="../images/' . htmlspecialchars($user_icon) . '" alt="ユーザーアイコン" class="user-icon">';?>
         <a href="../G4-1/profile.php?user_id=<?php echo $user_id; ?>" id="username"><?php echo $user_name; ?></a>
         </div>
         <div class="description">

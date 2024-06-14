@@ -81,9 +81,7 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
                             continue 2; // 4枚目以降は無視する
                     }
                     
-                    if ($stmt->execute()) {
-                        echo "ファイルは正常にアップロードされ、データベースに保存または更新されました。";
-                    } else {
+                    if (!($stmt->execute())) {
                         echo "データベースへの保存または更新に失敗しました。";
                     }
                 } else {

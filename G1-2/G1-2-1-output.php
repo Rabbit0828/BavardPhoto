@@ -16,7 +16,6 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // 入力データをサニタイズする
         function customSanitize($string) {
-            // HTMLタグを除去し、両端の空白をトリムする
             return trim(strip_tags($string));
         }
 
@@ -28,14 +27,15 @@ try {
         $tell = isset($_POST['tell']) ? customSanitize($_POST['tell']) : '';
         $post_code = isset($_POST['post_code']) ? customSanitize($_POST['post_code']) : '';
         $address = isset($_POST['address']) ? customSanitize($_POST['address']) : '';
-        $icon = isset($_POST['icon']) ? customSanitize($_POST['icon']) : 'guest.png';
+        
+        // デフォルトのアイコン名を設定
+        $icon = 'guest.png';
     
-         // ファイルアップロード処理
-         if (isset($_FILES['icon']) && $_FILES['icon']['error'] === UPLOAD_ERR_OK) {
+        // ファイルアップロード処理
+        if (isset($_FILES['icon']) && $_FILES['icon']['error'] === UPLOAD_ERR_OK) {
             $upload_dir = '../images/'; // アップロード先のディレクトリ
             if (!is_dir($upload_dir)) {
-                // ディレクトリが存在しない場合は作成する
-                mkdir($upload_dir, 0755, true);
+                mkdir($upload_dir, 0755, true); // ディレクトリが存在しない場合は作成する
             }
             
             // Generate a unique file name
@@ -43,11 +43,9 @@ try {
             $unique_name = uniqid() . '.' . $file_ext;
             
             if (move_uploaded_file($_FILES['icon']['tmp_name'], $upload_dir . $unique_name)) {
-                // ファイルの移動が成功した場合
                 $icon = $unique_name;
                 echo "ファイルのアップロードに成功しました。";
             } else {
-                // ファイルの移動が失敗した場合
                 echo "ファイルのアップロードに失敗しました。";
             }
         }
@@ -67,7 +65,6 @@ try {
             if ($count > 0) {
                 echo "ユーザー名は既に使用されています。";
             } else {
-                
                 // 新しいユーザーを挿入
                 $stmt = $pdo->prepare('INSERT INTO UserTable (user_name, password, mail_address, private_name, tell, post_code, address, icon) VALUES (:user_name, :password, :mail_address, :private_name, :tell, :post_code, :address, :icon)');
                 $stmt->bindParam(':user_name', $user_name);
@@ -91,5 +88,3 @@ try {
 
 $pdo = null; // DB切断
 ?>
-
-

@@ -9,11 +9,16 @@
 <body>
     <?php require 'dbconnect.php'; ?>
     <?php 
-    $my_id = isset($_SESSION['User']['user_id']) ? $_SESSION['User']['user_id'] : 0;
+    $my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;
     $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
     if ($user_id == 0) {
         echo 'ユーザーIDが無効です。';
+        exit;
+    }
+
+    if ($my_id == $user_id) {
+        header('Location: ../G4-2/myprofile.php');
         exit;
     }
 
@@ -49,7 +54,7 @@
             $isFollowing = $stmt->fetchColumn();
 
             if ($isFollowing) {
-                echo '<div class="follow"><a href=follow_delete.php?=',$user_id,'>フォロー中</div>';
+                echo '<div class="follow"><a href=follow_delete.php?id=',$user_id,'>フォロー中</div>';
             } else {
                 echo '<div class="not_follow"><a href=follow.php?id=',$user_id,'>フォロー</div>';
             }

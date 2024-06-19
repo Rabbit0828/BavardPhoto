@@ -16,7 +16,7 @@ if ($user_id == 0) {
 $my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;
 
 if($my_id==0){
-    header('Location: ../G1-1/G-1-inupt.php');
+    header('Location: ../G1-1/G-1-input.php');
 }
 
 try {

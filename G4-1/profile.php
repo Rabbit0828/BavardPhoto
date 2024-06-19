@@ -1,6 +1,5 @@
 <?php 
 session_start(); 
-require 'header.php';
 require 'dbconnect.php';
 
 $my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;

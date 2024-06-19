@@ -1,14 +1,7 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>BavardPhotos</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <?php require 'dbconnect.php'; ?>
-    <?php 
+    <?php
+     require '../HeaderFile/header.php';
+     require 'dbconnect.php';
+    
     $my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;
     $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 

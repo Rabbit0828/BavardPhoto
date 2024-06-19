@@ -38,11 +38,14 @@ try {
                 mkdir($upload_dir, 0755, true); // ディレクトリが存在しない場合は作成する
             }
             
-            // Generate a unique file name
+            // ファイル名のユニーク化
             $file_ext = pathinfo($_FILES['icon']['name'], PATHINFO_EXTENSION);
             $unique_name = uniqid() . '.' . $file_ext;
             
-            if (move_uploaded_file($_FILES['icon']['tmp_name'], $upload_dir . $unique_name)) {
+            // move_uploaded_fileの前に正しいパスを使用する
+            $target_file = $upload_dir . $unique_name;
+
+            if (move_uploaded_file($_FILES['icon']['tmp_name'], $target_file)) {
                 $icon = $unique_name;
                 echo "ファイルのアップロードに成功しました。";
             } else {

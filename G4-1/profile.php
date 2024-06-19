@@ -17,6 +17,11 @@
         exit;
     }
 
+    if ($my_id == $user_id) {
+        header('Location: ../G4-2/myprofile.php');
+        exit;
+    }
+
     try {
         $user_sql = 'SELECT * FROM UserTable WHERE user_id = :user_id';
         $user_stmt = $pdo->prepare($user_sql);
@@ -49,7 +54,7 @@
             $isFollowing = $stmt->fetchColumn();
 
             if ($isFollowing) {
-                echo '<div class="follow"><a href=follow_delete.php?=',$user_id,'>フォロー中</div>';
+                echo '<div class="follow"><a href=follow_delete.php?id=',$user_id,'>フォロー中</div>';
             } else {
                 echo '<div class="not_follow"><a href=follow.php?id=',$user_id,'>フォロー</div>';
             }

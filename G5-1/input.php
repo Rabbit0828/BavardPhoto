@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>BavardPhotos</title>
     <style>
-        body {
+       body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     color: #333;
@@ -99,6 +99,8 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
 }
 
 .submit-button:hover {

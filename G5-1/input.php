@@ -5,106 +5,95 @@
     <title>BavardPhotos</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-}
+            font-family: Arial, sans-serif;
+        }
 
-.upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
 
-.upload-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-    text-align: center;
-}
+        .upload-area {
+            display: grid;
+            grid-template-columns: 150px auto;
+            grid-gap: 20px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-.upload-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    height: 200px;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    cursor: pointer;
-    position: relative;
-    background-color: #fafafa;
-}
+        .upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 150px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+        }
 
-.upload-label::before {
-    content: "+";
-    font-size: 50px;
-    color: #ccc;
-    position: absolute;
-}
+        .upload-label::before {
+            content: "+";
+            font-size: 50px;
+            color: #ccc;
+            position: absolute;
+        }
 
-.upload-instructions {
-    margin-top: 10px;
-}
+        .upload-instructions {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-.upload-instructions p {
-    margin: 5px 0;
-    color: #666;
-    font-size: 14px;
-}
+        .upload-instructions p {
+            margin: 5px 0;
+            color: #666;
+        }
 
-#file {
-    display: none;
-}
+        #file {
+            display: none;
+        }
 
-.preview-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-}
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
 
-.preview-container img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
+        .preview-container img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
 
-.comment-box {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 14px;
-}
+        .comment-box {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
 
-.submit-button {
-    padding: 10px 20px;
-    background-color: #DC34E0;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
 
-.submit-button:hover {
-    background-color: #c12ec7;
-}
-
+        .submit-button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>

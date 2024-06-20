@@ -17,7 +17,7 @@
 </div>
 
 <div id="Required" class="tabcontent" style="display: block;">
-    <form action="G1-2-1-output.php" method="post" onsubmit="return validateForm();">
+    <form action="G1-2-1-output.php" method="post" onsubmit="return validateForm();" enctype="multipart/form-data">
         <div class="box">
             <div class="form-group">
                 <label>必須項目：</label>
@@ -26,16 +26,16 @@
                 <input type="text" name="user_name" placeholder="ユーザーネームを入力" required>
             </div>
             <div class="form-group">
-                <input type="text" name="password" placeholder="パスワードを入力" required>
+                <input type="password" name="password" placeholder="パスワードを入力" required>
             </div>
             <div class="form-group">
-                <input type="text" name="password2" placeholder="確認用パスワード" required>
+                <input type="password" name="password2" placeholder="確認用パスワード" required>
             </div>
             <div class="form-group">
-                <input type="text" name="mail_address" placeholder="メールアドレスを入力" required>
+                <input type="email" name="mail_address" placeholder="メールアドレスを入力" required>
             </div>
             <div class="form-group">
-                <input type="text" name="tell" placeholder="電話番号を入力" required>
+                <input type="tel" name="tell" placeholder="電話番号を入力" required>
             </div>
         </div>
 
@@ -52,8 +52,8 @@
             </div>
             <div class="form-group">
                 <img id="icon-preview" class="icon-preview" style="display: none;">
-                <input type="file" name="icon" class="icon-input" id="icon-input">
                 <label for="icon-input" class="icon-label">アイコンを選択</label>
+                <input type="file" name="icon" id="icon-input">
             </div>
             <div class="form-group">
                 <input type="text" name="private_name" placeholder="名前を入力">
@@ -121,9 +121,7 @@ function validateForm() {
     }
 
     if (!optionalFilled) {
-        // 任意項目が入力されていない場合の処理
         if (confirm("任意の項目が入力されていません。送信しますか？")) {
-            // 任意項目が入力されていないが、送信する場合の処理
             document.getElementById('optional-form').submit();
         }
         return false;
@@ -132,13 +130,11 @@ function validateForm() {
     return true;
 }
 
-// 初期タブを必須項目に設定
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('Required').style.display = 'block';
     document.getElementsByClassName('tablinks')[0].classList.add('active');
 });
 </script>
-
 </body>
 </html>
 <style>

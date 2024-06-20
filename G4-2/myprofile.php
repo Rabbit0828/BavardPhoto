@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php require 'dbconnect.php'; ?>
+    <?php require '../HeaderFile/header.php'?>
     <?php 
     $my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;
 

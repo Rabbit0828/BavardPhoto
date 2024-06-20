@@ -184,7 +184,7 @@
       <span></span>
     </label>
     <ul class="menu">
-      <li><a href="G2-1.php">Home</a></li>
+      <li><a href="../G2-1/G2-1.php">Home</a></li>
       <li><a href="../G5-1/input.php">Post</a></li>
       <li><a href="../G4-2/myprofile.php">My Page</a></li>
       <li><a href="#">Option</a></li>

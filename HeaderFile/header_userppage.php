@@ -74,8 +74,7 @@
   <div class="user-name-container">
     <p class="user-name">user_name</p>
   </div>
-
-  
+    
 </div>
 </body>
 </html>

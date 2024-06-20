@@ -148,7 +148,7 @@
 
   <!-- 検索ボックスを追加 -->
   <div class="search-container">
-    <form method="get" action="products.php">
+    <form method="get" action="G2-1.php">
       <input type="text" size="40" placeholder="キーワード検索"> <!-- 高さを 40px に変更 -->
     </form>
   </div>

@@ -4,21 +4,17 @@
     <meta charset="UTF-8">
     <title>BavardPhotos</title>
     <style>
-    body {
+      body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     color: #333;
-    margin: 0;  /* 余白をなくす */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;  /* 画面全体の高さに合わせる */
 }
 
 .upload-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
     background: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -88,11 +84,11 @@
     width: 100%;
     max-width: 400px;
     padding: 10px;
+    margin: 0 auto 20px auto;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 14px;
-    margin: 0 auto;
 }
 
 .submit-button {
@@ -105,7 +101,7 @@
     font-size: 16px;
     transition: background-color 0.3s ease;
     display: block;
-    margin: 20px auto 0 auto;
+    margin: 0 auto;
 }
 
 .submit-button:hover {

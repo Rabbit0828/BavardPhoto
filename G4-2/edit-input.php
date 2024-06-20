@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>プロフィール編集</title>
-    </head>
-    <body>
-        <form action="edit-output.php" method="POST">
-        <div>    
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>プロフィール編集</title>
+</head>
+<body>
+    <form action="edit-output.php" method="POST">
+        <div>
             <span>ユーザーネーム</span>
-            <input type="text" name="user_name"  placeholder="ユーザーネームを変更">
+            <input type="text" name="user_name" value="<?php echo htmlspecialchars($_SESSION['UserTable']['user_name']); ?>" placeholder="ユーザーネームを変更">
         </div>
         <div>
             <span>名前</span>
-            <input type="text" name="name"  placeholder="名前を変更">
+            <input type="text" name="name" value="<?php echo htmlspecialchars($_SESSION['UserTable']['private_name']); ?>" placeholder="名前を変更">
         </div>
         <div>
             <span>自己紹介</span>
-            <input type="text" name="shoukai"  placeholder="自由に変更">
+            <input type="text" name="syoukai" value="<?php echo htmlspecialchars($_SESSION['UserTable']['syoukai']); ?>" placeholder="自由に変更">
         </div>
-            <button type="submit">変更</button>
-        </div>
-    </body>
+        <button type="submit">変更</button>
+    </form>
+</body>
 </html>
 
 <!--css-->

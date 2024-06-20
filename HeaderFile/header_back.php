@@ -69,7 +69,6 @@
       <img src="../images/left_button.png" alt="戻る" border="0">
     </a>
   </div>
-
 </div>
 </body>
 </html>

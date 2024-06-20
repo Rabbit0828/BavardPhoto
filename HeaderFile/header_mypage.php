@@ -116,7 +116,6 @@
     <ul class="menu">
       <li><a href="#">Home</a></li>
       <li><a href="#">Post</a></li>
-      <li><a href="#">Story</a></li>
       <li><a href="#">Toukou</a></li>
       <li><a href="#">My Page</a></li>
       <li><a href="#">Option</a></li>

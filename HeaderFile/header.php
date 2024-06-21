@@ -12,18 +12,23 @@ $user_id = $_SESSION['UserTable']['id'];
 <meta charset="utf-8">
 <title>CSS入門-ヘッダーとフッターの固定表示</title>
 <style>
+  /* Header style */
+  
   .Header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    height: 100px;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
-    height: 100px;
-    position: relative;
-    z-index: 1000; /* ヘッダーを前面に表示 */
   }
-  .icon-container,.menu-toggle {
+  .icon-container, .menu-toggle {
     display: flex;
     gap: 10px;
     margin-right: 40px; /* 左に20px移動 */
@@ -200,5 +205,3 @@ $user_id = $_SESSION['UserTable']['id'];
     </ul>
   </div>
 </div>
-</body>
-</html>

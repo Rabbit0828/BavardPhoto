@@ -1,0 +1,192 @@
+.popup {
+  display: block;
+  background-color: white;
+  padding: 20px;
+  border: 2px solid black;
+  width: 800px; /* 固定幅を設定 */
+  max-width: 100%; /* 画像がポップアップより大きい場合、ポップアップの幅に収まるようにする */
+  margin: 20px auto;
+  position: relative;
+}
+
+/* その他のスタイルは同じ */
+.popup-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.popup img {
+  width: 50%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.popup .text-content {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: space-between;
+}
+
+.popup .user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.popup .user-info img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.popup .description {
+  margin-bottom: 20px;
+}
+
+.popup .comments {
+  margin-top: 20px;
+}
+
+.comment-popup {
+  display: none; /* 初期状態では非表示 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 2px solid black;
+  z-index: 1000;
+}
+
+.comment-popup form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-popup form input, .comment-popup form textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.comment-popup form button {
+  padding: 8px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.button-group {
+  display: flex;
+  flex-direction: row; /* ボタンを横に並べる */
+  gap: 20px; /* ボタン間の間隔 */
+  margin-top: 20px;
+  align-items: center; /* 垂直方向に中央揃え */
+}
+
+.button-group button {
+  padding: 10px;
+  border: 2px solid #DC34E0; /* 枠線の色を設定 */
+  cursor: pointer;
+  color: white; /* マークの色を設定 */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 60px; /* ボタンの幅を狭く設定 */
+  justify-content: center; /* テキストを中央に揃える */
+  background-color: black; /* 背景色を黒に設定 */
+}
+
+.like-button {
+  background-color: black;
+}
+
+.bookmark-button {
+  background-color: black;
+}
+
+.comment-button {
+  background-color: black;
+}
+
+.like-button::before, .bookmark-button::before, .comment-button::before {
+  color: white; /* マークの色を白に設定 */
+}
+
+.like-button::before {
+  content: '❤️';
+}
+
+.bookmark-button::before {
+  content: '⭐';
+}
+
+.comment-button::before {
+  content: '💬';
+}
+
+/* $like_count と $comment_count のスタイル */
+.count {
+  font-size: 16px;
+  color: #333;
+}
+
+
+.comments {
+  max-height: 200px; /* 最大高さを設定 */
+  overflow-y: auto; /* 縦方向にスクロールを追加 */
+  border: 1px solid #ccc; /* ボーダーを追加して視覚的に区切る */
+  padding: 10px; /* 内側のパディングを追加 */
+}
+
+.comments ul {
+  list-style-type: none; /* リストマーカーを削除 */
+  padding: 0; /* リストのパディングを削除 */
+}
+
+.comments li {
+  margin-bottom: 10px; /* 各コメントの間にスペースを追加 */
+}
+
+/* 追加 */
+.slide-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.slide-container .prev,
+.slide-container .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  z-index: 1;
+}
+
+.slide-container .prev {
+  left: 0;
+}
+
+.slide-container .next {
+  right: 0;
+}
+body {
+  margin-top: 100px; /* 上部に50pxのマージンを設定 */
+}

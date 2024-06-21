@@ -1,21 +1,34 @@
+<?php
+if (!isset($_SESSION['UserTable']['id'])) {
+    // Handle the case where the user is not logged in
+    echo "User not logged in!";
+    exit;
+}
+$user_id = $_SESSION['UserTable']['id'];
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <title>CSS入門-ヘッダーとフッターの固定表示</title>
 <style>
+  /* Header style */
+  
   .Header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    height: 100px;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
-    height: 100px;
-    position: relative;
-    z-index: 1000; /* ヘッダーを前面に表示 */
   }
-  .icon-container,.menu-toggle {
+  .icon-container, .menu-toggle {
     display: flex;
     gap: 10px;
     margin-right: 40px; /* 左に20px移動 */
@@ -148,7 +161,7 @@
 
   <!-- 検索ボックスを追加 -->
   <div class="search-container">
-    <form method="get" action="G2-1.php">
+    <form method="get" action="products.php">
       <input type="text" size="40" placeholder="キーワード検索"> <!-- 高さを 40px に変更 -->
     </form>
   </div>
@@ -156,7 +169,7 @@
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">
     <div class="icon icon1">
-      <a href="../G4-2/myprofile.php" target="_self">
+      <a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>" id="username" target="_self">
         <img src="../images/normal_icon.png" alt="ログイン" style="height: 70px; width:75px;" border="0">
       </a>
     </div>
@@ -184,13 +197,22 @@
       <span></span>
     </label>
     <ul class="menu">
-      <li><a href="../G2-1/G2-1.php">Home</a></li>
+      <li><a href="G2-1.php">Home</a></li>
       <li><a href="../G5-1/input.php">Post</a></li>
-      <li><a href="../G4-2/myprofile.php">My Page</a></li>
-      <li><a href="#">Option</a></li>
+      <li><a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>">My Page</a></li>
+      <li><a href="bookmark_post.php">BookMark</a></li>
       <li><a href="../G1-4-1/G1-4-1-input.php">Logout</a></li>
     </ul>
   </div>
 </div>
-</body>
-</html>
+<script>
+// ウィンドウのリサイズイベントを監視して、条件に応じてbody要素にクラスを追加・削除する
+window.addEventListener('resize', function() {
+    const body = document.querySelector('body');
+    if (window.innerWidth <= 768) {
+        body.classList.add('tab-shrink');
+    } else {
+        body.classList.remove('tab-shrink');
+    }
+});
+</script>

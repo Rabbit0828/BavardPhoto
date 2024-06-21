@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>CSS入門-ヘッダーとフッターの固定表示</title>
 <style>
-   .Header {
+  .Header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,14 +15,14 @@
     position: relative;
     z-index: 1000; /* ヘッダーを前面に表示 */
   }
-  .icon-container,.menu-toggle {
+  .icon-container {
     display: flex;
+    align-items: center;
     gap: 10px;
-    margin-right: 40px; /* 左に20px移動 */
   }
-  .icon img {
-    height: 70px;
-    width: 75px;
+  .icon-container img {
+    height: 55px; /* 画像のサイズを小さくする */
+    width: 55px; /* 画像のサイズを小さくする */
   }
   .user-name-container {
     position: absolute;
@@ -34,10 +34,13 @@
     font-weight: bold;
     margin: 0;
   }
+  .icon img {
+    height: 70px;
+    width: 75px;
+  }
   .menu-toggle {
     display: flex;
     align-items: center;
-    margin-left: -20px; /* 左に20px移動 */
   }
   .menu-toggle-button {
     display: flex;
@@ -90,7 +93,7 @@
   .menu li a:hover {
     background-color: #f0f0f0;
   }
-  #menu-toggle-checkbox:checked + .menu-toggle-button + .menu {
+  #menu-toggle-checkbox:checked ~ .menu {
     display: block;
   }
   .search-container {
@@ -107,13 +110,13 @@
     border: 2px solid #DC34E0; /* 枠線の色と太さを指定 */
     color: #DC34E0; /* 文字の色を指定 */
   }
-  @media screen and (max-width: 30px) {
+  @media screen and (max-width: 768px) {
     .Header {
       flex-wrap: wrap;
       justify-content: center;
       height: auto;
     }
-    .logo {
+    .user-name-container {
       order: 1;
       width: 100%;
       text-align: center;
@@ -141,7 +144,7 @@
 <body>
 <div class="Header">
   <!-- 戻るボタン-->
-  <div class="icon-back">
+  <div class="icon-container">
     <a href="javascript:history.back()" target="_self">
       <img src="../images/left_button.png" alt="戻る" border="0">
     </a>
@@ -152,21 +155,24 @@
     <p class="user-name">my_page</p>
   </div>
 
+  <!-- アイコンコンテナ -->
+  <div class="icon-container">
     <!-- 位置情報に枠線を追加 -->
-    <div class="icon icon1">
+    <div class="icon">
       <a href="favorite.php" target="_self">
         <img src="../images/location_information.png" alt="お気に入り" border="0">
       </a>
     </div>
 
     <!-- アップロードを追加 -->
-    <div class="icon icon2">
+    <div class="icon">
       <a href="../G5-1/input.php" target="_self">
         <img src="../images/photo_upp_button.png" alt="カート" border="0">
       </a>
     </div>
   </div>
 
+  <!-- メニュートグル -->
   <div class="menu-toggle">
     <input type="checkbox" id="menu-toggle-checkbox" />
     <label for="menu-toggle-checkbox" class="menu-toggle-button">

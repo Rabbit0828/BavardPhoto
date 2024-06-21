@@ -28,7 +28,7 @@ try {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>BavardPhoto</title>
+    <title>BavardPhotos</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -70,14 +70,8 @@ try {
     <!-- ここに「続きを読む」機能を追加 -->
     <div class="vio">
         <div class="text-content-wrapper">
-            <?php
-            $syoukai = htmlspecialchars($user['syoukai'] ?? '', ENT_QUOTES, 'UTF-8');
-            $showReadMore = strlen($syoukai) > 50;
-            ?>
-            <p class="text-content" id="text"><?php echo $showReadMore ? substr($syoukai, 0, 50) . '...' : $syoukai; ?></p>
-            <?php if ($showReadMore): ?>
-                <button id="read-more">続きを読む</button>
-            <?php endif; ?>
+            <p class="text-content" id="text"><?php echo htmlspecialchars($user['syoukai'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+            <button id="read-more">続きを読む</button>
         </div>
     </div>
     <hr>

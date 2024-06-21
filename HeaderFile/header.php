@@ -1,3 +1,11 @@
+<?php
+if (!isset($_SESSION['UserTable']['id'])) {
+    // Handle the case where the user is not logged in
+    echo "User not logged in!";
+    exit;
+}
+$user_id = $_SESSION['UserTable']['id'];
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -148,7 +156,7 @@
 
   <!-- 検索ボックスを追加 -->
   <div class="search-container">
-    <form method="get" action="G2-1.php">
+    <form method="get" action="products.php">
       <input type="text" size="40" placeholder="キーワード検索"> <!-- 高さを 40px に変更 -->
     </form>
   </div>
@@ -156,7 +164,7 @@
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">
     <div class="icon icon1">
-      <a href="../G4-2/myprofile.php" target="_self">
+      <a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>" id="username" target="_self">
         <img src="../images/normal_icon.png" alt="ログイン" style="height: 70px; width:75px;" border="0">
       </a>
     </div>
@@ -184,10 +192,10 @@
       <span></span>
     </label>
     <ul class="menu">
-      <li><a href="../G2-1/G2-1.php">Home</a></li>
+      <li><a href="G2-1.php">Home</a></li>
       <li><a href="../G5-1/input.php">Post</a></li>
-      <li><a href="../G4-2/myprofile.php">My Page</a></li>
-      <li><a href="#">Option</a></li>
+      <li><a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>">My Page</a></li>
+      <li><a href="bookmark_post.php">BookMark</a></li>
       <li><a href="../G1-4-1/G1-4-1-input.php">Logout</a></li>
     </ul>
   </div>

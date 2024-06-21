@@ -205,3 +205,14 @@ $user_id = $_SESSION['UserTable']['id'];
     </ul>
   </div>
 </div>
+<script>
+// ウィンドウのリサイズイベントを監視して、条件に応じてbody要素にクラスを追加・削除する
+window.addEventListener('resize', function() {
+    const body = document.querySelector('body');
+    if (window.innerWidth <= 768) {
+        body.classList.add('tab-shrink');
+    } else {
+        body.classList.remove('tab-shrink');
+    }
+});
+</script>

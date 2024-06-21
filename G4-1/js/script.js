@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     var text = document.getElementById("text");
     var button = document.getElementById("read-more");
-    var originalText = text.innerText;
-    var truncatedText = text.innerText.substring(0, 50) + '...';
 
     if (button) {
+        var originalText = text.innerHTML;
+        var truncatedText = originalText.substring(0, 50) + '...';
+
         button.addEventListener("click", function () {
             text.innerHTML = originalText;
             button.style.display = 'none'; // ボタンを非表示にする

@@ -112,7 +112,14 @@ try {
                         </div>
                         <div class="button-group">
                             <button class="like-button" onclick="like(<?php echo $image_id; ?>)"></button>
-                            <span class="count"><?php echo $like_count; ?></span>
+
+                            <div class="container">
+                                <a href="like_list.php?id=<?php echo $image_id; ?>" id="username" target="_self">
+                                    <span class="count"><?php echo $like_count; ?></span>
+                                </a>
+                            </div>
+
+
                             <button class="bookmark-button" onclick="bookmark(<?php echo $image_id; ?>)"></button>
                             <button class="comment-button" onclick="openCommentPopup()"></button>
                             <span class="count"><?php echo $comment_count; ?></span>

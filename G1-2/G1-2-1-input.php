@@ -52,7 +52,7 @@
             </div>
             <div class="form-group">
                 <img id="icon-preview" class="icon-preview" style="display: none;">
-                <label for="icon-input" class="icon-label">アイコンを選択</label>
+                <label for="icon-input" class="icon-label" >アイコンを選択</label>
                 <input type="file" name="icon" id="icon-input">
             </div>
             <div class="form-group">

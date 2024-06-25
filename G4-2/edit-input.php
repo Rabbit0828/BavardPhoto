@@ -81,9 +81,11 @@
 <body>
     <form action="edit-output.php" method="POST" enctype="multipart/form-data">
         <div>
+            <img id="image-preview" alt="画像プレビュー">
+        </div>
+        <div>
             <span>プロフィール画像</span>
             <input type="file" name="profile_image" accept="image/*" onchange="previewImage(event)">
-            <img id="image-preview" alt="画像プレビュー">
         </div>
         <div>
             <span>ユーザーネーム</span>

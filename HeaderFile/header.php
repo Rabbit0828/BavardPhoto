@@ -176,7 +176,7 @@ $user_id = $_SESSION['UserTable']['id'];
 
     <!-- 位置情報に枠線を追加 -->
     <div class="icon icon2">
-      <a href="https://ja.wikipedia.org/wiki/%E9%98%BF%E9%83%A8%E5%AF%9B" target="_self">
+      <a href="http://abehiroshi.la.coocan.jp/" target="_self">
         <img src="../images/gps.png" alt="お気に入り" style="height: 70px;width:75px;" border="0">
       </a>
     </div>

@@ -28,7 +28,7 @@ try {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>BavardPhotos</title>
+    <title>BavardPhoto</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>

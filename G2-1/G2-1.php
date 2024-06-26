@@ -112,9 +112,16 @@ try {
                         </div>
                         <div class="button-group">
                             <button class="like-button" onclick="like(<?php echo $image_id; ?>)"></button>
-                            <span class="count"><?php echo $like_count; ?></span>
+
+                            <div class="container">
+                                <a href="like_list.php?id=<?php echo $image_id; ?>" id="username" target="_self">
+                                    <span class="count"><?php echo $like_count; ?></span>
+                                </a>
+                            </div>
+
+
                             <button class="bookmark-button" onclick="bookmark(<?php echo $image_id; ?>)"></button>
-                            <button class="comment-button" onclick="openCommentPopup()"></button>
+                            <button class="comment-button" onclick="openCommentPopup(<?php echo $image_id; ?>)"></button>
                             <span class="count"><?php echo $comment_count; ?></span>
                         </div>
                     </div>
@@ -132,10 +139,11 @@ try {
 ?>
 
 <!-- コメント用ポップアップウィンドウ -->
-<div class="comment-popup" id="commentPopup">
-    <form>
+<div class="comment-popup" id="commentPopup" style="display: none;">
+    <form id="commentForm">
         <label for="comment">コメント:</label>
         <textarea id="comment" name="comment" rows="4" required></textarea>
+        <input type="hidden" id="imageId" name="image_id" value="">
         <button type="button" onclick="submitComment()">送信</button>
     </form>
 </div>
@@ -207,44 +215,35 @@ try {
             .catch(error => console.error('Error:', error));
     }
 
-    function openCommentPopup() {
+     function openCommentPopup(imageId) {
+        // コメントフォームに対象の画像IDを設定する
+        document.getElementById('imageId').value = imageId;
+        // ポップアップを表示する
         document.getElementById('commentPopup').style.display = 'block';
     }
 
     function submitComment() {
-        const comment = document.getElementById('comment').value;
-        const imageId = <?php echo json_encode($image_id); ?>;
+        const form = document.getElementById('commentForm');
+        const formData = new FormData(form);
 
         fetch('submit_comment.php', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ comment: comment, image_id: imageId })
+            body: formData
         })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     alert('コメントが送信されました');
-                    // 新しいコメントをコメントリストに追加
-                    const commentList = document.getElementById('commentList' + imageId);
-                    const newComment = document.createElement('li');
-                    newComment.innerHTML = `
-                        <div class="comment-item">
-                            <img src="${data.user_icon}" alt="ユーザーアイコン" style="width: 40px;">
-                            <strong>${data.user_name}:</strong>
-                            <p>${data.comment}</p>
-                        </div>
-                    `;
-                    commentList.appendChild(newComment);
-                    // コメントポップアップを閉じる
-                    document.getElementById('commentPopup').style.display = 'none';
+                    // 成功した場合の処理を追加する（例：画面の更新、コメントの表示など）
                 } else {
                     console.error('コメントの送信に失敗しました:', data.error);
                 }
             })
             .catch(error => console.error('Error:', error));
+
+        // コメントポップアップを閉じる
+        document.getElementById('commentPopup').style.display = 'none';
     }
-</script>
+    </script>
 </body>
 </html>

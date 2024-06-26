@@ -25,21 +25,26 @@
 
         if ($user) {
             require 'count.php';
-
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
+
+
+
             echo '<div class="profile_head_icon"><span><img src="../images/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
             echo '<div class="profile_head_count">';
+
+
+
             echo '<span>投稿</span>';
             echo htmlspecialchars($post_count); //投稿数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロワー</span>';
-            echo '<a href="ff.php?user_id=', $my_id, '&type=followers">',htmlspecialchars($follower_count),'</a>'; //フォロワー数
+            echo '<a href="../G4-1/ff.php?user_id=', $my_id, '&type=followers">',htmlspecialchars($follower_count),'</a>'; //フォロワー数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロー中</span>';
-            echo '<a href="ff.php?user_id=', $my_id, '&type=following">',htmlspecialchars($following_count),'</a>'; //フォロー数
+            echo '<a href="../G4-1/ff.php?user_id=', $my_id, '&type=following">',htmlspecialchars($following_count),'</a>'; //フォロー数
             echo '</div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
             echo '<div class="profile_actions">';

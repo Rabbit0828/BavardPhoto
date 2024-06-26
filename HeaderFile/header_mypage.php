@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>CSS入門-ヘッダーとフッターの固定表示</title>
 <style>
-  .Header {
+ .Header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,14 +15,9 @@
     position: relative;
     z-index: 1000; /* ヘッダーを前面に表示 */
   }
-  .icon-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .icon-container img {
-    height: 55px; /* 画像のサイズを小さくする */
-    width: 55px; /* 画像のサイズを小さくする */
+  .icon-back {
+    height: 50px; /* 画像のサイズを小さくする */
+    width: 50px; /* 画像のサイズを小さくする */
   }
   .user-name-container {
     position: absolute;
@@ -34,13 +29,19 @@
     font-weight: bold;
     margin: 0;
   }
+  .icon-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
   .icon img {
-    height: 70px;
-    width: 75px;
+    height: 70px; /* 画像のサイズを小さくする */
+    width: 70px; /* 画像のサイズを小さくする */
   }
   .menu-toggle {
     display: flex;
     align-items: center;
+    gap: 10px;
   }
   .menu-toggle-button {
     display: flex;

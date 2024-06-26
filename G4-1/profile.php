@@ -41,14 +41,14 @@ try {
         </div>
         <div class="profile_head_count">
             <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=followers">
-                <label>フォロワー</label>
-                <?php echo htmlspecialchars($follower_count ?? '', ENT_QUOTES, 'UTF-8'); ?> <!-- フォロワー数 -->
+                <span>フォロワー</span>
+                <span><?php echo htmlspecialchars($follower_count ?? '', ENT_QUOTES, 'UTF-8'); ?></span> <!-- フォロワー数 -->
             </a>
         </div>
         <div class="profile_head_count">
             <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=following">
-                <label>フォロー中</label>
-                <?php echo htmlspecialchars($following_count ?? '', ENT_QUOTES, 'UTF-8'); ?> <!-- フォロー数 -->
+                <span>フォロー中</span>
+                <span><?php echo htmlspecialchars($following_count ?? '', ENT_QUOTES, 'UTF-8'); ?></span> <!-- フォロー数 -->
             </a>
         </div>
         <div class="private-name"><?php echo htmlspecialchars($user['private_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?></div>
@@ -75,7 +75,7 @@ try {
     <div class="vio">
         <div class="text-content-wrapper">
             <p class="text-content" id="text"><?php echo htmlspecialchars($user['syoukai'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
-            <button id="read-more">続きを読む</button>
+            <button id="read-more" style="display:none;"></button>
         </div>
     </div>
     <hr>

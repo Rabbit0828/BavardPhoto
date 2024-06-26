@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>利用規約 - BavardPhoto</title>
+    <title>BavardPhotos-kiyaku</title>
     <link rel="stylesheet" href="G6-2.css">
 </head>
 <body>

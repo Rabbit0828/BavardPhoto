@@ -75,7 +75,6 @@ try {
     <div class="vio">
         <div class="text-content-wrapper">
             <p class="text-content" id="text"><?php echo htmlspecialchars($user['syoukai'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
-            <button id="read-more" style="display:none;">続きを読む</button>
         </div>
     </div>
     <hr>

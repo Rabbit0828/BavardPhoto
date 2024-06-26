@@ -14,6 +14,8 @@ try {
     // 現在のユーザーIDをセッションから取得
     $user_id = $_SESSION['UserTable']['id'];
 
+    
+    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
     // プロフィール画像のアップロード処理
     $profile_image = $_FILES['profile_image'];
     $uploadDir = '../images/';
@@ -40,6 +42,7 @@ try {
             echo "アップロードできるファイル形式は: " . implode(',', $allowedfileExtensions) . "です。";
             exit();
         }
+    }
     }
 
     // 更新クエリの準備

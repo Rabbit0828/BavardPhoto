@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>フジカワらイヤーズ</title>
+        <title>BavardPhotos</title>
         <style>
             body {
                 display: flex;

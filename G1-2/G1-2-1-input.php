@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>フジカワライヤーズ</title>
+    <title>BavardPhotos</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 0;
-            background-color: #f0f0f0;/* ! */
             background-color: #f4f4f4;
             display: flex;
             justify-content: center;
@@ -22,7 +21,7 @@
             background-color: #fff;
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);/* ! */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             max-width: 830px;
             width: 100%;
             text-align: center;
@@ -30,10 +29,10 @@
             margin-top: 20px;
         }
 
-        /* .form-group {
+        .form-group {
             margin-bottom: 15px;
             text-align: left;
-        } */
+        }
 
         label {
             font-weight: bold;
@@ -78,9 +77,11 @@
 
         .tabcontent {
             display: none;
-            /* padding: 20px;
-            background-color: #bc2abe;
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); */
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .container .logo {
@@ -96,6 +97,7 @@
             box-sizing: border-box;
             background-color: #fff;
         }
+
         .container button {
             width: 100%;
             padding: 10px;
@@ -108,16 +110,16 @@
             margin-bottom: 10px;
         }
 
-    
         .container button:hover {
             background-color: #b02db3;
         }
 
-        .container .register-button {
+        .register-button {
             background-color: white;
             color: #DC34E0;
             border: 1px solid #DC34E0;
         }
+
         .register-button:hover {
             background-color: #f4e1f8;
             color: #b02db3;
@@ -135,6 +137,7 @@
                 padding: 8px;
             }
         }
+
         @media (max-width: 500px) {
             .container {
                 padding: 10px;
@@ -185,18 +188,16 @@
 </head>
 <body>
 
-
-
 <div class="container">
-<div class="logo">
-    <img src="../images/logo.png" alt="ロゴ">
-</div>
+    <div class="logo">
+        <img src="../images/logo.png" alt="ロゴ">
+    </div>
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Required')">必須項目</button>
+        <button class="tablinks active" onclick="openTab(event, 'Required')">必須項目</button>
         <button class="tablinks" onclick="openTab(event, 'Optional')">その他の情報</button>
     </div>
 
-    <div id="Required" class="tabcontent">
+    <div id="Required" class="tabcontent" style="display: block;">
         <form action="G1-2-1-output.php" method="post" onsubmit="return validateForm();">
             <div class="box">
                 <div class="form-group">
@@ -221,16 +222,9 @@
         </form>
     </div>
 
-
     <div id="Optional" class="tabcontent">
         <form id="optional-form" action="G1-2-2-output.php" method="post">
             <div class="box">
-                <!-- <div class="form-group">
-                    <label>アイコン選択：</label>
-                    <img id="icon-preview" class="icon-preview" style="display: none;">
-                    <input type="file" name="icon" class="icon-input" id="icon-input">
-                    <label for="icon-input" class="icon-label">アイコンを選択</label>
-                </div> -->
                 <div class="form-group">
                     <input type="text" name="private_name" placeholder="名前を入力">
                 </div>
@@ -244,69 +238,58 @@
 
             <div class="box2">
                 <button type="submit">登録</button>
+            </div>
+        </form>
+    </div>
 
-<script>
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
         }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+        function validateForm() {
+            var requiredInputs = document.querySelectorAll('#Required input[required]');
+            var optionalInputs = document.querySelectorAll('#Optional input');
+
+            for (var i = 0; i < requiredInputs.length; i++) {
+                if (!requiredInputs[i].value) {
+                    alert("すべての必須項目を入力してください。");
+                    return false;
+                }
+            }
+
+            var optionalFilled = false;
+            for (var i = 0; i < optionalInputs.length; i++) {
+                if (optionalInputs[i].value) {
+                    optionalFilled = true;
+                    break;
+                }
+            }
+
+            if (!optionalFilled) {
+                if (confirm("任意の項目が入力されていません。送信しますか？")) {
+                    document.getElementById('optional-form').submit();
+                }
+                return false;
+            }
+
+            return true;
         }
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
 
-    document.getElementById("icon-input").addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const imgElement = document.getElementById('icon-preview');
-                imgElement.src = e.target.result;
-                imgElement.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    function validateForm() {
-        var requiredInputs = document.querySelectorAll('#Required input[required]');
-    var optionalInputs = document.querySelectorAll('#Optional input');
-
-    for (var i = 0; i < requiredInputs.length; i++) {
-        if (!requiredInputs[i].value) {
-            alert("すべての必須項目を入力してください。");
-            return false;
-        }
-    }
-
-    var optionalFilled = false;
-    for (var i = 0; i < optionalInputs.length; i++) {
-        if (optionalInputs[i].value) {
-            optionalFilled = true;
-            break;
-        }
-    }
-
-    if (!optionalFilled) {
-        if (confirm("任意の項目が入力されていません。送信しますか？")) {
-            document.getElementById('optional-form').submit();
-        }
-        return false;
-    }
-
-    return true;
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('Required').style.display = 'block';
-    document.getElementsByClassName('tablinks')[0].classList.add('active');
-});
-</script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('Required').style.display = 'block';
+            document.getElementsByClassName('tablinks')[0].classList.add('active');
+        });
+    </script>
 </body>
 </html>
-

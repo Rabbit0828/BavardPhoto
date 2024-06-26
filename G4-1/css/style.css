@@ -215,3 +215,21 @@ a {
     text-decoration: none;
     cursor: pointer;
 }
+
+.profile_head_count {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile_head_count span {
+    font-size: 22px;
+    font-weight: normal;
+    display: block;
+}
+.profile_head_count a {
+    text-decoration: none;
+    color: inherit;
+}

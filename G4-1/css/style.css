@@ -122,14 +122,10 @@ p {
 
 #read-more {
     background: none;
-    color: blue;
+    color: black; /* 黒字で表示 */
     border: none;
     cursor: pointer;
-    position: absolute;
-    bottom: 0;
-    right: 0;
     padding: 0 5px;
-    background-color: white;
     display: inline;
 }
 
@@ -232,4 +228,21 @@ a {
 .profile_head_count a {
     text-decoration: none;
     color: inherit;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
 }

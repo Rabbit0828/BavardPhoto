@@ -7,14 +7,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // 一定の文字数で切り取る
     var maxLength = 50; 
     if (truncatedText.length > maxLength) {
-        truncatedText = truncatedText.substring(0, maxLength) + '...';
+        truncatedText = truncatedText.substring(0, maxLength) + '...<button id="read-more" class="read-more">続きを読む</button>';
         text.innerHTML = truncatedText;
         button.style.display = 'inline'; // ボタンを表示
     }
 
-    button.addEventListener("click", function () {
-        text.innerHTML = originalText;
-        button.style.display = 'none'; // ボタンを非表示にする
+    document.addEventListener("click", function (event) {
+        if (event.target && event.target.id === "read-more") {
+            text.innerHTML = originalText;
+            event.target.style.display = 'none'; // ボタンを非表示にする
+        }
     });
 });
 

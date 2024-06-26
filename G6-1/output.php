@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 const SERVER = 'mysql304.phy.lolipop.lan';
 const DBNAME = 'LAA1517469-photos';
 const USER = 'LAA1517469';

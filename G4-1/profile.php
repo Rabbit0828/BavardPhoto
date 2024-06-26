@@ -40,12 +40,16 @@ try {
             <?php echo htmlspecialchars($post_count ?? '', ENT_QUOTES, 'UTF-8'); ?> <!-- 投稿数 -->
         </div>
         <div class="profile_head_count">
-            <span>フォロワー</span>
-            <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=followers"><?php echo htmlspecialchars($follower_count ?? '', ENT_QUOTES, 'UTF-8'); ?></a> <!-- フォロワー数 -->
+            <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=followers">
+                <label>フォロワー</label>
+                <?php echo htmlspecialchars($follower_count ?? '', ENT_QUOTES, 'UTF-8'); ?> <!-- フォロワー数 -->
+            </a>
         </div>
         <div class="profile_head_count">
-            <span>フォロー中</span>
-            <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=following"><?php echo htmlspecialchars($following_count ?? '', ENT_QUOTES, 'UTF-8'); ?></a> <!-- フォロー数 -->
+            <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=following">
+                <label>フォロー中</label>
+                <?php echo htmlspecialchars($following_count ?? '', ENT_QUOTES, 'UTF-8'); ?> <!-- フォロー数 -->
+            </a>
         </div>
         <div class="private-name"><?php echo htmlspecialchars($user['private_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?></div>
         <div class="profile_actions">

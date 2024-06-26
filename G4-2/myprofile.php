@@ -8,11 +8,11 @@
 </head>
 <body>
     <?php require 'dbconnect.php'; ?>
+    <?php require '../HeaderFile/header_mypage.php'?>
     <?php 
-    $my_id = isset($_SESSION['UserTable']['user_id']) ? $_SESSION['UserTable']['user_id'] : 0;
-    $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+    $my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;
 
-    if ($user_id == 0) {
+    if ($my_id == 0) {
         echo 'ユーザーIDが無効です。';
         exit;
     }
@@ -20,32 +20,37 @@
     try {
         $user_sql = 'SELECT * FROM UserTable WHERE user_id = :user_id';
         $user_stmt = $pdo->prepare($user_sql);
-        $user_stmt->execute([':user_id' => $user_id]);
+        $user_stmt->execute([':user_id' => $my_id]);
         $user = $user_stmt->fetch();
 
         if ($user) {
             require 'count.php';
-
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
+
+
+
             echo '<div class="profile_head_icon"><span><img src="../images/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
             echo '<div class="profile_head_count">';
+
+
+
             echo '<span>投稿</span>';
             echo htmlspecialchars($post_count); //投稿数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロワー</span>';
-            echo '<a href="ff.php?user_id=', $user_id, '&type=followers">',htmlspecialchars($follower_count),'</a>'; //フォロワー数
+            echo '<a href="ff.php?user_id=', $my_id, '&type=followers">',htmlspecialchars($follower_count),'</a>'; //フォロワー数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロー中</span>';
-            echo '<a href="ff.php?user_id=', $user_id, '&type=following">',htmlspecialchars($following_count),'</a>'; //フォロー数
+            echo '<a href="ff.php?user_id=', $my_id, '&type=following">',htmlspecialchars($following_count),'</a>'; //フォロー数
             echo '</div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
             echo '<div class="profile_actions">';
             $sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE user_id = :user_id AND follow_id = :my_id';
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([':my_id' => $my_id, ':user_id' => $user_id]);
+            $stmt->execute([':my_id' => $my_id, ':user_id' => $my_id]);
             $isFollowing = $stmt->fetchColumn();
 
             echo '<div class="profile_body_edit"><a href="edit-input.php">プロフィール編集</a></div>';
@@ -64,7 +69,7 @@
 
             $post_sql = 'SELECT * FROM Post WHERE user_id = :user_id';
             $post_stmt = $pdo->prepare($post_sql);
-            $post_stmt->execute([':user_id' => $user_id]);
+            $post_stmt->execute([':user_id' => $my_id]);
             $posts = $post_stmt->fetchAll();
 
             if ($posts) {

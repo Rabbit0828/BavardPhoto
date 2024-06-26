@@ -1,31 +1,10 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>プロフィール編集</title>
-    </head>
-    <body>
-        <form action="edit-output.php" method="POST">
-        <div>    
-            <span>ユーザーネーム</span>
-            <input type="text" name="user_name"  placeholder="ユーザーネームを変更">
-        </div>
-        <div>
-            <span>名前</span>
-            <input type="text" name="name"  placeholder="名前を変更">
-        </div>
-        <div>
-            <span>自己紹介</span>
-            <input type="text" name="shoukai"  placeholder="自由に変更">
-        </div>
-            <button type="submit">変更</button>
-        </div>
-    </body>
-</html>
-
-<!--css-->
-<style>
-body {
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>プロフィール編集</title>
+    <style>
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
@@ -51,10 +30,10 @@ body {
             width: 120px;
             font-weight: bold;
             margin-bottom: 0;
-            color:#777;
+            color: #777;
         }
 
-        input[type="text"] {
+        input[type="text"], input[type="file"] {
             flex-grow: 1;
             padding: 10px;
             border: 2px solid #DC34E0;
@@ -77,4 +56,50 @@ body {
         button:hover {
             background-color: #db07e7;
         }
-        </style>
+
+        #image-preview {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #ddd;
+            display: none;
+            margin-left: 120px; /* Align with the input fields */
+            object-fit: cover;
+        }
+    </style>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('image-preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</head>
+<body>
+    <form action="edit-output.php" method="POST" enctype="multipart/form-data">
+        <div>
+            <img id="image-preview" alt="画像プレビュー">
+        </div>
+        <div>
+            <span>プロフィール画像</span>
+            <input type="file" name="profile_image" accept="image/*" onchange="previewImage(event)">
+        </div>
+        <div>
+            <span>ユーザーネーム</span>
+            <input type="text" name="user_name" placeholder="ユーザーネームを変更">
+        </div>
+        <div>
+            <span>名前</span>
+            <input type="text" name="name" placeholder="名前を変更">
+        </div>
+        <div>
+            <span>自己紹介</span>
+            <input type="text" name="syoukai" placeholder="自由に変更">
+        </div>
+        <button type="submit">変更</button>
+    </form>
+</body>
+</html>

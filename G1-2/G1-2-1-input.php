@@ -30,10 +30,10 @@
             margin-top: 20px;
         }
 
-        .form-group {
+        /* .form-group {
             margin-bottom: 15px;
             text-align: left;
-        }
+        } */
 
         label {
             font-weight: bold;
@@ -215,12 +215,12 @@
                     <input type="tel" name="tell" placeholder="電話番号を入力" required>
                 </div>
             </div>
-
             <div class="box2">
                 <button type="submit">登録</button>
             </div>
         </form>
     </div>
+
 
     <div id="Optional" class="tabcontent">
         <form id="optional-form" action="G1-2-2-output.php" method="post">
@@ -244,10 +244,6 @@
 
             <div class="box2">
                 <button type="submit">登録</button>
-            </div>
-        </form>
-    </div>
-</div>
 
 <script>
     function openTab(evt, tabName) {
@@ -297,9 +293,7 @@
     }
 
     if (!optionalFilled) {
-        // 任意項目が入力されていない場合の処理
         if (confirm("任意の項目が入力されていません。送信しますか？")) {
-            // 任意項目が入力されていないが、送信する場合の処理
             document.getElementById('optional-form').submit();
         }
         return false;
@@ -308,13 +302,11 @@
     return true;
 }
 
-// 初期タブを必須項目に設定
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('Required').style.display = 'block';
     document.getElementsByClassName('tablinks')[0].classList.add('active');
 });
 </script>
-
 </body>
 </html>
 

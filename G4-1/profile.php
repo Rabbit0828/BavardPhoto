@@ -1,99 +1,111 @@
-    <?php
-     require '../HeaderFile/header.php';
-     require 'dbconnect.php';
-    
-    $my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;
-    $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+<?php 
+session_start(); 
+require 'dbconnect.php';
 
-    if ($user_id == 0) {
-        echo 'ユーザーIDが無効です。';
-        exit;
-    }
+$my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;
+$user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-    if ($my_id == $user_id) {
-        header('Location: ../G4-2/myprofile.php');
-        exit;
-    }
+if ($user_id == 0) {
+    echo 'ユーザーIDが無効です。';
+    exit;
+}
 
-    try {
-        $user_sql = 'SELECT * FROM UserTable WHERE user_id = :user_id';
-        $user_stmt = $pdo->prepare($user_sql);
-        $user_stmt->execute([':user_id' => $user_id]);
-        $user = $user_stmt->fetch();
+if ($my_id == $user_id) {
+    header('Location: ../G4-2/myprofile.php');
+    exit;
+}
 
-        if ($user) {
-            require 'count.php';
+try {
+    $user_sql = 'SELECT * FROM UserTable WHERE user_id = :user_id';
+    $user_stmt = $pdo->prepare($user_sql);
+    $user_stmt->execute([':user_id' => $user_id]);
+    $user = $user_stmt->fetch();
 
-            echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
-            echo '<div class="profile_head_text">';
-            echo '<div class="profile_head_icon"><span><img src="../images/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
-            echo '<div class="profile_head_count">';
-            echo '<span>投稿</span>';
-            echo htmlspecialchars($post_count); //投稿数
-            echo '</div>';
-            echo '<div class="profile_head_count">';
-            echo '<span>フォロワー</span>';
-            echo '<a href="ff.php?user_id=', $user_id, '&type=followers">',htmlspecialchars($follower_count),'</a>'; //フォロワー数
-            echo '</div>';
-            echo '<div class="profile_head_count">';
-            echo '<span>フォロー中</span>';
-            echo '<a href="ff.php?user_id=', $user_id, '&type=following">',htmlspecialchars($following_count),'</a>'; //フォロー数
-            echo '</div>';
-            echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
-            echo '<div class="profile_actions">';
+    if ($user) {
+        require 'count.php';
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>BavardPhoto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="profile_name"><?php echo htmlspecialchars($user['user_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?></div>
+    <div class="profile_head_text">
+        <div class="profile_head_icon"><span><img src="../images/<?php echo htmlspecialchars($user['icon'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"></span></div>
+        <div class="profile_head_count">
+            <span>投稿</span>
+            <?php echo htmlspecialchars($post_count ?? '', ENT_QUOTES, 'UTF-8'); ?> <!-- 投稿数 -->
+        </div>
+        <div class="profile_head_count">
+            <span>フォロワー</span>
+            <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=followers"><?php echo htmlspecialchars($follower_count ?? '', ENT_QUOTES, 'UTF-8'); ?></a> <!-- フォロワー数 -->
+        </div>
+        <div class="profile_head_count">
+            <span>フォロー中</span>
+            <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=following"><?php echo htmlspecialchars($following_count ?? '', ENT_QUOTES, 'UTF-8'); ?></a> <!-- フォロー数 -->
+        </div>
+        <div class="private-name"><?php echo htmlspecialchars($user['private_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?></div>
+        <div class="profile_actions">
+            <?php
             $sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE user_id = :user_id AND follow_id = :my_id';
             $stmt = $pdo->prepare($sql);
             $stmt->execute([':my_id' => $my_id, ':user_id' => $user_id]);
             $isFollowing = $stmt->fetchColumn();
 
             if ($isFollowing) {
-                echo '<div class="follow"><a href=follow_delete.php?id=',$user_id,'>フォロー中</div>';
+                echo '<div class="follow"><a href="follow_delete.php?id=', htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'), '">フォロー中</a></div>';
             } else {
-                echo '<div class="not_follow"><a href=follow.php?id=',$user_id,'>フォロー</div>';
+                echo '<div class="not_follow"><a href="follow.php?id=', htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'), '">フォロー</a></div>';
             }
-            echo '<div class="profile_actions"><!-- メッセージボタン --><div class="message"><a href="../chat/index.php?partner_id=<?php echo $user_id; ?>">メッセージ</a></div></div>';
-            echo '</div>';
-            echo '</div>';
-            echo '</div>';
+            ?>
+            <div class="profile_actions"><!-- メッセージボタン -->
+                <div class="message"><a href="../chat/index.php?partner_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>">メッセージ</a></div>
+            </div>
+        </div>
+    </div>
 
-            // ここに「続きを読む」機能を追加
-            echo '<div class="vio">';
-            echo '<div class="text-content-wrapper">';
-            echo '<p class="text-content" id="text">', htmlspecialchars($user['syoukai'] ?? ''), '</p>';
-            echo '<button id="read-more">続きを読む</button>';
-            echo '</div>';
-            echo '</div>';
-            echo '<hr>';
+    <!-- ここに「続きを読む」機能を追加 -->
+    <div class="vio">
+        <div class="text-content-wrapper">
+            <p class="text-content" id="text"><?php echo htmlspecialchars($user['syoukai'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+            <button id="read-more">続きを読む</button>
+        </div>
+    </div>
+    <hr>
 
-            $post_sql = 'SELECT * FROM Post WHERE user_id = :user_id';
-            $post_stmt = $pdo->prepare($post_sql);
-            $post_stmt->execute([':user_id' => $user_id]);
-            $posts = $post_stmt->fetchAll();
+    <?php
+    $post_sql = 'SELECT * FROM Post WHERE user_id = :user_id';
+    $post_stmt = $pdo->prepare($post_sql);
+    $post_stmt->execute([':user_id' => $user_id]);
+    $posts = $post_stmt->fetchAll();
 
-            if ($posts) {
-                echo '<div class="post">';
-                foreach ($posts as $post) {
-                    echo '<a href="#" class="post-link" data-image-id="', htmlspecialchars($post['image_id'] ?? ''), '">';
-                    echo '<img src="../images/', htmlspecialchars($post['image_name'] ?? ''), '">';
-                    echo '</a>';
-                }
-                echo '</div>';
-            } else {
-                echo '投稿がありません';
-            }
-        } else {
-            echo 'ユーザーが見つかりません。';
+    if ($posts) {
+        echo '<div class="post">';
+        foreach ($posts as $post) {
+            echo '<a href="#" class="post-link" data-image-id="', htmlspecialchars($post['image_id'] ?? '', ENT_QUOTES, 'UTF-8'), '">';
+            echo '<img src="../images/', htmlspecialchars($post['image_name'] ?? '', ENT_QUOTES, 'UTF-8'), '">';
+            echo '</a>';
         }
-    } catch (PDOException $e) {
-        echo 'データベースエラー: ' . htmlspecialchars($e->getMessage());
+        echo '</div>';
+    } else {
+        echo '投稿がありません';
     }
     ?>
-
     <div id="modal" class="modal">
         <span class="close" id="close">&times;</span>
         <img class="modal-content" id="modal-image">
     </div>
-
     <script src="js/script.js"></script>
 </body>
 </html>
+<?php
+    } else {
+        echo 'ユーザーが見つかりません。';
+    }
+} catch (PDOException $e) {
+    echo 'データベースエラー: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+}
+?>

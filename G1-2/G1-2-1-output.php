@@ -26,25 +26,6 @@ try {
         $address = isset($_POST['address']) ? customSanitize($_POST['address']) : '';
         
         $icon = 'guest.png';
-    
-        if (isset($_FILES['icon']) && $_FILES['icon']['error'] === UPLOAD_ERR_OK) {
-            $upload_dir = '../images/';
-            if (!is_dir($upload_dir)) {
-                mkdir($upload_dir, 0755, true);
-            }
-            
-            $file_ext = pathinfo($_FILES['icon']['name'], PATHINFO_EXTENSION);
-            $unique_name = uniqid() . '.' . $file_ext;
-            
-            $target_file = $upload_dir . $unique_name;
-
-            if (move_uploaded_file($_FILES['icon']['tmp_name'], $target_file)) {
-                $icon = $unique_name;
-                echo "ファイルのアップロードに成功しました。";
-            } else {
-                echo "ファイルのアップロードに失敗しました。";
-            }
-        }
 
         if ($user_name === '' || $password === '' || $password2 === '' || $mail_address === '' || $tell === '') {
             echo "すべての必須項目を入力してください。";

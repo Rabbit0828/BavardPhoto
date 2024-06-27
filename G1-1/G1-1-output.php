@@ -16,7 +16,8 @@ $row = $sql->fetch();
         'name2' => $row['private_name'],
         'address' => $row['address'],
         'telephone' => $row['tell'],
-        'mail_address' => $row['mail_address'] // 修正: 'address'を'mail_address'に変更
+        'mail_address' => $row['mail_address'], // 修正: 'address'を'mail_address'に変更
+        'icon' => $row['icon']
     ];
     
     header('Location: ../G2-1/G2-1.php');

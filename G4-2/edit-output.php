@@ -46,7 +46,7 @@ try {
     }
 
     // 更新クエリの準備
-    $update_sql = $pdo->prepare("UPDATE UserTable SET user_name = ?, private_name = ?, syoukai = ?, icon = ? WHERE user_id = ?");
+    $update_sql = $pdo->prepare("UPDATE UserTable SET private_name = ?, syoukai = ?, icon = ? WHERE user_id = ?");
     $update_sql->execute([$user_name, $name, $syoukai, $newFileName, $user_id]);
 
     $select_sql = $pdo->prepare("SELECT * FROM UserTable WHERE user_id = ?");
@@ -56,7 +56,6 @@ try {
     if ($row) {
         $_SESSION['UserTable'] = [
             'id' => $row['user_id'],
-            'user_name' => $row['user_name'],
             'private_name' => $row['private_name'],
             'syoukai' => $row['syoukai'],
             'icon' => $row['icon']

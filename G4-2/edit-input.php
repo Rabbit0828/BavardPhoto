@@ -88,10 +88,6 @@
             <input type="file" name="profile_image" accept="image/*" onchange="previewImage(event)">
         </div>
         <div>
-            <span>ユーザーネーム</span>
-            <input type="text" name="user_name" placeholder="ユーザーネームを変更">
-        </div>
-        <div>
             <span>名前</span>
             <input type="text" name="name" placeholder="名前を変更">
         </div>

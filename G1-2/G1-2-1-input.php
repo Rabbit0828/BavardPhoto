@@ -223,7 +223,7 @@
     </div>
 
     <div id="Optional" class="tabcontent">
-        <form id="optional-form" action="G1-2-2-output.php" method="post">
+        <form id="optional-form" action="G1-2-1-output.php" method="post">
             <div class="box">
                 <div class="form-group">
                     <input type="text" name="private_name" placeholder="名前を入力">

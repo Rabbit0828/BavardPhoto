@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>ログアウト</title>
+        <title>BavardPhotos</title>
         <style>
             body {
                 display: flex;

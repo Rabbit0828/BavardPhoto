@@ -8,7 +8,7 @@
         
     <div class="logo">
         <a href="../G2-1/G2-1.php">
-        <button><img src="../images/button.png" alt="ロゴ"></button>
+        <img src="../images/button.png" alt="ロゴ">
         </a>
     </div>
 

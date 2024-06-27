@@ -7,7 +7,6 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // フォームからデータを取得
-    $user_name = !empty($_POST['user_name']) ? $_POST['user_name'] : $_SESSION['UserTable']['user_name'];
     $name = !empty($_POST['name']) ? $_POST['name'] : $_SESSION['UserTable']['private_name'];
     $syoukai = !empty($_POST['syoukai']) ? $_POST['syoukai'] : $_SESSION['UserTable']['syoukai'];
 

@@ -13,11 +13,13 @@ try {
     // 現在のユーザーIDをセッションから取得
     $user_id = $_SESSION['UserTable']['id'];
 
+    // デフォルトのファイル名を設定
+    $newFileName = isset($_SESSION['UserTable']['icon']) ? $_SESSION['UserTable']['icon'] : '';
+
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
         // プロフィール画像のアップロード処理
         $profile_image = $_FILES['profile_image'];
         $uploadDir = '../images/';
-        $newFileName = $_SESSION['UserTable']['icon']; // デフォルトは既存のファイル名
 
         if ($profile_image['size'] > 0) {
             $fileTmpPath = $profile_image['tmp_name'];
@@ -33,17 +35,14 @@ try {
                 } while (file_exists($dest_path));
 
                 if (!move_uploaded_file($fileTmpPath, $dest_path)) {
-                    echo "ファイルのアップロードに失敗しました。";
+                    error_log("ファイルのアップロードに失敗しました。");
                     exit();
                 }
             } else {
-                echo "アップロードできるファイル形式は: " . implode(',', $allowedfileExtensions) . "です。";
+                error_log("アップロードできるファイル形式は: " . implode(',', $allowedfileExtensions) . "です。");
                 exit();
             }
         }
-    } else {
-        // 画像ファイルがアップロードされなかった場合は既存のファイル名を使用
-        $newFileName = $_SESSION['UserTable']['icon'];
     }
 
     // 更新クエリの準備
@@ -65,9 +64,9 @@ try {
         header('Location: myprofile.php');
         exit();
     } else {
-        echo "変更後のデータが見つかりませんでした<br>";
+        error_log("変更後のデータが見つかりませんでした");
     }
 } catch (PDOException $e) {
-    echo "データベースエラー: " . $e->getMessage();
+    error_log("データベースエラー: " . $e->getMessage());
 }
 ?>

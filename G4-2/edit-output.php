@@ -14,7 +14,7 @@ try {
     $user_id = $_SESSION['UserTable']['id'];
 
     // デフォルトのファイル名を設定
-    $newFileName = isset($_SESSION['UserTable']['icon']) ? $_SESSION['UserTable']['icon'] : '';
+    $newFileName = isset($_SESSION['UserTable']['icon']) ? $_SESSION['UserTable']['icon'] : 'guest.png';
 
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
         // プロフィール画像のアップロード処理

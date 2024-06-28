@@ -82,6 +82,7 @@
             max-width: 100%;
             width: 100%;
             box-sizing: border-box;
+            min-height: 300px; /* Set minimum height */
         }
 
         .container .logo {
@@ -183,10 +184,30 @@
             margin-bottom: 20px;
         }
 
+        .login-button {
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border: 1.5px solid black;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #f4f4f4;
+        }
     </style>
 
 </head>
 <body>
+
+    <form action="../G1-1/G1-1-input.php">
+        <button type="submit" class="login-button">＜　ログイン画面</button>
+    </form>
 
 <div class="container">
     <div class="logo">
@@ -265,14 +286,6 @@
                     return false;
                 }
             }
-
-            // var optionalFilled = false;
-            // for (var i = 0; i < optionalInputs.length; i++) {
-            //     if (optionalInputs[i].value) {
-            //         optionalFilled = true;
-            //         break;
-            //     }
-            // }
 
             if (!optionalFilled) {
                 if (confirm("任意の項目が入力されていません。送信しますか？")) {

@@ -27,10 +27,7 @@ try {
         
         $icon = 'guest.png';
 
-        if ($user_name === '' || $password === '' || $password2 === '' || $mail_address === '' || $tell === '') {
-            $_SESSION['login_error'] = "すべての必須項目を入力してください。<br>
-                                        新規登録画面に戻ります。";
-        } elseif ($password !== $password2) {
+        if ($password !== $password2) {
             $_SESSION['login_error'] = "パスワードが一致しません。<br>
                                         新規登録画面に戻ります。";
             echo '<script>

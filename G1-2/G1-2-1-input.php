@@ -198,7 +198,7 @@
     </div>
 
     <div id="Required" class="tabcontent" style="display: block;">
-        <form action="G1-2-1-output.php" method="post" onsubmit="return validateForm();">
+        <form action="G1-2-1-output.php" method="post" onsubmit="return validateRequiredForm();">
             <div class="box">
                 <div class="form-group">
                     <input type="text" name="user_name" placeholder="ユーザーネームを入力" required>
@@ -236,9 +236,7 @@
                 </div>
             </div>
 
-            <div class="box2">
-                <button type="submit">登録</button>
-            </div>
+            
         </form>
     </div>
 
@@ -257,7 +255,7 @@
             evt.currentTarget.className += " active";
         }
 
-        function validateForm() {
+        function validateRequiredForm() {
             var requiredInputs = document.querySelectorAll('#Required input[required]');
             var optionalInputs = document.querySelectorAll('#Optional input');
 
@@ -268,13 +266,13 @@
                 }
             }
 
-            var optionalFilled = false;
-            for (var i = 0; i < optionalInputs.length; i++) {
-                if (optionalInputs[i].value) {
-                    optionalFilled = true;
-                    break;
-                }
-            }
+            // var optionalFilled = false;
+            // for (var i = 0; i < optionalInputs.length; i++) {
+            //     if (optionalInputs[i].value) {
+            //         optionalFilled = true;
+            //         break;
+            //     }
+            // }
 
             if (!optionalFilled) {
                 if (confirm("任意の項目が入力されていません。送信しますか？")) {

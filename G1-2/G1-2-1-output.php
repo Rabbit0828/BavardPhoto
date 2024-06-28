@@ -28,9 +28,16 @@ try {
         $icon = 'guest.png';
 
         if ($user_name === '' || $password === '' || $password2 === '' || $mail_address === '' || $tell === '') {
-            echo "すべての必須項目を入力してください。";
+            $_SESSION['login_error'] = "すべての必須項目を入力してください。<br>
+                                        新規登録画面に戻ります。";
         } elseif ($password !== $password2) {
-            echo "パスワードが一致しません。";
+            $_SESSION['login_error'] = "パスワードが一致しません。<br>
+                                        新規登録画面に戻ります。";
+            echo '<script>
+                  setTimeout(function() {
+                  window.location.href = "../G1-2/G1-2-1-input.php";
+                  }, 2000);
+        </script>';
         } else {
             $stmt = $pdo->prepare('SELECT COUNT(*) FROM UserTable WHERE user_name = :user_name');
             $stmt->bindParam(':user_name', $user_name);
@@ -38,7 +45,13 @@ try {
             $count = $stmt->fetchColumn();
 
             if ($count > 0) {
-                echo "ユーザー名は既に使用されています。";
+                $_SESSION['login_error'] = "ユーザー名は既に使用されています。<br>
+                                            新規登録画面に戻ります。";
+                echo '<script>
+                  setTimeout(function() {
+                  window.location.href = "../G1-2/G1-2-1-input.php";
+                  }, 2000);
+        </script>';
             } else {
                 $pdo->beginTransaction();
                 try {
@@ -75,3 +88,30 @@ try {
 
 $pdo = null;
 ?>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Error</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 24px; /* Increase the font size */
+            text-align: center; /* Center the text */
+            margin-top: 20%; /* Center vertically */
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <?php
+        if (isset($_SESSION['login_error'])) {
+            echo '<p class="error">' . $_SESSION['login_error'] . '</p>';
+            unset($_SESSION['login_error']);
+        }
+        ?>
+    </div>
+</body>
+</html>

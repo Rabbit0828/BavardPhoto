@@ -154,15 +154,18 @@ try {
 
             <!-- コメント用ポップアップウィンドウ -->
             <div class="comment-popup" id="commentPopup">
-                <form id="commentForm">
-                    <label for="comment">コメント:</label>
-                    <textarea id="comment" name="comment" rows="4" required></textarea>
-                    <input type="hidden" id="imageId" name="image_id">
-                    <button type="button" onclick="submitComment()">送信</button>
-                    <button type="button" onclick="closeCommentPopup()">キャンセル</button>
-                </form>
+                <div class="comment-popup-content">
+                    <h2>コメントを追加</h2>
+                    <form id="commentForm">
+                        <textarea id="comment" name="comment" rows="4" required placeholder="コメントを入力してください"></textarea>
+                        <input type="hidden" id="imageId" name="image_id">
+                        <div class="button-container">
+                            <button type="button" class="submit-btn" onclick="submitComment()">送信</button>
+                            <button type="button" class="cancel-btn" onclick="closeCommentPopup()">キャンセル</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
 
 <script>
     const slideIndices = {};
@@ -189,6 +192,9 @@ try {
         slides[slideIndices[index] - 1].style.display = "block";
     }
     function like(imageId) {
+    const likeButton = document.querySelector(`.popup-content[data-image-id="${imageId}"] .like-button`);
+    const likeCountElement = document.querySelector(`.popup-content[data-image-id="${imageId}"] .like-button + .container .count`);
+
     fetch('like.php', {
         method: 'POST',
         headers: {
@@ -196,21 +202,20 @@ try {
         },
         body: JSON.stringify({ image_id: imageId })
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // 成功した場合、いいねの数を更新する
-                const likeCountElement = document.querySelector(`.popup-content[data-image-id="${imageId}"] .like-button + .container .count`);
-                if (likeCountElement) {
-                    likeCountElement.textContent = data.like_count;
-                }
-            } else {
-                console.error('いいねの処理に失敗しました:', data.error);
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // 成功した場合、いいねの数とアニメーションを更新する
+            likeButton.classList.add('liked'); // CSSでlikedクラスにアニメーションを定義する
+            if (likeCountElement) {
+                likeCountElement.textContent = data.like_count;
             }
-        })
-        .catch(error => console.error('Error:', error));
+        } else {
+            console.error('いいねの処理に失敗しました:', data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
-
     function submitWithImageId(imageId) {
     // コメントポップアップを表示
     const commentPopup = document.getElementById('commentPopup');

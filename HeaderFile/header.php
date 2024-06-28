@@ -154,7 +154,7 @@ $user_id = $_SESSION['UserTable']['id'];
 <body>
 <div class="Header">
   <div class="logo">
-    <a href="G2-1.php" target="_self">
+    <a href="home.php" target="_self">
       <img src="../images/logo.png" alt="ホーム" style="height: 70px;width:200px;" border="0">
     </a>
   </div>
@@ -167,12 +167,6 @@ $user_id = $_SESSION['UserTable']['id'];
       </a>
     </div>
 
-    <!-- 位置情報に枠線を追加 -->
-    <div class="icon icon2">
-      <a href="http://abehiroshi.la.coocan.jp/" target="_self">
-        <img src="../images/gps.png" alt="お気に入り" style="height: 70px;width:75px;" border="0">
-      </a>
-    </div>
 
     <!-- アップロードを追加 -->
     <div class="icon icon3">

@@ -154,16 +154,9 @@ $user_id = $_SESSION['UserTable']['id'];
 <body>
 <div class="Header">
   <div class="logo">
-    <a href="home.php" target="_self">
+    <a href="G2-1.php" target="_self">
       <img src="../images/logo.png" alt="ホーム" style="height: 70px;width:200px;" border="0">
     </a>
-  </div>
-
-  <!-- 検索ボックスを追加 -->
-  <div class="search-container">
-    <form method="get" action="products.php">
-      <input type="text" size="40" placeholder="キーワード検索"> <!-- 高さを 40px に変更 -->
-    </form>
   </div>
 
   <!-- アイコンに枠線を追加 -->
@@ -200,7 +193,6 @@ $user_id = $_SESSION['UserTable']['id'];
       <li><a href="G2-1.php">Home</a></li>
       <li><a href="../G5-1/input.php">Post</a></li>
       <li><a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>">My Page</a></li>
-      <li><a href="bookmark_post.php">BookMark</a></li>
       <li><a href="../G1-4-1/G1-4-1-input.php">Logout</a></li>
     </ul>
   </div>

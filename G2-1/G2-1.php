@@ -7,18 +7,36 @@
 
 </head>
 <body>
+<div class="search-container">
+    <form method="get">
+        <input type="text" name="search" size="40" placeholder="キーワード検索" style="height: 40px;">
+    </form>
+</div>
+
 <?php
+
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $search = $_GET['search'];
+    
+    // SQLクエリの作成（image_id, user_id, user_nameで検索）
+    $sql = "SELECT * FROM Post WHERE image_id = :search OR user_id = :search OR user_name = :search";
+} else {
+    // 検索クエリがない場合は全ての投稿を取得
+    $sql = "SELECT * FROM Post";
+}
+
 try {
     // PDOインスタンスの作成
     $pdo = new PDO($connect, USER, PASS);
     // エラーモードを例外に設定
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // SQLクエリの作成
-    $sql = "SELECT * FROM Post";
-
     // プリペアドステートメントの作成
     $stmt = $pdo->prepare($sql);
+
+    if (isset($search)) {
+        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+    }
 
     // クエリの実行
     $stmt->execute();
@@ -101,7 +119,8 @@ try {
                                     <?php foreach ($comments as $comment) : ?>
                                         <li>
                                             <div class="comment-item">
-                                                <?php echo '<img src="../images/' . htmlspecialchars($comment['icon']) . '" alt="ユーザーアイコン" style="width: 40px;">'; ?>
+                                            <?php echo '<img src="../images/' . htmlspecialchars($comment['icon']) . '" alt="ユーザーアイコン" class="user-icon" style="border-radius: 50%; width:35px;">'; ?>
+
                                                 <strong><?php echo htmlspecialchars($comment['user_name']); ?>:</strong>
                                                 <p><?php echo htmlspecialchars($comment['comment']); ?></p>
                                             </div>
@@ -112,41 +131,38 @@ try {
                         </div>
                         <div class="button-group">
                             <button class="like-button" onclick="like(<?php echo $image_id; ?>)"></button>
-
                             <div class="container">
                                 <a href="like_list.php?id=<?php echo $image_id; ?>" id="username" target="_self">
                                     <span class="count"><?php echo $like_count; ?></span>
                                 </a>
                             </div>
-
-
-                            <button class="bookmark-button" onclick="bookmark(<?php echo $image_id; ?>)"></button>
-                            <button class="comment-button" onclick="openCommentPopup(<?php echo $image_id; ?>)"></button>
+                            <button class="comment-button" onclick="submitWithImageId(<?php echo $image_id; ?>)"></button>
                             <span class="count"><?php echo $comment_count; ?></span>
                         </div>
                     </div>
                 </div>
             </div>
-
             <?php
-        }
-    } else {
-        echo "No data found.";
-    }
-} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-}
-?>
+                    }
+                } else {
+                    echo "検索結果がありません。";
+                }
+            } catch (PDOException $e) {
+                echo 'Connection failed: ' . $e->getMessage();
+            }
+            ?>
 
-<!-- コメント用ポップアップウィンドウ -->
-<div class="comment-popup" id="commentPopup" style="display: none;">
-    <form id="commentForm">
-        <label for="comment">コメント:</label>
-        <textarea id="comment" name="comment" rows="4" required></textarea>
-        <input type="hidden" id="imageId" name="image_id" value="">
-        <button type="button" onclick="submitComment()">送信</button>
-    </form>
-</div>
+            <!-- コメント用ポップアップウィンドウ -->
+            <div class="comment-popup" id="commentPopup">
+                <form id="commentForm">
+                    <label for="comment">コメント:</label>
+                    <textarea id="comment" name="comment" rows="4" required></textarea>
+                    <input type="hidden" id="imageId" name="image_id">
+                    <button type="button" onclick="submitComment()">送信</button>
+                    <button type="button" onclick="closeCommentPopup()">キャンセル</button>
+                </form>
+            </div>
+
 
 <script>
     const slideIndices = {};
@@ -172,78 +188,74 @@ try {
         }
         slides[slideIndices[index] - 1].style.display = "block";
     }
-
     function like(imageId) {
-        fetch('like.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ image_id: imageId })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // 成功した場合、いいねの数を更新する
-                    const likeCountElement = document.querySelector(`.popup-content[data-image-id="${imageId}"] .like-button + .count`);
-                    if (likeCountElement) {
-                        likeCountElement.textContent = data.like_count;
-                    }
-                } else {
-                    console.error('いいねの処理に失敗しました:', data.error);
+    fetch('like.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ image_id: imageId })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 成功した場合、いいねの数を更新する
+                const likeCountElement = document.querySelector(`.popup-content[data-image-id="${imageId}"] .like-button + .container .count`);
+                if (likeCountElement) {
+                    likeCountElement.textContent = data.like_count;
                 }
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    function bookmark(imageId) {
-        fetch('bookmark.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ image_id: imageId })
+            } else {
+                console.error('いいねの処理に失敗しました:', data.error);
+            }
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Post has been bookmarked.');
-                } else {
-                    console.error('Failed to bookmark the post:', data.error);
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    }
+        .catch(error => console.error('Error:', error));
+}
 
-     function openCommentPopup(imageId) {
-        // コメントフォームに対象の画像IDを設定する
-        document.getElementById('imageId').value = imageId;
-        // ポップアップを表示する
-        document.getElementById('commentPopup').style.display = 'block';
-    }
+    function submitWithImageId(imageId) {
+    // コメントポップアップを表示
+    const commentPopup = document.getElementById('commentPopup');
+    commentPopup.style.display = 'block';
 
-    function submitComment() {
-        const form = document.getElementById('commentForm');
-        const formData = new FormData(form);
+    // image_idをhidden inputに設定
+    document.getElementById('imageId').value = imageId;
+}
+function closeCommentPopup() {
+    const commentPopup = document.getElementById('commentPopup');
+    commentPopup.style.display = 'none';
+}
 
-        fetch('submit_comment.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('コメントが送信されました');
-                    // 成功した場合の処理を追加する（例：画面の更新、コメントの表示など）
-                } else {
-                    console.error('コメントの送信に失敗しました:', data.error);
-                }
-            })
-            .catch(error => console.error('Error:', error));
+function submitComment() {
+    const form = document.getElementById('commentForm');
+    const formData = new FormData(form);
 
-        // コメントポップアップを閉じる
-        document.getElementById('commentPopup').style.display = 'none';
-    }
-    </script>
+    fetch('submit_comment.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // コメントが正常に送信された場合、ポップアップを閉じてコメントリストを更新する
+            closeCommentPopup();
+
+            const imageId = document.getElementById('imageId').value;
+            const commentList = document.getElementById('commentList' + imageId);
+
+            const newComment = document.createElement('li');
+            newComment.innerHTML = `
+                <div class="comment-item">
+                    <img src="../images/${data.user_icon}" alt="ユーザーアイコン" class="user-icon" style="border-radius: 50%; width:35px;">
+                    <strong>${data.user_name}:</strong>
+                    <p>${data.comment}</p>
+                </div>
+            `;
+            commentList.appendChild(newComment);
+        } else {
+            console.error('コメントの送信に失敗しました:', data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+</script>
 </body>
 </html>

@@ -56,7 +56,6 @@ try {
 
     if ($row) {
         $_SESSION['UserTable'] = [
-            'id' => $row['user_id'],
             'private_name' => $row['private_name'],
             'syoukai' => $row['syoukai'],
             'icon' => $row['icon']
@@ -70,3 +69,4 @@ try {
     error_log("データベースエラー: " . $e->getMessage());
 }
 ?>
+

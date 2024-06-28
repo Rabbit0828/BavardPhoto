@@ -1,4 +1,6 @@
 <?php session_start(); ?>
+<?php require '../HeaderFile/header_mypage.php'?>
+<?php require 'dbconnect.php'; ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,8 +9,6 @@
     <link rel="stylesheet" href="css/myprofile.css">
 </head>
 <body>
-    <?php require 'dbconnect.php'; ?>
-    <?php require '../HeaderFile/header_mypage.php'?>
     <?php 
     $my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;
 

@@ -40,19 +40,32 @@ try {
             if ($count > 0) {
                 echo "ユーザー名は既に使用されています。";
             } else {
-                $stmt = $pdo->prepare('INSERT INTO UserTable (user_name, password, mail_address, private_name, tell, post_code, address, icon) VALUES (:user_name, :password, :mail_address, :private_name, :tell, :post_code, :address, :icon)');
-                $stmt->bindParam(':user_name', $user_name);
-                $stmt->bindParam(':password', $password);
-                $stmt->bindParam(':mail_address', $mail_address);
-                $stmt->bindParam(':private_name', $private_name);
-                $stmt->bindParam(':tell', $tell);
-                $stmt->bindParam(':post_code', $post_code);
-                $stmt->bindParam(':address', $address);
-                $stmt->bindParam(':icon', $icon);
+                $pdo->beginTransaction();
+                try {
+                    $stmt = $pdo->prepare('INSERT INTO UserTable (user_name, password, mail_address, private_name, tell, post_code, address, icon) VALUES (:user_name, :password, :mail_address, :private_name, :tell, :post_code, :address, :icon)');
+                    $stmt->bindParam(':user_name', $user_name);
+                    $stmt->bindParam(':password', $password); // パスワードをハッシュ化せずに保存
+                    $stmt->bindParam(':mail_address', $mail_address);
+                    $stmt->bindParam(':private_name', $private_name);
+                    $stmt->bindParam(':tell', $tell);
+                    $stmt->bindParam(':post_code', $post_code);
+                    $stmt->bindParam(':address', $address);
+                    $stmt->bindParam(':icon', $icon);
+                    
+                    $stmt->execute();
 
-                $stmt->execute();
-                header('Location: ../G1-3/G1-3.php');
-                exit();
+                    // Followテーブルにユーザー名を追加
+                    $stmt = $pdo->prepare('INSERT INTO Follow (user_name) VALUES (:user_name)');
+                    $stmt->bindParam(':user_name', $user_name);
+                    $stmt->execute();
+
+                    $pdo->commit();
+                    header('Location: ../G1-3/G1-3.php');
+                    exit();
+                } catch (Exception $e) {
+                    $pdo->rollBack();
+                    throw $e;
+                }
             }
         }
     }

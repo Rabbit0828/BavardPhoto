@@ -53,7 +53,13 @@
             if ($users) {
                 echo '<ul class="user-list">';
                 foreach ($users as $user) {
-                    echo '<li><a href="profile.php?id=',$user['user_id'],'"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a></li>';
+                    echo '<li>';
+                    echo '<a href="profile.php?id=', $user['user_id'], '">';
+                    echo '<img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">';
+                    echo htmlspecialchars($user['user_name'] ?? '');
+                    echo '</a>';
+                    echo '<a href="/chat/index.html?user=', urlencode($user['user_name']), '" class="message-button">メッセージ</a>';
+                    echo '</li>';
                 }
                 echo '</ul>';
             } else {

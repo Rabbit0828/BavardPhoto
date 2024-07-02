@@ -1,5 +1,5 @@
 <?php
-// dbconnect.phpを読み込む
+// データベース接続ファイルを読み込む
 require './dbconnect.php';
 
 // POSTリクエストでない場合は終了
@@ -28,5 +28,4 @@ $stmt->execute([$user_id, $message]);
 // 成功ステータスを返す
 echo json_encode(['status' => 'success']);
 ?>
-
 

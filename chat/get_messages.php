@@ -1,5 +1,5 @@
 <?php
-// dbconnect.phpを読み込む
+// データベース接続ファイルを読み込む
 require './dbconnect.php';
 
 // セッションを開始
@@ -15,10 +15,28 @@ if (!$user_id) {
 }
 
 // メッセージをデータベースから取得
-$stmt = $pdo->prepare("SELECT * FROM messages");
+$stmt = $pdo->prepare("SELECT sender_id, message FROM messages");
 $stmt->execute();
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// ユーザー名を取得するための関数
+function getUserName($pdo, $userId) {
+    $stmt = $pdo->prepare('SELECT user_name FROM UserTable WHERE user_id = ?');
+    $stmt->execute([$userId]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $user ? $user['user_name'] : 'Unknown User';
+}
+
+// メッセージ送信者のユーザー名を含めて返す
+$result = [];
+foreach ($messages as $msg) {
+    $userName = ($msg['sender_id'] == $user_id) ? 'あなた' : getUserName($pdo, $msg['sender_id']);
+    $result[] = [
+        'user' => $userName,
+        'message' => $msg['message']
+    ];
+}
+
 // メッセージをJSON形式で返す
-echo json_encode($messages);
+echo json_encode($result);
 ?>

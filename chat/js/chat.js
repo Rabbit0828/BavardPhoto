@@ -59,5 +59,5 @@ $(document).ready(function() {
     }
 
     // 定期的にメッセージを取得
-    setInterval(fetchMessages, 3000);
+    setInterval(fetchMessages, 3000); // 3秒ごとにメッセージを取得
 });

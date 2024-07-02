@@ -118,7 +118,7 @@ body {
     font-size: 14px;
     border-radius: 4px;
     cursor: pointer;
-    margin-left: 10px; /* ボタン間のスペースを確保 */
+    margin-left: auto; /* 自動的に右側に寄る */
 }
 
 .ff-switch {

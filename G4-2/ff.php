@@ -39,11 +39,13 @@
                         JOIN UserTable ON FollowRelationship.user_id = UserTable.user_id 
                         WHERE FollowRelationship.follow_id = :user_id';
                 echo '<h2>フォロー中</h2>';
+                $showChatButton = true; // チャットボタンを表示するフラグ
             } else {
                 $sql = 'SELECT UserTable.* FROM FollowRelationship 
                         JOIN UserTable ON FollowRelationship.follow_id = UserTable.user_id 
                         WHERE FollowRelationship.user_id = :user_id';
                 echo '<h2>フォロワー</h2>';
+                $showChatButton = false; // チャットボタンを表示しない
             }
 
             $stmt = $pdo->prepare($sql);
@@ -59,8 +61,10 @@
                     echo '<img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">';
                     echo htmlspecialchars($user['user_name'] ?? '');
                     echo '</a>';
+                    if ($showChatButton) {
+                        echo '<a href="../chat/index.php?user_id=', $user['user_id'], '&user=', urlencode($user['user_name']), '" class="message-button">メッセージ</a>';
+                    }
                     echo '</div>';
-                    echo '<a href="../chat/index.html?user_id=', $follower['user_id'], '&user=', urlencode($follower['user_name']), '" class="message-button">メッセージ</a>';
                     echo '</li>';
                 }
                 echo '</ul>';

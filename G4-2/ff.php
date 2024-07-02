@@ -60,7 +60,7 @@
                     echo htmlspecialchars($user['user_name'] ?? '');
                     echo '</a>';
                     echo '</div>';
-                    echo '<a href="/chat/index.html?user=', urlencode($user['user_name']), '" class="message-button">メッセージ</a>';
+                    echo '<a href="../chat/index.html?user=', urlencode($user['user_name']), '" class="message-button">メッセージ</a>';
                     echo '</li>';
                 }
                 echo '</ul>';

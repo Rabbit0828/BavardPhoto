@@ -70,7 +70,6 @@ session_start();
         echo '<div class="details">' . htmlspecialchars($row['private_name']) . '</div>';
         echo '</div>';
         echo '<div class="follow-button">フォローする</div>';
-        echo '<a href="/chat/index.html?user=' . urlencode($row['user_name']) . '" class="message-button">メッセージ</a>';
         echo '</div>';
         echo '</div>';
     }

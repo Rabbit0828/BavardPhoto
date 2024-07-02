@@ -1,8 +1,8 @@
 $(document).ready(function() {
     // メッセージ送信
     $('#bms_send_btn').click(function() {
-        var message = $('#bms_send_message').val();
-        if (message.trim() !== '') {
+        var message = $('#bms_send_message').val().trim();
+        if (message !== '') {
             $.ajax({
                 url: 'send_message.php',
                 type: 'POST',
@@ -10,17 +10,11 @@ $(document).ready(function() {
                 success: function(response) {
                     var res = JSON.parse(response);
                     if (res.status === 'success') {
-                        $('#bms_messages').append(
-                            '<div class="bms_message bms_right">' +
-                            '<div class="bms_message_box">' +
-                            '<div class="bms_message_content">' +
-                            '<div class="bms_message_text">' + message + '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div><div class="bms_clear"></div>'
-                        );
+                        appendMessage('あなた', message, 'bms_right');
                         $('#bms_send_message').val('');
-                        $('#bms_messages').scrollTop($('#bms_messages')[0].scrollHeight); // 自動スクロール
+                        scrollToBottom();
+                    } else {
+                        alert('メッセージの送信に失敗しました。');
                     }
                 },
                 error: function() {
@@ -40,17 +34,9 @@ $(document).ready(function() {
                 $('#bms_messages').html('');
                 messages.forEach(function(msg) {
                     var alignment = (msg.user === 'あなた') ? 'bms_right' : 'bms_left';
-                    $('#bms_messages').append(
-                        '<div class="bms_message ' + alignment + '">' +
-                        '<div class="bms_message_box">' +
-                        '<div class="bms_message_content">' +
-                        '<div class="bms_message_text">' + msg.message + '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div><div class="bms_clear"></div>'
-                    );
+                    appendMessage(msg.user, msg.message, alignment);
                 });
-                $('#bms_messages').scrollTop($('#bms_messages')[0].scrollHeight); // 自動スクロール
+                scrollToBottom();
             },
             error: function() {
                 alert('メッセージの取得に失敗しました。');
@@ -60,4 +46,24 @@ $(document).ready(function() {
 
     // 定期的にメッセージを取得
     setInterval(fetchMessages, 3000); // 3秒ごとにメッセージを取得
+
+    // 新しいメッセージを表示する
+    function appendMessage(user, message, alignment) {
+        var escapedMessage = $('<div>').text(message).html(); // XSS対策のためにエスケープ処理
+        $('#bms_messages').append(
+            '<div class="bms_message ' + alignment + '">' +
+            '<div class="bms_message_box">' +
+            '<div class="bms_message_content">' +
+            '<div class="bms_message_text">' + escapedMessage + '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div><div class="bms_clear"></div>'
+        );
+    }
+
+    // メッセージ表示領域を一番下までスクロールする
+    function scrollToBottom() {
+        $('#bms_messages').animate({ scrollTop: $('#bms_messages')[0].scrollHeight }, 'fast');
+    }
 });
+

@@ -18,14 +18,18 @@ $message = $_POST['message'] ?? null;
 // ユーザーIDとメッセージが存在しない場合はエラーを返す
 if (!$user_id || !$message) {
     http_response_code(400);
+    echo json_encode(['status' => 'error', 'message' => 'Invalid input']);
     exit;
 }
 
 // メッセージをデータベースに挿入
 $stmt = $pdo->prepare("INSERT INTO messages (sender_id, message) VALUES (?, ?)");
-$stmt->execute([$user_id, $message]);
-
-// 成功ステータスを返す
-echo json_encode(['status' => 'success']);
+if ($stmt->execute([$user_id, $message])) {
+    echo json_encode(['status' => 'success']);
+} else {
+    http_response_code(500);
+    echo json_encode(['status' => 'error', 'message' => 'Database error']);
+}
 ?>
+
 

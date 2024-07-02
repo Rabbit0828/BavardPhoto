@@ -9,8 +9,8 @@
     $(document).ready(function() {
         // メッセージ送信
         $('#bms_send_btn').click(function() {
-            var message = $('#bms_send_message').val();
-            if (message.trim() !== '') {
+            var message = $('#bms_send_message').val().trim();
+            if (message !== '') {
                 $.ajax({
                     url: 'send_message.php',
                     type: 'POST',
@@ -18,17 +18,10 @@
                     success: function(response) {
                         var res = JSON.parse(response);
                         if (res.status === 'success') {
-                            $('#bms_messages').append(
-                                '<div class="bms_message bms_right">' +
-                                '<div class="bms_message_box">' +
-                                '<div class="bms_message_content">' +
-                                '<div class="bms_message_text">' + message + '</div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div><div class="bms_clear"></div>'
-                            );
+                            appendMessage('あなた', message, 'bms_right');
                             $('#bms_send_message').val('');
-                            $('#bms_messages').scrollTop($('#bms_messages')[0].scrollHeight); // 自動スクロール
+                        } else {
+                            alert('メッセージの送信に失敗しました。');
                         }
                     },
                     error: function() {
@@ -37,6 +30,9 @@
                 });
             }
         });
+
+        // 定期的にメッセージを取得
+        setInterval(fetchMessages, 3000); // 3秒ごとにメッセージを取得
 
         // メッセージ取得
         function fetchMessages() {
@@ -48,17 +44,9 @@
                     $('#bms_messages').html('');
                     messages.forEach(function(msg) {
                         var alignment = (msg.user === 'あなた') ? 'bms_right' : 'bms_left';
-                        $('#bms_messages').append(
-                            '<div class="bms_message ' + alignment + '">' +
-                            '<div class="bms_message_box">' +
-                            '<div class="bms_message_content">' +
-                            '<div class="bms_message_text">' + msg.message + '</div>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div><div class="bms_clear"></div>'
-                        );
+                        appendMessage(msg.user, msg.message, alignment);
                     });
-                    $('#bms_messages').scrollTop($('#bms_messages')[0].scrollHeight); // 自動スクロール
+                    scrollToBottom();
                 },
                 error: function() {
                     alert('メッセージの取得に失敗しました。');
@@ -66,8 +54,23 @@
             });
         }
 
-        // 定期的にメッセージを取得
-        setInterval(fetchMessages, 3000); // 3秒ごとにメッセージを取得
+        // 新しいメッセージを表示する
+        function appendMessage(user, message, alignment) {
+            $('#bms_messages').append(
+                '<div class="bms_message ' + alignment + '">' +
+                '<div class="bms_message_box">' +
+                '<div class="bms_message_content">' +
+                '<div class="bms_message_text">' + message + '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div><div class="bms_clear"></div>'
+            );
+        }
+
+        // メッセージ表示領域を一番下までスクロールする
+        function scrollToBottom() {
+            $('#bms_messages').scrollTop($('#bms_messages')[0].scrollHeight);
+        }
     });
     </script>
 </head>
@@ -79,4 +82,5 @@
     <button id="bms_send_btn">送信</button>
 </body>
 </html>
+
 

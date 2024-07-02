@@ -93,6 +93,14 @@ body {
     color: #777;
 }
 
+.profile-info img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
 .follow-button {
     padding: 5px 10px;
     border: 1px solid #ddd;
@@ -113,3 +121,7 @@ body {
     margin-left: 10px; /* ボタン間のスペースを確保 */
 }
 
+.ff-switch {
+    text-align: center;
+    margin: 20px 0;
+}

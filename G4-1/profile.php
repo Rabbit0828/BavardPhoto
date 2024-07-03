@@ -89,7 +89,7 @@ try {
     if ($posts) {
         echo '<div class="post">';
         foreach ($posts as $post) {
-            echo '<a href="#" class="post-link" data-image-id="', htmlspecialchars($post['image_id'] ?? '', ENT_QUOTES, 'UTF-8'), '">';
+            echo '<a href="../G2-1/G2-1-1.php?image_id=', htmlspecialchars($post['image_id'] ?? '', ENT_QUOTES, 'UTF-8'), '">';
             echo '<img src="../images/', htmlspecialchars($post['image_name'] ?? '', ENT_QUOTES, 'UTF-8'), '">';
             echo '</a>';
         }

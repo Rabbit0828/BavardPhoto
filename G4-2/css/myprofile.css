@@ -1,5 +1,5 @@
 .body {
-    margin-top: 60px;
+    margin-top: 80px;
 }
 .profile_name {
     text-align: center;
@@ -219,3 +219,22 @@ a {
     cursor: pointer;
 }
 
+.profile_body_edit {
+    margin: 10px 0;
+}
+
+.profile_body_edit a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #000; /* 枠線を追加 */
+    border-radius: 5px; /* 角を丸くする */
+    text-decoration: none; /* 下線を削除 */
+    color: #000; /* テキストカラーを黒に */
+    background-color: #f0f0f0; /* 背景色を灰色に */
+    transition: background-color 0.3s, border-color 0.3s; /* ホバー時のトランジション効果 */
+}
+
+.profile_body_edit a:hover {
+    background-color: #e0e0e0; /* ホバー時の背景色 */
+    border-color: #555; /* ホバー時の枠線色 */
+}

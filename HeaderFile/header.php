@@ -190,7 +190,7 @@ $user_id = $_SESSION['UserTable']['id'];
 <body>
 <div class="Header">
   <div class="logo">
-    <a href="home.php" target="_self">
+    <a href="G2-1.php" target="_self">
       <img src="../images/logo.png" alt="ホーム">
     </a>
   </div>

@@ -16,4 +16,4 @@ foreach ($messages as $message) {
     echo '<div><strong>' . $sender . ':</strong> ' . htmlspecialchars($message['message']) . '</div>';
 }
 
-
+?>

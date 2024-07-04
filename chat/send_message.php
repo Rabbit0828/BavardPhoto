@@ -15,5 +15,6 @@ $sql = 'INSERT INTO ChatMessage (sender_id, recipient_id, message, sent_at) VALU
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':sender_id' => $current_user_id, ':recipient_id' => $chat_user_id, ':message' => $message]);
 
+?>
 
 

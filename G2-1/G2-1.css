@@ -78,7 +78,7 @@
 }
 
 .like-button {
-  background-color: black; /* 背景色を黒に設定 */
+  background-color: rgb(255, 255, 255); /* 背景色を黒に設定 */
   transition: transform 0.3s; /* 変形のトランジションを設定 */
 }
 

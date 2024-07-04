@@ -14,8 +14,9 @@ if (!isset($_SESSION['UserTable'])) {
 }
 
 $user_id = $_SESSION['UserTable']['id'];
-$comment = $_POST['comment'];
-$image_id = $_POST['image_id'];
+$data = json_decode(file_get_contents('php://input'), true);
+$comment = $data['comment'];
+$image_id = $data['image_id'];
 
 try {
     $pdo = new PDO($connect, USER, PASS);
@@ -27,7 +28,7 @@ try {
 
     $response['success'] = true;
     $response['user_name'] = $_SESSION['UserTable']['name'];
-    $response['user_icon'] = $_SESSION['UserTable']['icon']; // ここでアイコンもセッションに保存している場合
+    $response['user_icon'] = $_SESSION['UserTable']['icon'];
     $response['comment'] = htmlspecialchars($comment);
 
     echo json_encode($response);

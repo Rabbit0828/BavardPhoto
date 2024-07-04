@@ -74,6 +74,12 @@ try {
             $comment_count_stmt->bindParam(':image_id', $image_id, PDO::PARAM_INT);
             $comment_count_stmt->execute();
             $comment_count = $comment_count_stmt->fetch(PDO::FETCH_ASSOC)['comment_count'];
+            // Check if the logged-in user has liked this post
+            $check_like_sql = "SELECT COUNT(*) FROM Nice WHERE image_id = ? AND user_id = ?";
+            $check_like_stmt = $pdo->prepare($check_like_sql);
+            $check_like_stmt->execute([$image_id, $_SESSION['UserTable']['id']]);
+            $liked_by_user = (bool) $check_like_stmt->fetchColumn();
+
             ?>
 
             <div class="popup" id="Post<?php echo $image_id; ?>">
@@ -111,7 +117,14 @@ try {
                             </div>
                         </div>
                         <div class="button-group">
-                            <button class="like-button" onclick="like(<?php echo $image_id; ?>)"></button>
+                        <button class="like-button" onclick="like(<?php echo $image_id; ?>)" id="likeButton<?php echo $image_id; ?>">
+                            <?php if ($liked_by_user) : ?>
+                                <script>
+                                    document.getElementById('likeButton<?php echo $image_id; ?>').classList.add('liked');
+                                </script>
+                            <?php endif; ?>
+                        </button>
+
                             <div class="container">
                                 <a href="like_list.php?id=<?php echo $image_id; ?>" id="username" target="_self">
                                     <span class="count"><?php echo $like_count; ?></span>
@@ -141,16 +154,18 @@ try {
             <textarea id="comment" name="comment" rows="4" required placeholder="コメントを入力してください"></textarea>
             <input type="hidden" id="imageId" name="image_id">
             <div class="button-container">
-            <button type="button" class="submit-btn2" onclick="submitComment()"></button>
                 <button type="button" class="submit-btn" onclick="submitComment()">
-                <img src="../images/comment_sub.png" style="width:50px;" alt="送信">
+                    <img src="../images/comment_sub.png" style="width:50px;" alt="送信">
                 </button>
-
             </div>
         </form>
     </div>
 </div>
 
+<script>
+    const userIcon = <?php echo json_encode($_SESSION['UserTable']['icon']); ?>;
+    const userName = <?php echo json_encode($_SESSION['UserTable']['name']); ?>;
+</script>
 <script src="G2-1.js"></script>
 
 <!---<?php require '../HeaderFile/footer.php'; ?>--->

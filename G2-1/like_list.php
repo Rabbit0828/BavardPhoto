@@ -56,6 +56,12 @@ require '../HeaderFile/header.php';
             font-size: 18px;
             color: #555;
         }
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+        }
     </style>
     <title>いいねしたユーザー</title>
 </head>
@@ -73,7 +79,7 @@ try {
         $image_id = intval($_GET['id']);
 
         // Niceテーブルからいいねをしたユーザー名とアイコンを取得
-        $liked_users_sql = "SELECT UserTable.user_name, UserTable.icon
+        $liked_users_sql = "SELECT UserTable.user_id, UserTable.user_name, UserTable.icon
                             FROM Nice
                             JOIN UserTable ON Nice.user_id = UserTable.user_id
                             WHERE Nice.image_id = :image_id";
@@ -87,8 +93,12 @@ try {
             echo "<ul>";
             foreach ($liked_users as $liked_user) {
                 echo '<li>';
-                echo '<img src="../images/' . htmlspecialchars($liked_user['icon']) . '" alt="ユーザーアイコン" class="user-icon">';
-                echo '<span class="user-name">' . htmlspecialchars($liked_user['user_name']) . '</span>';
+                if (isset($liked_user['user_id'])) {
+                    echo '<img src="../images/' . htmlspecialchars($liked_user['icon']) . '" alt="ユーザーアイコン" class="user-icon">';
+                    echo '<span class="user-name"><a href="../G4-1/profile.php?id=' . htmlspecialchars($liked_user['user_id']) . '">' . htmlspecialchars($liked_user['user_name']) . '</a></span>';
+                } else {
+                    echo '<span class="user-name">ユーザー情報がありません</span>';
+                }
                 echo '</li>';
             }
             echo "</ul>";
@@ -103,5 +113,13 @@ try {
 }
 ?>
 </div>
+<img src="../images/back_page.png" alt="Image" onclick="goBack()" style="width:100px" />
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
 </body>
 </html>

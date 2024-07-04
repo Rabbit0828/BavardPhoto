@@ -1,149 +1,144 @@
 .popup {
-  display: block;
-  background-color: white;
-  padding: 20px;
-  border: 2px solid black;
+  display: block; /* ポップアップを表示 */
+  background-color: white; /* 背景色を白に設定 */
+  padding: 20px; /* 内側のパディングを設定 */
+  border: 2px solid black; /* 黒い枠線を設定 */
   width: 800px; /* 固定幅を設定 */
-  max-width: 100%; /* 画像がポップアップより大きい場合、ポップアップの幅に収まるようにする */
-  margin: 20px auto;
-  position: relative;
+  max-width: 100%; /* 幅を100%に制限 */
+  margin: 20px auto; /* 上下に20pxのマージン、左右中央揃え */
+  position: relative; /* 子要素の絶対位置を基準にする */
+}
+
+.user-icon {
+  width: 40px; /* 幅を40pxに設定 */
+  height: 40px; /* 高さを40pxに設定 */
+  border-radius: 50%; /* 丸形にするための設定 */
+  margin-right: 10px; /* 右に10pxのマージンを設定 */
+  border: 2px solid #ccc; /* グレーの枠線を追加 */
 }
 
 /* その他のスタイルは同じ */
 .popup-content {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+  display: flex; /* フレックスボックスレイアウトを使用 */
+  flex-direction: row; /* 水平方向に並べる */
+  gap: 20px; /* 要素間に20pxの間隔を設定 */
 }
 
 .popup img {
-  width: 50%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  width: 50%; /* 幅を50%に設定 */
+  height: auto; /* 高さを自動調整 */
+  aspect-ratio: 1 / 1; /* アスペクト比を1:1に設定 */
+  object-fit: cover; /* 画像をコンテナに収める */
 }
 
 .popup .text-content {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  justify-content: space-between;
+  display: flex; /* フレックスボックスレイアウトを使用 */
+  flex-direction: column; /* 垂直方向に並べる */
+  width: 50%; /* 幅を50%に設定 */
+  justify-content: space-between; /* スペースを均等に配置 */
 }
 
 .popup .user-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  display: flex; /* フレックスボックスレイアウトを使用 */
+  align-items: center; /* 垂直方向に中央揃え */
+  gap: 10px; /* 要素間に10pxの間隔を設定 */
+  margin-bottom: 10px; /* 下に10pxのマージンを設定 */
 }
 
 .popup .user-info img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
+  width: 30px; /* 幅を30pxに設定 */
+  height: 30px; /* 高さを30pxに設定 */
+  border-radius: 50%; /* 丸形にするための設定 */
+  object-fit: cover; /* 画像をコンテナに収める */
 }
 
 .popup .description {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* 下に20pxのマージンを設定 */
 }
 
-.popup .comments {
-  margin-top: 20px;
-}
-
-.comment-popup {
-  display: none; /* 初期状態では非表示 */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border: 2px solid black;
-  z-index: 1000;
-}
-
-.comment-popup form {
-  display: flex;
-  flex-direction: column;
-}
-
-.comment-popup form input, .comment-popup form textarea {
-  margin-bottom: 10px;
-  padding: 8px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.comment-popup form button {
-  padding: 8px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
 .button-group {
-  display: flex;
-  flex-direction: row; /* ボタンを横に並べる */
-  gap: 20px; /* ボタン間の間隔 */
-  margin-top: 20px;
+  display: flex; /* フレックスボックスレイアウトを使用 */
+  flex-direction: row; /* 水平方向に並べる */
+  gap: 20px; /* 要素間に20pxの間隔を設定 */
+  margin-top: 20px; /* 上に20pxのマージンを設定 */
   align-items: center; /* 垂直方向に中央揃え */
 }
 
 .button-group button {
-  padding: 10px;
+  padding: 10px; /* 内側のパディングを設定 */
   border: 2px solid #DC34E0; /* 枠線の色を設定 */
-  cursor: pointer;
-  color: white; /* マークの色を設定 */
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  width: 60px; /* ボタンの幅を狭く設定 */
-  justify-content: center; /* テキストを中央に揃える */
+  cursor: pointer; /* ポインターカーソルを設定 */
+  color: white; /* 文字色を白に設定 */
+  display: flex; /* フレックスボックスレイアウトを使用 */
+  align-items: center; /* 垂直方向に中央揃え */
+  gap: 5px; /* 要素間に5pxの間隔を設定 */
+  width: 60px; /* 幅を60pxに設定 */
+  justify-content: center; /* 水平方向に中央揃え */
   background-color: black; /* 背景色を黒に設定 */
 }
 
 .like-button {
-  background-color: black;
+  background-color: black; /* 背景色を黒に設定 */
+  transition: transform 0.3s; /* 変形のトランジションを設定 */
+}
+
+.like-button.liked {
+  color: red; /* いいねされた場合の文字色を赤に設定 */
+}
+
+.like-button.liked-animation {
+  animation: pop 0.3s; /* いいねアニメーションを設定 */
+}
+
+@keyframes pop {
+  0% {
+      transform: scale(1); /* 初期状態のスケール */
+  }
+  50% {
+      transform: scale(1.3); /* 中間のスケール */
+  }
+  100% {
+      transform: scale(1); /* 終了時のスケール */
+  }
 }
 
 .bookmark-button {
-  background-color: black;
+  background-color: black; /* 背景色を黒に設定 */
 }
 
 .comment-button {
-  background-color: black;
-}
-
-.like-button::before, .bookmark-button::before, .comment-button::before {
-  color: white; /* マークの色を白に設定 */
+  background-color: rgb(6, 2, 2); /* 背景色を黒に設定 */
 }
 
 .like-button::before {
-  content: '❤️';
+  content: '❤️'; /* いいねのアイコン */
+  color: rgba(255, 255, 255, 0); /* 初期状態の色 */
+}
+
+.like-button.liked::before {
+  color: red; /* いいねされた場合の色 */
 }
 
 .bookmark-button::before {
-  content: '⭐';
+  content: '⭐'; /* ブックマークのアイコン */
+  color: white; /* アイコンの色 */
 }
 
 .comment-button::before {
-  content: '💬';
+  content: '💬'; /* コメントのアイコン */
+  color: white; /* アイコンの色 */
 }
 
-/* $like_count と $comment_count のスタイル */
 .count {
-  font-size: 16px;
-  color: #333;
+  font-size: 16px; /* フォントサイズを16pxに設定 */
+  color: #333; /* 文字色を#333に設定 */
 }
-
 
 .comments {
-  max-height: 200px; /* 最大高さを設定 */
+  max-height: 200px; /* 最大高さを200pxに設定 */
   overflow-y: auto; /* 縦方向にスクロールを追加 */
-  border: 1px solid #ccc; /* ボーダーを追加して視覚的に区切る */
-  padding: 10px; /* 内側のパディングを追加 */
+  border: 1px solid #ccc; /* グレーの枠線を追加 */
+  padding: 10px; /* 内側のパディングを設定 */
 }
 
 .comments ul {
@@ -152,48 +147,160 @@
 }
 
 .comments li {
-  margin-bottom: 10px; /* 各コメントの間にスペースを追加 */
+  margin-bottom: 10px; /* 各コメントの間に10pxのスペースを追加 */
 }
 
-/* 追加 */
 .slide-container {
-  position: relative;
-  overflow: hidden;
+  position: relative; /* 子要素の絶対位置を基準にする */
+  overflow: hidden; /* 内容を隠す */
 }
 
 .slide-container img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.5s ease;
+  width: 100%; /* 幅を100%に設定 */
+  height: auto; /* 高さを自動調整 */
+  display: block; /* ブロック要素として表示 */
+  transition: transform 0.5s ease; /* 変形のトランジションを設定 */
 }
 
 .slide-container .prev,
 .slide-container .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px;
-  z-index: 1;
+  cursor: pointer; /* ポインターカーソルを設定 */
+  position: absolute; /* 絶対位置を設定 */
+  top: 50%; /* 垂直方向に中央揃え */
+  transform: translateY(-50%); /* 垂直方向に中央揃え */
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明の背景色を設定 */
+  color: white; /* 文字色を白に設定 */
+  padding: 10px; /* 内側のパディングを設定 */
+  z-index: 1; /* 重なり順を設定 */
 }
 
 .slide-container .prev {
-  left: 0;
+  left: 0; /* 左側に配置 */
 }
 
 .slide-container .next {
-  right: 0;
+  right: 0; /* 右側に配置 */
 }
+
 body {
-  margin-top: 100px; /* 上部に50pxのマージンを設定 */
+  margin-top: 100px; /* 上部に100pxのマージンを設定 */
   transition: margin-top 0.3s ease; /* マージン変更のアニメーション効果 */
 }
 
 @media screen and (max-width: 768px) {
     body.tab-shrink {
-        margin-top: 300px; /* タブが縮小されたときのマージン */
+        margin-top: 300px; /* タブが縮小されたときのマージンを300pxに設定 */
     }
+}
+
+.comment-popup {
+  display: none; /* 初期状態で非表示 */
+  position: fixed; /* 固定位置に設定 */
+  top: 50%; /* 垂直方向に中央揃え */
+  left: 50%; /* 水平方向に中央揃え */
+  transform: translate(-50%, -50%); /* 中央揃え */
+  background-color: #f9bde7; /* 背景色を白に設定 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* シャドウを追加 */
+  border-radius: 8px; /* 角を丸くする */
+  width: 80%; /* 幅を80%に設定 */
+  max-width: 500px; /* 最大幅を500pxに設定 */
+  z-index: 1000; /* 重なり順を設定 */
+}
+
+.comment-popup-content {
+  padding: 20px; /* 内側のパディングを設定 */
+  position: relative; /* 子要素の絶対位置を基準にする */
+}
+
+.comment-popup h2 {
+  margin-top: 0; /* 上のマージンを0に設定 */
+  font-size: 24px; /* フォントサイズを24pxに設定 */
+  color: #333333; /* 文字色を#333に設定 */
+  text-align: center; /* 中央揃え */
+}
+
+
+#commentForm {
+  display: flex; /* フレックスボックスレイアウトを使用 */
+  flex-direction: column; /* 垂直方向に並べる */
+  gap: 10px; /* 要素間に10pxの間隔を設定 */
+  margin: 0; /* 外側のマージンを0に設定 */
+  padding: 0; /* 内側のパディングを0に設定 */
+}
+
+#commentForm textarea {
+  width: 100%; /* 幅を100%に設定 */
+  padding: 10px; /* 内側のパディングを設定 */
+  border: 1px solid #dddddd; /* グレーの枠線を追加 */
+  border-radius: 4px; /* 角を丸くする */
+  resize: none; /* サイズ変更を無効にする */
+  font-size: 16px; /* フォントサイズを16pxに設定 */
+  line-height: 1.5; /* 行の高さを1.5に設定 */
+  margin: -10px; /* 外側のマージンを0に設定 */
+}
+
+.button-container {
+  display: flex; /* フレックスボックスレイアウトを使用 */
+  justify-content: space-between; /* 要素間を均等に配置 */
+  gap: 10px; /* 要素間に10pxの間隔を設定 */
+  margin-top: 10px; /* 上に10pxのマージンを設定 */
+}
+
+.submit-btn, .submit-btn2, .cancel-btn {
+  padding: 10px 20px; /* 内側のパディングを設定 */
+  border: none; /* 枠線を無くす */
+  border-radius: 4px; /* 角を丸くする */
+  font-size: 16px; /* フォントサイズを16pxに設定 */
+  cursor: pointer; /* ポインターカーソルを設定 */
+  transition: background-color 0.3s ease; /* 背景色変更のトランジションを設定 */
+}
+
+.submit-btn {
+  background-color: #f957f1; /* 背景色をピンクに設定 */
+  color: #000000; /* 文字色を黒に設定 */
+}
+
+.submit-btn:hover {
+  background-color: #000000; /* ホバー時の背景色を濃いピンクに設定 */
+}
+
+.submit-btn2 {
+  background-color: #f9bde7; /* 背景色を白に設定 */
+  color: #ffffff; /* 文字色を白に設定 */
+  border: 2px solid #f9bde7; /* 白い枠線を追加 */
+}
+
+.submit-btn2:hover {
+  background-color: #f9bde7; /* ホバー時の背景色を薄いグレーに設定 */
+  color: #000000; /* 文字色を黒に設定 */
+}
+
+.cancel-btn {
+  background-color: #696767; /* 背景色をグレーに設定 */
+  color: #ff5fec; /* 文字色をピンクに設定 */
+}
+
+.cancel-btn:hover {
+  background-color: #000000; /* ホバー時の背景色を黒に設定 */
+}
+
+.close-btn {
+  position: absolute; /* 絶対位置に設定 */
+  top: 20px; /* 上から20pxに配置 */
+  right: 20px; /* 右から20pxに配置 */
+  background-color: transparent; /* 背景色を透明に設定 */
+  border: none; /* 枠線を無くす */
+  font-size: 24px; /* フォントサイズを24pxに設定 */
+  cursor: pointer; /* ポインターカーソルを設定 */
+  color: #666666; /* 文字色をグレーに設定 */
+  transition: color 0.3s ease; /* 色変更のトランジションを設定 */
+}
+
+.close-btn img {
+  width: 32px; /* 幅を32pxに設定 */
+  height: 32px; /* 高さを32pxに設定 */
+}
+
+.close-btn:hover {
+  color: #000000; /* ホバー時の文字色を黒に設定 */
 }

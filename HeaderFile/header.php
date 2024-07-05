@@ -11,7 +11,7 @@ $user_id = $_SESSION['UserTable']['id'];
 <head>
 <meta charset="utf-8">
 <title>BavardPhotos</title>
-<link rel="icon" href="../images/BPfavicon.ico" type="image/x-icon">
+<link rel="icon" href="../images/BPfavicon2.ico" type="image/x-icon">
 <style>
   /* Header style */
   .Header {

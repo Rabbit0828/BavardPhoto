@@ -2,7 +2,7 @@
 session_start();
 require '../G4-1/dbconnect.php'; // Adjust the path as needed
 
-$current_user_id = $_SESSION['id'];
+$current_user_id = $_SESSION['user_id'];
 $chat_user_id = isset($_POST['chat_user_id']) ? intval($_POST['chat_user_id']) : 0;
 $message = isset($_POST['message']) ? trim($_POST['message']) : '';
 

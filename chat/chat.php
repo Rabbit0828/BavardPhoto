@@ -2,8 +2,8 @@
 session_start();
 require '../G4-1/dbconnect.php'; // Adjust the path as needed
 
-$current_user_id = $_SESSION['id'];
-$chat_user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$current_user_id = $_SESSION['user_id'];
+$chat_user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
 
 if ($chat_user_id == 0) {
     echo '無効なユーザーIDです。';

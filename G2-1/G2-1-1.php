@@ -6,30 +6,26 @@
 <title>画像の下にポップアップ</title>
 </head>
 <body>
-<div class="search-container">
-    <form method="get">
-        <input type="text" name="search" size="40" placeholder="キーワード検索" style="height: 40px;">
-    </form>
-</div>
+
 
 <?php
 
-if (isset($_GET['search']) && !empty($_GET['search'])) {
-    $search = $_GET['search'];
-    $sql = "SELECT * FROM Post WHERE image_id = :search OR user_id = :search OR user_name = :search";
-} else {
-    $sql = "SELECT * FROM Post";
-}
+      $image_id = isset($_GET['image_id']) ? intval($_GET['image_id']) : 0;
+
+        if ($image_id == 0) {
+            echo '画像IDが無効です。';
+            exit;
+        }
+
 
 try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $sql = 'SELECT * FROM Post WHERE image_id = :image_id';
     $stmt = $pdo->prepare($sql);
-
-    if (isset($search)) {
-        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
-    }
+    $stmt->execute([':image_id' => $image_id]);
+    $post = $stmt->fetch();
 
     $stmt->execute();
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -74,6 +70,7 @@ try {
             $comment_count_stmt->bindParam(':image_id', $image_id, PDO::PARAM_INT);
             $comment_count_stmt->execute();
             $comment_count = $comment_count_stmt->fetch(PDO::FETCH_ASSOC)['comment_count'];
+            
             // Check if the logged-in user has liked this post
             $check_like_sql = "SELECT COUNT(*) FROM Nice WHERE image_id = ? AND user_id = ?";
             $check_like_stmt = $pdo->prepare($check_like_sql);
@@ -161,6 +158,14 @@ try {
         </form>
     </div>
 </div>
+
+<img src="../images/back_page.png" alt="Image" onclick="goBack()" style="width:100px" />
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 
 <script>
     const userIcon = <?php echo json_encode($_SESSION['UserTable']['icon']); ?>;

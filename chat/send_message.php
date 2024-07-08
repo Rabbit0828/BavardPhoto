@@ -1,32 +1,23 @@
 <?php
-// dbconnect.phpを読み込む
-require './dbconnect.php';
-
-// POSTリクエストでない場合は終了
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    exit;
-}
-
-// セッションを開始
 session_start();
+require '../G4-1/dbconnect.php'; // Adjust the path as needed
+echo '<hr>';
+var_dump($_SESSION);
+echo '<hr>';
 
-// ユーザーIDとメッセージを取得
-$user_id = $_SESSION['User']['user_id'] ?? null;
-$message = $_POST['message'] ?? null;
+$current_user_id = $_SESSION['id'];
+$chat_user_id = isset($_POST['chat_user_id']) ? intval($_POST['chat_user_id']) : 0;
+$message = isset($_POST['message']) ? trim($_POST['message']) : '';
 
-// ユーザーIDとメッセージが存在しない場合はエラーを返す
-if (!$user_id || !$message) {
-    http_response_code(400);
+if ($chat_user_id == 0 || $message == '') {
+    echo 'Invalid input.';
     exit;
 }
 
-// メッセージをデータベースに挿入
-$stmt = $pdo->prepare("INSERT INTO messages (sender_id, message) VALUES (?, ?)");
-$stmt->execute([$user_id, $message]);
+$sql = 'INSERT INTO ChatMessage (sender_id, recipient_id, message, sent_at) VALUES (:sender_id, :recipient_id, :message, NOW())';
+$stmt = $pdo->prepare($sql);
+$stmt->execute([':sender_id' => $current_user_id, ':recipient_id' => $chat_user_id, ':message' => $message]);
 
-// 成功ステータスを返す
-echo json_encode(['status' => 'success']);
 ?>
 
 

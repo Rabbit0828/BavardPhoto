@@ -40,11 +40,11 @@
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロワー</span>';
-            echo '<a href="../G4-1/ff.php?user_id=', $my_id, '&type=followers">',htmlspecialchars($follower_count),'</a>'; //フォロワー数
+            echo '<a href="./ff.php?user_id=', $my_id, '&type=followers">',htmlspecialchars($follower_count),'</a>'; //フォロワー数
             echo '</div>';
             echo '<div class="profile_head_count">';
             echo '<span>フォロー中</span>';
-            echo '<a href="../G4-1/ff.php?user_id=', $my_id, '&type=following">',htmlspecialchars($following_count),'</a>'; //フォロー数
+            echo '<a href="./ff.php?user_id=', $my_id, '&type=following">',htmlspecialchars($following_count),'</a>'; //フォロー数
             echo '</div>';
             echo '<div class="private-name">', htmlspecialchars($user['private_name'] ?? ''), '</div>';
             echo '<div class="profile_actions">';
@@ -75,7 +75,7 @@
             if ($posts) {
                 echo '<div class="post">';
                 foreach ($posts as $post) {
-                    echo '<a href="#" class="post-link" data-image-id="', htmlspecialchars($post['image_id'] ?? ''), '">';
+                    echo '<a href="../G2-1/G2-1-1.php?image_id=', htmlspecialchars($post['image_id'] ?? '', ENT_QUOTES, 'UTF-8'), '">';
                     echo '<img src="../images/', htmlspecialchars($post['image_name'] ?? ''), '">';
                     echo '</a>';
                 }

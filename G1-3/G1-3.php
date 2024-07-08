@@ -95,7 +95,7 @@
     </div>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-            const sparkleCount = 100; // キラキラの数
+            const sparkleCount = 99; // キラキラの数
             const body = document.body;
 
             for (let i = 0; i < sparkleCount; i++) {

@@ -11,7 +11,7 @@ $(document).ready(function() {
     }
 
     // 3秒ごとにチャット履歴を更新
-    setInterval(updateChatHistory, 3000); // 必要に応じて間隔を調整してください
+    setInterval(updateChatHistory, 3000); 
 });
 
 

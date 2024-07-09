@@ -6,9 +6,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
         }
 
         form {
@@ -62,8 +59,10 @@
             height: 150px;
             border: 2px solid #ddd;
             display: none;
-            margin-left: 120px; /* Align with the input fields */
+            margin:auto;
             object-fit: cover;
+            border-radius:50%;
+            background-position: 50% 48%;
         }
     </style>
     <script>
@@ -84,7 +83,7 @@
             <img id="image-preview" alt="画像プレビュー">
         </div>
         <div>
-            <span>プロフィール画像</span>
+            <span>画像</span>
             <input type="file" name="profile_image" accept="image/*" onchange="previewImage(event)">
         </div>
         <div>

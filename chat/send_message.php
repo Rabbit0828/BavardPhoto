@@ -1,23 +1,24 @@
+<!-- send_message.php -->
 <?php
 session_start();
 require '../G4-1/dbconnect.php'; // Adjust the path as needed
-echo '<hr>';
-var_dump($_SESSION);
-echo '<hr>';
-
-$current_user_id = $_SESSION['id'];
-$chat_user_id = isset($_POST['chat_user_id']) ? intval($_POST['chat_user_id']) : 0;
-$message = isset($_POST['message']) ? trim($_POST['message']) : '';
-
-if ($chat_user_id == 0 || $message == '') {
-    echo 'Invalid input.';
-    exit;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $message = $_POST['message'];
+    $sender_id = $_SESSION['UserTable']['id']; // セッションが既に開始されていることを想定
+    
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=your_database', 'username', 'password');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $stmt = $pdo->prepare('INSERT INTO ChatMessage (sender_id, message, sent_at) VALUES (?, ?, NOW())');
+        $stmt->execute([$sender_id, $message]);
+        
+        // オプション: 成功メッセージや状態を返す場合
+        echo 'メッセージを送信しました';
+    } catch(PDOException $e) {
+        echo 'エラー: ' . $e->getMessage();
+    }
 }
-
-$sql = 'INSERT INTO ChatMessage (sender_id, recipient_id, message, sent_at) VALUES (:sender_id, :recipient_id, :message, NOW())';
-$stmt = $pdo->prepare($sql);
-$stmt->execute([':sender_id' => $current_user_id, ':recipient_id' => $chat_user_id, ':message' => $message]);
-
 ?>
 
 

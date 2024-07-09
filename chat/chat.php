@@ -1,45 +1,44 @@
-<?php
-session_start();
-require '../G4-1/dbconnect.php'; // Adjust the path as needed
-
-$current_user_id = $_SESSION['id'];
-$chat_user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
-
-if ($chat_user_id == 0) {
-    echo '無効なユーザーIDです。';
-    exit;
-}
-
-// チャット相手のユーザー情報を取得
-$user_sql = 'SELECT user_name FROM UserTable WHERE user_id = :user_id';
-$user_stmt = $pdo->prepare($user_sql);
-$user_stmt->execute([':user_id' => $chat_user_id]);
-$chat_user = $user_stmt->fetch();
-
-if (!$chat_user) {
-    echo 'ユーザーが見つかりません。';
-    exit;
-}
-?>
-
+<!-- chat.php -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>チャット - <?php echo htmlspecialchars($chat_user['user_name']); ?></title>
-    <link rel="stylesheet" href="css/chat.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/chat.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チャットアプリケーション</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="chat_update.js"></script>
 </head>
 <body>
-    <h1><?php echo htmlspecialchars($chat_user['user_name']); ?> さんとのチャット</h1>
-    <div id="chat-box"></div>
-    <form id="chat-form">
-        <input type="hidden" name="current_user_id" value="<?php echo $current_user_id; ?>">
-        <input type="hidden" name="chat_user_id" value="<?php echo $chat_user_id; ?>">
-        <textarea name="message" rows="3" cols="50" required></textarea>
-        <button type="submit">送信</button>
-    </form>
+    <div id="chat-container">
+        <!-- チャット履歴の表示 -->
+        <div id="chat-history">
+            <?php require_once 'chat_message.php'; ?>
+        </div>
+
+        <!-- メッセージ送信フォーム -->
+        <form id="message-form">
+            <input type="text" id="message" name="message" placeholder="メッセージを入力してください">
+            <input type="submit" value="送信">
+        </form>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        // フォームの送信をAJAXで処理
+        $('#message-form').submit(function(e) {
+            e.preventDefault();
+            var message = $('#message').val();
+            $.ajax({
+                url: 'send_message.php',
+                method: 'POST',
+                data: { message: message },
+                success: function(response) {
+                    $('#message').val(''); // 入力フィールドをクリア
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>
 

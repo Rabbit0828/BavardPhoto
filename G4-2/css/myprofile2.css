@@ -1,8 +1,11 @@
+.body {
+    margin-top: 80px;
+}
 .profile_name {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 7%;
     margin-bottom: 10px;
 }
 .profile_head_icon img {
@@ -51,11 +54,8 @@ p {
     inset: 0 auto auto 0;
 }
 .profile_actions {
-    display: flex;
-    justify-content: flex-start; /* フレックスボックス内の要素を左寄せ */
-    gap: 20px; 
-    margin-top: 20px;
-    transform: translateX(110%); /* 要素を右に移動 */
+    transform: translateX(100%); /* 要素を右に移動 */
+    margin:5px auto;
 }
 
 .profile_actions .not_follow a,
@@ -88,7 +88,7 @@ p {
 
 .private-name{
     font-size: 30px;
-    margin-left: 80px;
+    margin-left: 70px;
 }
 
 .vio{
@@ -122,10 +122,14 @@ p {
 
 #read-more {
     background: none;
-    color: black; /* 黒字で表示 */
+    color: blue;
     border: none;
     cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     padding: 0 5px;
+    background-color: white;
     display: inline;
 }
 
@@ -212,39 +216,24 @@ a {
     cursor: pointer;
 }
 
-.profile_head_count {
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.profile_head_count span {
-    font-size: 22px;
-    font-weight: normal;
-    display: block;
-}
-.profile_head_count a {
-    text-decoration: none;
-    color: inherit;
+.profile_body_edit {
+    margin: 10px 0;
 }
 
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
+.profile_body_edit a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #000; /* 枠線を追加 */
+    border-radius: 5px; /* 角を丸くする */
+    text-decoration: none; /* 下線を削除 */
+    color: #000; /* テキストカラーを黒に */
+    background-color: #f0f0f0; /* 背景色を灰色に */
+    transition: background-color 0.3s, border-color 0.3s; /* ホバー時のトランジション効果 */
 }
 
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
+.profile_body_edit a:hover {
+    background-color: #e0e0e0; /* ホバー時の背景色 */
+    border-color: #555; /* ホバー時の枠線色 */
 }
 
 .center-image {

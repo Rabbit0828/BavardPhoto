@@ -68,32 +68,36 @@
         
         <form id="message-form">
             <input type="text" id="message" name="message" placeholder="メッセージを入力してください">
-            <input type="submit" value="送信">
+            <button type="button" id="sendButton">送信</button>
         </form>
     </div>
-<script>
-    $(document).ready(function() {
-        $('#message-form').submit(function(e) {
-            e.preventDefault(); // フォームのデフォルトの送信を防止
-            
-            var message = $('#message').val(); // 入力されたメッセージを取得
-            
-            // Ajaxリクエストを送信
-            $.ajax({
-                url: 'send_message.php',
-                method: 'POST',
-                data: { message: message }, // メッセージを送信
-                success: function(response) {
-                    
-                    $('#message').val(''); // 送信後、入力フィールドをクリア
-                    // ここに他の成功時の処理を追加できます
-                }
+    
+    <script>
+        $(document).ready(function() {
+            $('#sendButton').click(function() {
+                var message = $('#message').val(); // 入力されたメッセージを取得
+                
+                // Ajaxリクエストを送信
+                $.ajax({
+                    url: 'send_message.php',
+                    method: 'POST',
+                    data: { message: message }, // メッセージを送信
+                    success: function(response) {
+                        console.log(response);
+                        $('#message').val(''); // 送信後、入力フィールドをクリア
+                        alert('メッセージが送信されました');
+                    },
+                    error: function(xhr, status, error) {
+                        // リクエストが失敗したときの処理
+                        console.log('Error:', error);
+                        alert('メッセージの送信に失敗しました');
+                    }
+                });
             });
         });
-    });
-</script>
-
+    </script>
 </body>
+
 </html>
 
 

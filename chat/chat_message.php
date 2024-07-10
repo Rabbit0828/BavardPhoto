@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 const SERVER = 'mysql304.phy.lolipop.lan';
 const DBNAME = 'LAA1517469-photos';

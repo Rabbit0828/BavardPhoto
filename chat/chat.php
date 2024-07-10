@@ -71,23 +71,27 @@
             <input type="submit" value="送信">
         </form>
     </div>
-    
-    <script>
+<script>
     $(document).ready(function() {
         $('#message-form').submit(function(e) {
-            e.preventDefault();
-            var message = $('#message').val();
+            e.preventDefault(); // フォームのデフォルトの送信を防止
+            
+            var message = $('#message').val(); // 入力されたメッセージを取得
+            
+            // Ajaxリクエストを送信
             $.ajax({
                 url: 'send_message.php',
                 method: 'POST',
-                data: { message: message },
+                data: { message: message }, // メッセージを送信
                 success: function(response) {
-                    $('#message').val('');
+                    $('#message').val(''); // 送信後、入力フィールドをクリア
+                    // ここに他の成功時の処理を追加できます
                 }
             });
         });
     });
-    </script>
+</script>
+
 </body>
 </html>
 

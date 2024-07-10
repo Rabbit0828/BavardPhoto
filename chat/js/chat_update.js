@@ -5,6 +5,7 @@ $(document).ready(function() {
             url: 'chat_message.php',
             method: 'GET',
             success: function(response) {
+                console.log(response);
                 $('#chat-history').html(response);
             }
         });

@@ -217,7 +217,7 @@ a {
 }
 
 .profile_body_edit {
-    margin: 10px 0;
+    margin: 10px s0;
 }
 
 .profile_body_edit a {
@@ -234,5 +234,5 @@ a {
 .profile_body_edit a:hover {
     background-color: #fb00ff; /* ホバー時の背景色 */
     border-color:#fd80ff; /* ホバー時の枠線色 */
-    color:white;
+    color:rgb(206, 51, 183);
 }

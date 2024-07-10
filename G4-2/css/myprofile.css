@@ -54,11 +54,8 @@ p {
     inset: 0 auto auto 0;
 }
 .profile_actions {
-    display: flex;
-    justify-content: flex-start; /* フレックスボックス内の要素を左寄せ */
-    gap: 20px; 
-    margin-top: 20px;
-    transform: translateX(110%); /* 要素を右に移動 */
+    transform: translateX(111%); /* 要素を右に移動 */
+    margin:5px auto;
 }
 
 .profile_actions .not_follow a,
@@ -115,7 +112,7 @@ p {
 
 .text-content {
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* 表示する行数 */
+     /* -webkit-line-clamp: 3;  表示する行数 */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -220,21 +217,22 @@ a {
 }
 
 .profile_body_edit {
-    margin: 10px 0;
+    margin: 10px s0;
 }
 
 .profile_body_edit a {
     display: inline-block;
     padding: 10px 20px;
-    border: 2px solid #000; /* 枠線を追加 */
+    border: 2px solid #DC34E0; /* 枠線を追加 */
     border-radius: 5px; /* 角を丸くする */
     text-decoration: none; /* 下線を削除 */
     color: #000; /* テキストカラーを黒に */
-    background-color: #f0f0f0; /* 背景色を灰色に */
+    background-color: white; 
     transition: background-color 0.3s, border-color 0.3s; /* ホバー時のトランジション効果 */
 }
 
 .profile_body_edit a:hover {
-    background-color: #e0e0e0; /* ホバー時の背景色 */
-    border-color: #555; /* ホバー時の枠線色 */
+    background-color: #fb00ff; /* ホバー時の背景色 */
+    border-color:#fd80ff; /* ホバー時の枠線色 */
+    color:rgb(206, 51, 183);
 }

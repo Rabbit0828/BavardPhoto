@@ -74,7 +74,7 @@
   gap: 5px; /* 要素間に5pxの間隔を設定 */
   width: 60px; /* 幅を60pxに設定 */
   justify-content: center; /* 水平方向に中央揃え */
-  background-color: black; /* 背景色を黒に設定 */
+  background-color: rgb(255, 255, 255); /* 背景色を黒に設定 */
 }
 
 .like-button {
@@ -101,31 +101,16 @@
       transform: scale(1); /* 終了時のスケール */
   }
 }
-
-.bookmark-button {
-  background-color: black; /* 背景色を黒に設定 */
-}
-
-.comment-button {
-  background-color: rgb(6, 2, 2); /* 背景色を黒に設定 */
-}
-
 .like-button::before {
   content: '❤️'; /* いいねのアイコン */
-  color: rgba(255, 255, 255, 0); /* 初期状態の色 */
+  color: rgba(8, 8, 8, 0); /* 初期状態の色 */
 }
 
 .like-button.liked::before {
-  color: red; /* いいねされた場合の色 */
+  color: rgb(255, 0, 43); /* いいねされた場合の色 */
 }
-
-.bookmark-button::before {
-  content: '⭐'; /* ブックマークのアイコン */
-  color: white; /* アイコンの色 */
-}
-
 .comment-button::before {
-  content: '💬'; /* コメントのアイコン */
+   /* コメントのアイコン */
   color: white; /* アイコンの色 */
 }
 
@@ -256,7 +241,7 @@ body {
 }
 
 .submit-btn {
-  background-color: #f957f1; /* 背景色をピンクに設定 */
+  background-color: #f78aef; /* 背景色をピンクに設定 */
   color: #000000; /* 文字色を黒に設定 */
 }
 

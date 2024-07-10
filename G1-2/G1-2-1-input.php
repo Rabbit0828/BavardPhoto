@@ -206,7 +206,8 @@
 <body>
 
     <form action="../G1-1/G1-1-input.php">
-        <button type="submit" class="login-button">＜　ログイン画面</button>
+        <button type="submit" class="login-button">＜　ログイン画面<br>
+        <img src="../images/deru.png" style="width:100px" alt="Comment"></button>
     </form>
 
 <div class="container">
@@ -225,16 +226,16 @@
                     <input type="text" name="user_name" placeholder="ユーザーネームを入力" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" placeholder="パスワードを入力" required>
+                    <input type="password" id="password" name="password" placeholder="パスワードを入力(英数含む、半角六文字以上)" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password2" placeholder="確認用パスワード" required>
+                    <input type="password" id="password2" name="password2" placeholder="確認用パスワード" required>
                 </div>
                 <div class="form-group">
                     <input type="email" name="mail_address" placeholder="メールアドレスを入力" required>
                 </div>
                 <div class="form-group">
-                    <input type="tel" name="tell" placeholder="電話番号を入力" required>
+                    <input type="tel" name="tell" placeholder="電話番号を入力(ハイフンなし)" required>
                 </div>
             </div>
             <div class="box2">
@@ -278,7 +279,9 @@
 
         function validateRequiredForm() {
             var requiredInputs = document.querySelectorAll('#Required input[required]');
-            var optionalInputs = document.querySelectorAll('#Optional input');
+            var password = document.getElementById('password').value;
+            var password2 = document.getElementById('password2').value;
+            var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
 
             for (var i = 0; i < requiredInputs.length; i++) {
                 if (!requiredInputs[i].value) {
@@ -287,10 +290,13 @@
                 }
             }
 
-            if (!optionalFilled) {
-                if (confirm("任意の項目が入力されていません。送信しますか？")) {
-                    document.getElementById('optional-form').submit();
-                }
+            if (!passwordPattern.test(password)) {
+                alert("パスワードは半角六文字以上、英数を含める必要があります。");
+                return false;
+            }
+
+            if (password !== password2) {
+                alert("パスワードが一致しません。");
                 return false;
             }
 

@@ -36,28 +36,52 @@
             // フォローとフォロワーのリストを表示
             if ($type == 'following') {
                 $sql = 'SELECT UserTable.* FROM FollowRelationship 
-                        JOIN UserTable ON FollowRelationship.user_id = UserTable.user_id 
-                        WHERE FollowRelationship.follow_id = :user_id';
-                echo '<h2>フォロー中</h2>';
-            } else {
-                $sql = 'SELECT UserTable.* FROM FollowRelationship 
                         JOIN UserTable ON FollowRelationship.follow_id = UserTable.user_id 
                         WHERE FollowRelationship.user_id = :user_id';
-                echo '<h2>フォロワー</h2>';
-            }
+                echo '<h2>フォロー中</h2>';
 
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([':user_id' => $user_id]);
-            $users = $stmt->fetchAll();
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([':user_id' => $user_id]);
+                $users = $stmt->fetchAll();
 
-            if ($users) {
-                echo '<ul class="user-list">';
-                foreach ($users as $user) {
-                    echo '<li><a href="profile.php?id=',$user['user_id'],'"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a></li>';
+                if ($users) {
+                    echo '<ul class="user-list">';
+                    foreach ($users as $user) {
+                        echo '<li>';
+                        echo '<a href="../G4-1/profile.php?id=',$user['user_id'],'"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a>';
+
+                        // チャットリンクを追加
+                        echo '<div class="chat-button">';
+                        echo '<a href="../chat/chat.php?user_id=', $user['user_id'], '">チャット</a>';
+                        echo '</div>';
+
+                        echo '</li>';
+                    }
+                    echo '</ul>';
+                } else {
+                    echo 'ユーザーが見つかりません。';
                 }
-                echo '</ul>';
             } else {
-                echo 'ユーザーが見つかりません。';
+                $sql = 'SELECT UserTable.* FROM FollowRelationship 
+                        JOIN UserTable ON FollowRelationship.user_id = UserTable.user_id 
+                        WHERE FollowRelationship.follow_id = :user_id';
+                echo '<h2>フォロワー</h2>';
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([':user_id' => $user_id]);
+                $users = $stmt->fetchAll();
+
+                if ($users) {
+                    echo '<ul class="user-list">';
+                    foreach ($users as $user) {
+                        echo '<li>';
+                        echo '<a href="../G4-1/profile.php?id=',$user['user_id'],'"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a>';
+                        echo '</li>';
+                    }
+                    echo '</ul>';
+                } else {
+                    echo 'ユーザーが見つかりません。';
+                }
             }
         } else {
             echo 'ユーザーが見つかりません。';
@@ -68,5 +92,4 @@
     ?>
 </body>
 </html>
-
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>チャットアプリケーション</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="chat_update.js"></script>
+    <script src="js/chat_update.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;

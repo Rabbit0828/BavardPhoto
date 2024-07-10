@@ -84,6 +84,7 @@
                 method: 'POST',
                 data: { message: message }, // メッセージを送信
                 success: function(response) {
+                    
                     $('#message').val(''); // 送信後、入力フィールドをクリア
                     // ここに他の成功時の処理を追加できます
                 }

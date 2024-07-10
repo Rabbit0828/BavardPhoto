@@ -65,9 +65,7 @@ try {
                 echo '<div class="not_follow"><a href="follow.php?id=', htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'), '">フォロー</a></div>';
             }
             ?>
-            <div class="profile_actions"><!-- メッセージボタン -->
-                <div class="message"><a href="../chat/index.php?partner_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>">メッセージ</a></div>
-            </div>
+            
         </div>
     </div>
 

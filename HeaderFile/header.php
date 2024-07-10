@@ -12,7 +12,7 @@ $user_id = $_SESSION['UserTable']['id'];
 <meta charset="utf-8">
 <title>BavardPhotos</title>
 <link rel="icon" href="../images/BPfavicon2.ico" type="image/x-icon">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="background/style.css">
 <style>
   /* Header style */
   .Header {
@@ -190,7 +190,7 @@ $user_id = $_SESSION['UserTable']['id'];
 </head>
 <body>
 <div id="background"></div>
-<script src="script.js"></script>
+<script src="background/script.js"></script>
 <div class="Header">
   <div class="logo">
     <a href="G2-1.php" target="_self">

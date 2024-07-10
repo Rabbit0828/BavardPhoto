@@ -14,6 +14,7 @@
     height: 200px;
     border-radius: 70%;
     margin-left: 10%;
+    border:1px solid #c0c0c0;
 }
 .profile_head_text {
     display: grid;
@@ -232,7 +233,7 @@ a {
 }
 
 .profile_body_edit a:hover {
-    background-color: #fb00ff; /* ホバー時の背景色 */
+    background-color: #ee19f2; /* ホバー時の背景色 */
     border-color:#fd80ff; /* ホバー時の枠線色 */
-    color:rgb(206, 51, 183);
+    color:white;
 }

@@ -9,7 +9,7 @@ const PASS = 'Pass1234';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message = $_POST['message'];
     $sender_id = $_SESSION['UserTable']['id'];
-    $recipient_id=$_GET['user_id'];
+    $recipient_id=['recipient_id'];
 
     try {
         $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';

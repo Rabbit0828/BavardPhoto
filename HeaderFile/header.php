@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION['UserTable']['id'])) {
     // Handle the case where the user is not logged in
-    echo "User not logged in!";
+    header('Location: ../G1-1/G1-1-input.php');
     exit;
 }
 $user_id = $_SESSION['UserTable']['id'];
@@ -12,6 +12,7 @@ $user_id = $_SESSION['UserTable']['id'];
 <meta charset="utf-8">
 <title>BavardPhotos</title>
 <link rel="icon" href="../images/BPfavicon2.ico" type="image/x-icon">
+<link rel="stylesheet" href="background/style.css">
 <style>
   /* Header style */
   .Header {
@@ -188,6 +189,8 @@ $user_id = $_SESSION['UserTable']['id'];
 </style>
 </head>
 <body>
+<div id="background"></div>
+<script src="background/script.js"></script>
 <div class="Header">
   <div class="logo">
     <a href="G2-1.php" target="_self">

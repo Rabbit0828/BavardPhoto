@@ -75,13 +75,23 @@
     <script>
         $(document).ready(function() {
             $('#sendButton').click(function() {
+                const url = new URL(window.location.href);
+                const params = url.searchParams;
+                // 個別のパラメータを取得
+                const recipient_id = params.get('user_id'); // "John"
+
+                // クエリパラメータを取得
                 var message = $('#message').val(); // 入力されたメッセージを取得
                 
                 // Ajaxリクエストを送信
                 $.ajax({
                     url: 'send_message.php',
                     method: 'POST',
-                    data: { message: message }, // メッセージを送信
+                    data: { 
+                        message: message ,
+                        recipient_id:recipient_id
+
+                    }, // メッセージを送信
                     success: function(response) {
                         console.log(response);
                         $('#message').val(''); // 送信後、入力フィールドをクリア

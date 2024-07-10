@@ -95,7 +95,9 @@ try {
         }
         echo '</div>';
     } else {
-        echo '投稿がありません';
+        echo '<div class="center-image">';
+                echo '<img src="../images/Null.png" alt="Null Image">';
+                echo '</div>';
     }
     ?>
     <div id="modal" class="modal">

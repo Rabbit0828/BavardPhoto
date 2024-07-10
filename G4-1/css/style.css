@@ -112,7 +112,7 @@ p {
 
 .text-content {
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* 表示する行数 */
+     /* -webkit-line-clamp: 3;  表示する行数 */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -245,4 +245,15 @@ a {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+}
+
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 必要に応じて調整 */
+}
+.center-image img {
+    max-width: 100%;
+    height: auto;
 }

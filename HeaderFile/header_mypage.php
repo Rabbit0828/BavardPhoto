@@ -136,7 +136,7 @@
   </div>
 
   <div class="user-container">
-    <?php echo $_SESSION['UserTable']['user_name']; ?>
+    <p><?php echo $_SESSION['UserTable']['name']; ?></p>
   </div>
 
   <!-- アイコンに枠線を追加 -->

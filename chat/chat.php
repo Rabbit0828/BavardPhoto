@@ -68,6 +68,7 @@
         
         <form id="message-form">
             <input type="text" id="message" name="message" placeholder="メッセージを入力してください">
+            <input type="hidden" name="recipient_id" value="送信先のユーザーID">
             <button type="button" id="sendButton">送信</button>
         </form>
     </div>

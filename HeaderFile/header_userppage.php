@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>CSS入門-ヘッダーとフッターの固定表示</title>
+<title>BavardPhoto</title>
 <link rel="stylesheet" href="styles.css">
 <style>
   .Header {

@@ -6,8 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>BavardPhotos</title>
-    <link rel="stylesheet" href="css/myprofile.css">
     <link rel="icon" href="../images/BPfavicon2.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/myprofile.css">
+    
 </head>
 <body>
     <?php 
@@ -26,6 +27,7 @@
 
         if ($user) {
             require 'count.php';
+            echo '<div class="content">';
             echo '<div class="profile_head_text">';
 
 
@@ -53,6 +55,7 @@
             $isFollowing = $stmt->fetchColumn();
 
             echo '<div class="profile_body_edit"><a href="edit-input.php">プロフィール編集</a></div>';
+            echo '</div>';
             echo '</div>';
             echo '</div>';
             echo '</div>';

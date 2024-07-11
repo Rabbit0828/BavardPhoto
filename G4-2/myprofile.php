@@ -25,7 +25,6 @@
 
         if ($user) {
             require 'count.php';
-            echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
 
 

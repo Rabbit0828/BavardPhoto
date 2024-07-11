@@ -24,41 +24,38 @@
         $user_stmt->execute([':user_id' => $user_id]);
         $user = $user_stmt->fetch();
 
+        // ユーザー名の表示とフォローフォロワー切り替えリンク
         if ($user) {
             echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
+        }
+        echo '<div class="ff-switch">';
+        echo '<a href="ff.php?user_id=', $user_id, '&type=followers">フォロワー</a> | ';
+        echo '<a href="ff.php?user_id=', $user_id, '&type=following">フォロー</a>';
+        echo '</div>';
 
-            // フォローとフォロワーの切り替えリンク
-            echo '<div class="ff-switch">';
-            echo '<a href="ff.php?user_id=', $user_id, '&type=followers">フォロワー</a> | ';
-            echo '<a href="ff.php?user_id=', $user_id, '&type=following">フォロー</a>';
-            echo '</div>';
+        // フォローとフォロワーのリストを表示
+        if ($type == 'following') {
+            $sql = 'SELECT UserTable.* FROM FollowRelationship 
+                    JOIN UserTable ON FollowRelationship.user_id = UserTable.user_id 
+                    WHERE FollowRelationship.follow_id = :user_id';
+            echo '<h2>フォロー中</h2>';
+        } else {
+            $sql = 'SELECT UserTable.* FROM FollowRelationship 
+                    JOIN UserTable ON FollowRelationship.follow_id = UserTable.user_id 
+                    WHERE FollowRelationship.user_id = :user_id';
+            echo '<h2>フォロワー</h2>';
+        }
 
-            // フォローとフォロワーのリストを表示
-            if ($type == 'following') {
-                $sql = 'SELECT UserTable.* FROM FollowRelationship 
-                        JOIN UserTable ON FollowRelationship.user_id = UserTable.user_id 
-                        WHERE FollowRelationship.follow_id = :user_id';
-                echo '<h2>フォロー中</h2>';
-            } else {
-                $sql = 'SELECT UserTable.* FROM FollowRelationship 
-                        JOIN UserTable ON FollowRelationship.follow_id = UserTable.user_id 
-                        WHERE FollowRelationship.user_id = :user_id';
-                echo '<h2>フォロワー</h2>';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':user_id' => $user_id]);
+        $users = $stmt->fetchAll();
+
+        if ($users) {
+            echo '<ul class="user-list">';
+            foreach ($users as $user) {
+                echo '<li><a href="profile.php?id=',$user['user_id'],'"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a></li>';
             }
-
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([':user_id' => $user_id]);
-            $users = $stmt->fetchAll();
-
-            if ($users) {
-                echo '<ul class="user-list">';
-                foreach ($users as $user) {
-                    echo '<li><a href="profile.php?id=',$user['user_id'],'"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a></li>';
-                }
-                echo '</ul>';
-            } else {
-                echo 'ユーザーが見つかりません。';
-            }
+            echo '</ul>';
         } else {
             echo 'ユーザーが見つかりません。';
         }

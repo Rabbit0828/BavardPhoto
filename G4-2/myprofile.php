@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>BavardPhotos</title>
     <link rel="stylesheet" href="css/myprofile.css">
+    <link rel="icon" href="../images/BPfavicon2.ico" type="image/x-icon">
 </head>
 <body>
     <?php 
@@ -25,9 +26,7 @@
 
         if ($user) {
             require 'count.php';
-            echo '<div class="profile_name">', htmlspecialchars($user['user_name'] ?? ''), '</div>';
             echo '<div class="profile_head_text">';
-
 
 
             echo '<div class="profile_head_icon"><span><img src="../images/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
@@ -57,16 +56,16 @@
             echo '</div>';
             echo '</div>';
             echo '</div>';
+        ?>
+    <div class="vio">
+        <div class="text-content-wrapper">
+            <p class="text-content" id="text"><?php echo htmlspecialchars($user['syoukai'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+            <button id="read-more" style="display:none;"></button>
+        </div>
+    </div>
+    <hr>
 
-            // ここに「続きを読む」機能を追加
-            echo '<div class="vio">';
-            echo '<div class="text-content-wrapper">';
-            echo '<p class="text-content" id="text">', htmlspecialchars($user['syoukai'] ?? ''), '</p>';
-            echo '<button id="read-more">続きを読む</button>';
-            echo '</div>';
-            echo '</div>';
-            echo '<hr>';
-
+        <?php
             $post_sql = 'SELECT * FROM Post WHERE user_id = :user_id';
             $post_stmt = $pdo->prepare($post_sql);
             $post_stmt->execute([':user_id' => $my_id]);
@@ -102,70 +101,3 @@
 </body>
 </html>
 
-<!--<!DOCTYPE html>
-<link rel="stylesheet" href="css/myprofile.css">
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>myprofile</title>
-    </head>
-    <body>
-        <div class="profile_name">
-            miyamiya0316
-        </div>
-        <div class="profile_head">
-            <div class="profile_head_icon">
-                <img src="img/my.jpg">
-            </div>
-            <div class="profile_head_text">
-                <div class="profile_head_count">-->
-                    <!----データベースつなげる----->
-                    <!--3
-                    <span>投稿</span>
-                </div>
-                <div class="profile_head_count">
-                    <a href="follow.php">-->
-                    <!--〃-->
-                    <!--700,000
-                    <span>フォロワー</span>
-                </a>
-                </div>
-                <div class="profile_head_count">
-                    <a href="follow.php">-->
-                    <!--〃-->
-                    <!--600
-                    <span>フォロー中</span>
-                </a>
-                </div>
-            </div>
-        </div>
-        <div class="profile_body">
-            <div class="profile_body_text">-->
-                    <!--〃-->
-                    <!--<p class="name">宮本 悠（20歳）</p>
-            <p class="introduction">
-                インスタグラムはじめました 麻生情報ビジネス専門学校
-                情報システム専攻科 出会いを求めています jiijijjijijjiji
-            </p>
-            </div>
-            <div class="profile_body_edit">
-                <a href="edit.html">プロフィールを編集</a>
-            </div>
-        </div>
-            <hr>
-        <div class="post">
-            <article>
-                <a href="toukou.html"><img src="img/toukou.jpg"></a>
-            </article>
-            <article>
-                <a href="toukou.html"><img src="img/toukou.jpg"></a>
-            </article>
-            <article>
-                <a href="toukou.html"><img src="img/toukou.jpg"></a>
-            </article>
-            <article>
-                <a href="toukou.html"><img src="img/toukou.jpg"></a>
-            </article>
-        </div>
-    </body>
-</html>-->

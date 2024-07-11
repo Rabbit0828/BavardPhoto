@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <style>
   /* Header style */
   
@@ -134,7 +136,7 @@
   </div>
 
   <div class="user-container">
-    <p>my_page</p>
+    <p><?php echo $_SESSION['UserTable']['name']; ?></p>
   </div>
 
   <!-- アイコンに枠線を追加 -->

@@ -127,7 +127,9 @@ try {
                                     <span class="count"><?php echo $like_count; ?></span>
                                 </a>
                             </div>
-                            <button class="comment-button" onclick="submitWithImageId(<?php echo $image_id; ?>)"></button>
+                            <button class="comment-button" onclick="submitWithImageId(<?php echo $image_id; ?>)">
+                            <img src="../images/comment.png" alt="Comment">
+                            </button>
                             <span class="count"><?php echo $comment_count; ?></span>
                         </div>
                     </div>

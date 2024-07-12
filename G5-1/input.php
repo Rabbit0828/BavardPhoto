@@ -96,6 +96,7 @@
         .submit-button:hover {
             background-color: pink;
         }
+
         .login-button {
             position: absolute;
             top: 40px;
@@ -112,6 +113,11 @@
         .login-button:hover {
             background-color: #f4f4f4;
         }
+
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -120,7 +126,7 @@
         <img src="../images/deru.png" style="width:90px" alt="Comment"></button>
     </form>
     <div class="upload-container">
-        <form action="upload.php" method="post" enctype="multipart/form-data">
+        <form id="upload-form" action="upload.php" method="post" enctype="multipart/form-data">
             <div class="upload-area">
                 <label for="file" class="upload-label"></label>
                 <div class="upload-instructions">
@@ -132,6 +138,7 @@
             <div class="preview-container" id="preview-container"></div>
             
             <input type="text" name="comment" class="comment-box" placeholder="コメントを入力してください">
+            <div class="error-message" id="error-message"></div>
             <button type="submit" class="submit-button">
                 アップロード<br />
                 <img src="../images/upload.png" alt="Upload" style="width:40px;">
@@ -156,6 +163,18 @@
                 reader.readAsDataURL(file);
             });
         }
+
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            const files = document.getElementById('file').files;
+            const errorMessage = document.getElementById('error-message');
+
+            if (files.length === 0) {
+                event.preventDefault(); // フォームの送信をキャンセル
+                errorMessage.textContent = '画像を最低1枚は選択してください。';
+            } else {
+                errorMessage.textContent = ''; // エラーメッセージをクリア
+            }
+        });
     </script>
 </body>
 </html>

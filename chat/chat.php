@@ -45,12 +45,11 @@
                     success: function(response) {
                         console.log(response);
                         $('#message').val(''); // 送信後、入力フィールドをクリア
-                        alert('メッセージが送信されました');
+                        
                     },
                     error: function(xhr, status, error) {
                         // リクエストが失敗したときの処理
                         console.log('Error:', error);
-                        alert('メッセージの送信に失敗しました');
                     }
                 });
             });

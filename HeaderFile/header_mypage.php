@@ -133,9 +133,16 @@
     </a>
   </div>
 
-  <div class="user-container">
-    <p><?php echo $_SESSION['UserTable']['name']; ?></p>
-  </div>
+  <?php 
+    if (isset($_SESSION['UserTable']['name'])){
+      echo '<div class="user-container">';
+      echo '<p>',$_SESSION['UserTable']['name'],'</p>';
+      echo '</div>';
+    }else{
+    echo "存在しません。";
+  }
+  ?>
+  
 
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">

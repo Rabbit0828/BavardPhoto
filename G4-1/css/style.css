@@ -23,11 +23,7 @@
     font-weight: bold;
     text-align: center;
 }
-.profile_head_count span {
-    font-size: 22px;
-    font-weight: normal;
-    display: block;
-}
+
 p {
     font-size: 25px;
     margin-left: 3%;

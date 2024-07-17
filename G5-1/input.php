@@ -8,7 +8,7 @@
     <style>
     body {
         font-family: Arial, sans-serif;
-        margin-top: 60px; 
+        margin-top: 100px; 
     }
 
     .upload-container {

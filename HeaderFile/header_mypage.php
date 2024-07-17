@@ -133,13 +133,16 @@
     </a>
   </div>
 
-  <?php 
+ 
+  <?php require 'dbconnect.php'; ?>
+  <?php session_start();?>
+  <?php
     if (isset($_SESSION['UserTable']['name'])){
       echo '<div class="user-container">';
       echo '<p>',$_SESSION['UserTable']['name'],'</p>';
       echo '</div>';
     }else{
-    echo "存在しません。";
+    echo "<p>存在しません。</p>";
   }
   ?>
   

@@ -151,7 +151,9 @@ if (!isset($_SESSION['UserTable']['id'])) {
 
     if ($user){
       echo '<div class="user-container">';
+      echo '<p>';
       echo htmlspecialchars($user['user_name'] ?? '', ENT_QUOTES, 'UTF-8');
+      echo '</p>';
       echo '</div>';
     }else{
     echo "<p>存在しません。</p>";

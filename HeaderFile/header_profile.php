@@ -4,6 +4,8 @@ if (!isset($_SESSION['UserTable']['id'])) {
     header('Location: ../G1-1/G1-1-input.php');
     exit;
 }
+$user_id = $_SESSION['UserTable']['id'];
+$icon_path = '../images/' . $_SESSION['UserTable']['icon'];
 ?>
 <style>
   /* Header style */
@@ -165,7 +167,7 @@ if (!isset($_SESSION['UserTable']['id'])) {
   <div class="icon-container">
   <div class="icon icon1">
       <a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>" id="username" target="_self">
-        <img src="../images/normal_icon.png" alt="ログイン">
+        <img src="<?php echo $icon_path; ?>" alt="ログイン">
       </a>
     </div>
     <!-- アップロードを追加 -->

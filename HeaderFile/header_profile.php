@@ -149,7 +149,7 @@ if (!isset($_SESSION['UserTable']['id'])) {
     $user_stmt->execute([':user_id' => $user_id]);
     $user = $user_stmt->fetch();
 
-    if ($user)){
+    if ($user){
       echo '<div class="user-container">';
       echo htmlspecialchars($user['user_name'] ?? '', ENT_QUOTES, 'UTF-8');
       echo '</div>';

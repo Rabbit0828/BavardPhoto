@@ -1,6 +1,5 @@
 <?php 
 session_start(); 
-require '../HeaderFile/header_profile.php';
 
 $my_id = isset($_SESSION['UserTable']['id']) ? $_SESSION['UserTable']['id'] : 0;
 $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
@@ -14,6 +13,8 @@ if ($my_id == $user_id) {
     header('Location: ../G4-2/myprofile.php');
     exit;
 }
+
+require '../HeaderFile/header_profile.php';
 
 try {
     $user_sql = 'SELECT * FROM UserTable WHERE user_id = :user_id';

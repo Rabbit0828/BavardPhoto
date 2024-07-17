@@ -193,7 +193,7 @@ $user_id = $_SESSION['UserTable']['id'];
 <script src="background/script.js"></script>
 <div class="Header">
   <div class="logo">
-    <a href="G2-1.php" target="_self">
+    <a href="../G2-1/G2-1.php" target="_self">
       <img src="../images/logo.png" alt="ホーム">
     </a>
   </div>

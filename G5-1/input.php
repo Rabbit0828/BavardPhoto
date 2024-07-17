@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>BavardPhotos</title>
+    <?php require '../HeaderFile/header.php'; ?>
     <style>
         body {
             font-family: Arial, sans-serif;

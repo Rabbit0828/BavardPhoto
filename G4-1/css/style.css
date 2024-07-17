@@ -126,7 +126,9 @@ p {
 }
 
 .ff-switch {
+    margin-top: 120px;
     text-align: center;
+    font-size: 20px;
     margin-bottom: 20px;
 }
 

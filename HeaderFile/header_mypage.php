@@ -133,9 +133,7 @@
     </a>
   </div>
 
- 
-  <?php require 'dbconnect.php'; ?>
-  <?php session_start();?>
+
   <?php
     if (isset($_SESSION['UserTable']['name'])){
       echo '<div class="user-container">';

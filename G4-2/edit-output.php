@@ -50,23 +50,19 @@ try {
     $update_sql->execute([$name, $syoukai, $newFileName, $user_id]);
 
     // ユーザー情報を更新してセッションに再設定
-    $select_sql = $pdo->prepare("SELECT * FROM UserTable WHERE user_id = ?");
-    $select_sql->execute([$user_id]);
-    $row = $select_sql->fetch(PDO::FETCH_ASSOC);
+    //$select_sql = $pdo->prepare("SELECT * FROM UserTable WHERE user_id = ?");
+    //$select_sql->execute([$user_id]);
+    //$row = $select_sql->fetch(PDO::FETCH_ASSOC);
 
-    if ($row) {
-        $_SESSION['UserTable'] = [
-            'private_name' => $row['private_name'],
-            'syoukai' => $row['syoukai'],
-            'icon' => $row['icon']
-        ];
-        header('Location: myprofile.php');
-        exit();
-    } else {
-        error_log("変更後のデータが見つかりませんでした");
-    }
-} catch (PDOException $e) {
-    error_log("データベースエラー: " . $e->getMessage());
-}
+    //if ($row) {
+
+    //    header('Location: myprofile.php');
+    //    exit();
+    //} else {
+    //    error_log("変更後のデータが見つかりませんでした");
+    //}
+//} catch (PDOException $e) {
+//    error_log("データベースエラー: " . $e->getMessage());
+//}
 ?>
 

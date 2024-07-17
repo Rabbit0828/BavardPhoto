@@ -38,7 +38,8 @@
         }
 
         button {
-            display: block;
+            display:flex;
+            justify-content:space-between;
             width: 100%;
             padding: 10px;
             font-size: 16px;
@@ -47,7 +48,8 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            text-align: center;
+            margin:10px auto;
+
         }
 
         button:hover {
@@ -97,6 +99,7 @@
             <span>自己紹介</span>
             <input type="text" name="syoukai" placeholder="自由に変更">
         </div>
+        <button type="button" onclick="history.back()">戻る</button>
         <button type="submit">変更</button>
     </form>
 </body>

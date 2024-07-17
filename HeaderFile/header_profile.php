@@ -141,7 +141,7 @@ if (!isset($_SESSION['UserTable']['id'])) {
   </div>
 
  
-  <?php require '../G5-1/dbconnect.php'; ?>
+  <?php require '../G5-1/db-connect.php'; ?>
   <?php
     $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
     $user_sql = 'SELECT * FROM UserTable WHERE user_id = :user_id';

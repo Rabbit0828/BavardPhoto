@@ -126,7 +126,6 @@
 </head>
 <body>
 <form action="../G2-1/G2-1.php">
-        <button type="submit" class="login-button">＜　ホーム画面<br>
         <img src="../images/deru.png" style="width:90px" alt="Comment"></button>
     </form>
     <div class="upload-container">

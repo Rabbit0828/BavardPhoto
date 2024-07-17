@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>BavardPhoto</title>
-    <?php require '../HeaderFile/header-2.php'?>
+    <?php require '../HeaderFile/header.php'?>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -30,8 +30,8 @@
 
             // フォローとフォロワーの切り替えリンク
             echo '<div class="ff-switch">';
-            echo '<a href="ff.php?user_id=', $user_id, '&type=followers">フォロワー</a> | ';
-            echo '<a href="ff.php?user_id=', $user_id, '&type=following">フォロー</a>';
+            echo '<a href="ff.php?user_id=', $user_id, '&type=following">フォロワー</a> | ';
+            echo '<a href="ff.php?user_id=', $user_id, '&type=followers">フォロー</a>';
             echo '</div>';
 
             // フォローとフォロワーのリストを表示

@@ -1,13 +1,16 @@
+body{
+    max-width:1100px;
+    margin:10px auto;
+}
 .content{
-    margin-top: 60px;
-    padding: 10px;
+    margin-top: 10%;
 }
 .profile_head_icon img {
     display: block;
-    width: 200px;
-    height: 200px;
-    border-radius: 70%;
-    margin-left: 10%;
+    width: 150px;
+    height: 150px;
+    border-radius: 60%;
+    margin:auto;
     border:1px solid #c0c0c0;
 }
 .profile_head_text {
@@ -83,8 +86,9 @@ p {
 }
 
 .private-name{
+    display:block;
     font-size: 30px;
-    margin-left: 70px;
+    margin:15px auto 0px;
 }
 
 .vio{
@@ -114,6 +118,7 @@ p {
     text-overflow: ellipsis;
     white-space: normal;
     position: relative;
+    max-width: 87%;
 }
 
 #read-more {

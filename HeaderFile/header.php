@@ -52,6 +52,8 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
   .icon img {
     height: 70px;
     width: 75px;
+    border-radius: 50%; /* This line makes the image circular */
+    object-fit: cover; /* This ensures the image covers the entire circle */
   }
 
   .user-name-container {

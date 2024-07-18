@@ -1,5 +1,12 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['UserTable']['id'])) {
+    echo 'エラー: セッションが有効ではありません。ログインしてください。';
+    exit;
+}
 
 const SERVER = 'mysql304.phy.lolipop.lan';
 const DBNAME = 'LAA1517469-photos';

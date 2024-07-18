@@ -5,6 +5,7 @@ if (!isset($_SESSION['UserTable']['id'])) {
     exit;
 }
 $user_id = $_SESSION['UserTable']['id'];
+$icon_path = '../images/' . $_SESSION['UserTable']['icon'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -193,7 +194,7 @@ $user_id = $_SESSION['UserTable']['id'];
 <script src="background/script.js"></script>
 <div class="Header">
   <div class="logo">
-    <a href="G2-1.php" target="_self">
+    <a href="../G2-1/G2-1.php" target="_self">
       <img src="../images/logo.png" alt="ホーム">
     </a>
   </div>
@@ -205,7 +206,7 @@ $user_id = $_SESSION['UserTable']['id'];
   <div class="icon-container">
     <div class="icon icon1">
       <a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>" id="username" target="_self">
-        <img src="../images/normal_icon.png" alt="ログイン">
+        <img src="<?php echo $icon_path; ?>" alt="ログイン">
       </a>
     </div>
     <div class="icon icon3">
@@ -223,10 +224,11 @@ $user_id = $_SESSION['UserTable']['id'];
       <span></span>
     </label>
     <ul class="menu">
-      <li><a href="G2-1.php">Home</a></li>
+      <li><a href="../G2-1/G2-1.php">Home</a></li>
       <li><a href="../G5-1/input.php">Post</a></li>
       <li><a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>">My Page</a></li>
       <li><a href="../G1-4-1/G1-4-1-input.php">Logout</a></li>
+      <li><a href="../G6-2/input.php">利用規約</a></li>
     </ul>
   </div>
 </div>

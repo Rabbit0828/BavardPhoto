@@ -1,3 +1,12 @@
+<?php
+if (!isset($_SESSION['UserTable']['id'])) {
+    // Handle the case where the user is not logged in
+    header('Location: ../G1-1/G1-1-input.php');
+    exit;
+}
+$user_id = $_SESSION['UserTable']['id'];
+$icon_path = '../images/' . $_SESSION['UserTable']['icon'];
+?>
 <style>
   /* Header style */
   
@@ -133,11 +142,20 @@
     </a>
   </div>
 
-
+ 
+  <?php require '../G5-1/db-connect.php'; ?>
   <?php
-    if (isset($_SESSION['UserTable']['name'])){
+    $user_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+    $user_sql = 'SELECT * FROM UserTable WHERE user_id = :user_id';
+    $user_stmt = $pdo->prepare($user_sql);
+    $user_stmt->execute([':user_id' => $user_id]);
+    $user = $user_stmt->fetch();
+
+    if ($user){
       echo '<div class="user-container">';
-      echo '<p>',$_SESSION['UserTable']['name'],'</p>';
+      echo '<p>';
+      echo htmlspecialchars($user['user_name'] ?? '', ENT_QUOTES, 'UTF-8');
+      echo '</p>';
       echo '</div>';
     }else{
     echo "<p>存在しません。</p>";
@@ -147,14 +165,21 @@
 
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">
-
-    <!-- 位置情報に枠線を追加 -->
-    
-
+  <div class="icon icon1">
+      <a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>" id="username" target="_self">
+        <img src="<?php echo $icon_path; ?>" alt="ログイン">
+      </a>
+    </div>
     <!-- アップロードを追加 -->
     <div class="icon icon2">
       <a href="../G5-1/input.php" target="_self">
-        <img src="../images/photo_upp_button.png" alt="カート" style="height: 70px;width:75px;" border="0">
+        <img src="../images/photo_upp_button.png" alt="アップ" style="height: 70px;width:75px;" border="0">
+      </a>
+    </div>
+
+    <div class="icon icon3">            <!--修正作業よろしく-->
+      <a href="../chat/chat.php?user_id=<?php echo $user_id;?>" target="_self">
+        <img src="../images/chat.png" alt="チャット" style="height: 70px;width:75px;" border="0">
       </a>
     </div>
   </div>

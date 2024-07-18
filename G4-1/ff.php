@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>BavardPhoto</title>
+    <?php require '../HeaderFile/header.php'?>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>

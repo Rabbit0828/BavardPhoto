@@ -1,4 +1,4 @@
-<?php session_start();?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,7 +17,7 @@
         
         <form id="message-form">
             <input type="text" id="message" name="message" placeholder="メッセージを入力してください">
-            <input type="hidden" name="recipient_id" value="送信先のユーザーID">
+            <input type="hidden" name="recipient_id" value="<?php echo htmlspecialchars($_GET['user_id']); ?>">
             <button type="button" id="sendButton">送信</button>
         </form>
     </div>
@@ -27,28 +27,22 @@
             $('#sendButton').click(function() {
                 const url = new URL(window.location.href);
                 const params = url.searchParams;
-                // 個別のパラメータを取得
-                const recipient_id = params.get('user_id'); // "John"
+                const recipient_id = params.get('user_id'); 
 
-                // クエリパラメータを取得
-                var message = $('#message').val(); // 入力されたメッセージを取得
+                var message = $('#message').val();
                 
-                // Ajaxリクエストを送信
                 $.ajax({
                     url: 'send_message.php',
                     method: 'POST',
                     data: { 
-                        message: message ,
-                        recipient_id:recipient_id
-
-                    }, // メッセージを送信
+                        message: message,
+                        recipient_id: recipient_id
+                    },
                     success: function(response) {
                         console.log(response);
-                        $('#message').val(''); // 送信後、入力フィールドをクリア
-                        
+                        $('#message').val('');
                     },
                     error: function(xhr, status, error) {
-                        // リクエストが失敗したときの処理
                         console.log('Error:', error);
                     }
                 });
@@ -56,7 +50,4 @@
         });
     </script>
 </body>
-
 </html>
-
-

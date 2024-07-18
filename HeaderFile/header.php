@@ -32,10 +32,10 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
   }
 
   .logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px 20px; /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 300px; /* 左に余白を追加 */
   }
 
   .logo img {
@@ -43,10 +43,10 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
     width: 200px;
   }
 
-  .icon-container, .menu-toggle {
+  .icon-container{
     display: flex;
     gap: 10px;
-    margin-right: 40px;
+    margin-right:10px;
   }
 
   .icon img {
@@ -71,7 +71,7 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
   .menu-toggle {
     display: flex;
     align-items: center;
-    margin-left: -20px;
+    margin-right:380px;
   }
 
   .menu-toggle-button {
@@ -165,9 +165,9 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
     .logo {
       order: 1;
       width: 100%;
-      text-align: center;
       margin-bottom: 10px;
       position: static;
+      margin: 0 auto;
     }
 
     .search-container {
@@ -186,7 +186,8 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
     .menu-toggle {
       order: 4;
       width: 100%;
-      text-align: center;
+      margin-left: 900px;
+      display: block;
     }
   }
 </style>

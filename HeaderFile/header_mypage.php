@@ -15,10 +15,16 @@
     align-items: center;
     padding: 0 20px;
   }
-  .icon-container, .menu-toggle {
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 200px; /* 左に余白を追加 */
+  }
+  .icon-container {
     display: flex;
     gap: 10px;
-    margin-right: 40px; /* 左に20px移動 */
+    margin-right: 10px; /* 左に20px移動 */
   }
   .icon img {
     height: 70px;
@@ -29,7 +35,7 @@
   .menu-toggle {
     display: flex;
     align-items: center;
-    margin-left: -20px; /* 左に20px移動 */
+    margin-right: 280px; /* 左に20px移動 */
   }
   .menu-toggle-button {
     display: flex;
@@ -173,6 +179,7 @@
       <li><a href="../G5-1/input.php">Post</a></li>
       <li><a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>">My Page</a></li>
       <li><a href="../G1-4-1/G1-4-1-input.php">Logout</a></li>
+      <li><a href="../G6-2/input.php">利用規約</a></li>
     </ul>
   </div>
 </div>

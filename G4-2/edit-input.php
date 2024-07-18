@@ -38,8 +38,7 @@
         }
 
         button {
-            display:flex;
-            justify-content:space-between;
+            display:block;
             width: 100%;
             padding: 10px;
             font-size: 16px;
@@ -89,18 +88,18 @@
         </div>
         <div>
             <span>画像</span>
-            <input type="file" name="profile_image" accept="image/*" onchange="previewImage(event)">
+            <input type="file" name="profile_image" accept="image/*" onchange="previewImage(event)" required>
         </div>
         <div>
             <span>名前</span>
-            <input type="text" name="name" placeholder="名前を変更">
+            <input type="text" name="name" placeholder="名前を変更" required>
         </div>
         <div>
             <span>自己紹介</span>
-            <input type="text" name="syoukai" placeholder="自由に変更">
+            <input type="text" name="syoukai" placeholder="自由に変更" required>
         </div>
-        <button type="button" onclick="history.back()">戻る</button>
         <button type="submit">変更</button>
+        <button type="button" onclick="history.back()">戻る</button>
     </form>
 </body>
 </html>

@@ -9,7 +9,7 @@ const PASS = 'Pass1234';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $message = $_POST['message'];
     $sender_id = $_SESSION['UserTable']['id'];
-    $recipient_id = $_POST['recipient_id']; // 修正ポイント
+    $recipient_id = $_POST['recipient_id']; 
 
     try {
         $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
@@ -25,4 +25,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-

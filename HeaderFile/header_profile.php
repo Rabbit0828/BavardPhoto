@@ -180,7 +180,7 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
     </div>
 
     <div class="icon icon3">            <!--修正作業よろしく-->
-      <a href="../chat/chat.php?user_id=<?php echo $user_id;?>" target="_self">
+      <a href="../chat/chat_list.php?user_id=<?php echo $user_id;?>" target="_self">
         <img src="../images/chat.png" alt="チャット" style="height: 70px;width:75px;" border="0">
       </a>
     </div>

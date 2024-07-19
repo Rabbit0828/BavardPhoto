@@ -212,6 +212,11 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
         <img src="<?php echo $icon_path; ?>" alt="ログイン">
       </a>
     </div>
+    <div class="icon icon1">
+      <a href="../G2-1/G2-1-Nice.php?id=<?php echo $user_id; ?>" id="username" target="_self">
+        <img src="../images/love.png" alt="love">
+      </a>
+    </div>
     <div class="icon icon3">
       <a href="../G5-1/input.php" target="_self">
         <img src="../images/photo_upp_button.png" alt="カート">

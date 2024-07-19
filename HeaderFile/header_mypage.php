@@ -1,3 +1,12 @@
+<?php
+if (!isset($_SESSION['UserTable']['id'])) {
+    // Handle the case where the user is not logged in
+    header('Location: ../G1-1/G1-1-input.php');
+    exit;
+}
+$user_id = $_SESSION['UserTable']['id'];
+$icon_path = '../images/' . $_SESSION['UserTable']['icon'];
+?>
 <style>
   /* Header style */
   
@@ -155,9 +164,18 @@
 
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">
+  <div class="icon icon1">
+      <a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>" id="username" target="_self">
+        <img src="<?php echo $icon_path; ?>" alt="ログイン">
+      </a>
+    </div>
 
     <!-- 位置情報に枠線を追加 -->
-    
+    <div class="icon icon1">
+      <a href="../G2-1/G2-1-Nice.php?id=<?php echo $user_id; ?>" id="username" target="_self">
+        <img src="../images/love.png" alt="love">
+      </a>
+    </div>
 
     <!-- アップロードを追加 -->
     <div class="icon icon2">
@@ -165,6 +183,8 @@
         <img src="../images/photo_upp_button.png" alt="カート" style="height: 70px;width:75px;" border="0">
       </a>
     </div>
+
+    
   </div>
 
   <div class="menu-toggle">

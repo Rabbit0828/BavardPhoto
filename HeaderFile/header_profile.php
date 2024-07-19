@@ -172,6 +172,13 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
         <img src="<?php echo $icon_path; ?>" alt="ログイン">
       </a>
     </div>
+
+    <div class="icon icon1">
+      <a href="../G2-1/G2-1-Nice.php?id=<?php echo $user_id; ?>" id="username" target="_self">
+        <img src="../images/love.png" alt="love">
+      </a>
+    </div>
+
     <!-- アップロードを追加 -->
     <div class="icon icon2">
       <a href="../G5-1/input.php" target="_self">
@@ -179,11 +186,7 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
       </a>
     </div>
 
-    <div class="icon icon3">            <!--修正作業よろしく-->
-      <a href="../chat/chat_list.php?user_id=<?php echo $user_id;?>" target="_self">
-        <img src="../images/chat.png" alt="チャット" style="height: 70px;width:75px;" border="0">
-      </a>
-    </div>
+    
   </div>
 
   <div class="menu-toggle">

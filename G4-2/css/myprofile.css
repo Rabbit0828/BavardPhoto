@@ -57,33 +57,6 @@ p {
     margin:5px auto;
 }
 
-.profile_actions .not_follow a,
-.profile_actions .message a,
-.profile_actions .follow a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px; 
-    padding: 0 20px; 
-    color: #333;
-    font-size: 20px; 
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 10px;
-    white-space: nowrap;
-}
-.profile_actions .not_follow a {
-    background-color: #91a3ef;
-}
-
-.profile_actions .follow a {
-    background-color: #c5c5c5;
-}
-
-.profile_actions .message a {
-    margin-left: 40px;
-    background-color: #91a3ef;
-}
 
 .private-name{
     display:block;
@@ -130,88 +103,11 @@ p {
     display: inline;
 }
 
-.ff-switch {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.ff-switch a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
-}
-
-.ff-switch a:hover {
-    text-decoration: underline;
-}
-
-ul.user-list {
-    list-style: none;
-    padding: 0;
-}
-
-ul.user-list li {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-ul.user-list li img {
-    width: 40px; /* アイコンの幅を設定 */
-    height: 40px; /* アイコンの高さを設定 */
-    border-radius: 50%; /* 丸くする */
-    margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
-}
-
-ul.user-list li a {
-    color: black; /* リンクの文字色を黒に設定 */
-    text-decoration: none; /* アンダーラインを消す */
-}
-
 a {
     color: black; /* リンクの文字色を黒に設定 */
     text-decoration: none; /* アンダーラインを消す */
 }
 
-/* モーダルウィンドウのスタイル */
-.modal {
-    display: none; /* 初期状態では非表示 */
-    position: fixed; /* スクロールしても常に表示 */
-    z-index: 1; /* 他のコンテンツの上に表示 */
-    padding-top: 60px; /* モーダルコンテンツの位置を調整 */
-    left: 0;
-    top: 0;
-    width: 100%; /* 横幅を100%に設定 */
-    height: 100%; /* 高さを100%に設定 */
-    overflow: auto; /* 必要に応じてスクロール */
-    background-color: rgb(0,0,0); /* 背景色 */
-    background-color: rgba(0,0,0,0.9); /* 背景色に透明度を追加 */
-}
-
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 .profile_body_edit {
     margin: 10px s0;
@@ -232,4 +128,9 @@ a {
     background-color: #ee19f2; /* ホバー時の背景色 */
     border-color:#fd80ff; /* ホバー時の枠線色 */
     color:white;
+}
+
+.center-image img {
+display:block;
+margin:auto;
 }

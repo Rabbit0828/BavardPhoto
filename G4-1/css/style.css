@@ -53,7 +53,7 @@ p {
 }
 .profile_actions {
     display: block;
-    margin:15px auto 0 105%;
+    margin:15px auto 0 100%;
 }
 
 .profile_actions .not_follow a,
@@ -72,11 +72,15 @@ p {
     white-space: nowrap;
 }
 .profile_actions .not_follow a {
-    background-color: #91a3ef;
+    border: 2px solid #DC34E0; /* 枠線を追加 */
+    color: #000; /* テキストカラーを黒に */
+    background-color: white; 
 }
 
 .profile_actions .follow a {
-    background-color: #c5c5c5;
+    background-color: #ee19f2; 
+    border-color:#fd80ff; 
+    color:white;
 }
 
 .profile_actions .message a {

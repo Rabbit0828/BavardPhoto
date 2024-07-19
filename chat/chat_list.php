@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>BavardPhoto</title>
     <?php require '../HeaderFile/header.php'?>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat_list.css">
 </head>
 <body>
     <?php require './G4-2/dbconnect.php'; ?>

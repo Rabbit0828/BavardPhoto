@@ -60,13 +60,10 @@
             foreach ($users as $user) {
                 echo '<li>';
                 echo '<a href="../G4-1/profile.php?id=',$user['user_id'],'"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a>';
-
-                if ($type == 'following') {
                     // チャットリンクを追加 (フォロー中のみ)
                     echo '<div class="chat-button">';
                     echo '<a href="../chat/chat.php?user_id=', $user['user_id'], '">チャット</a>';
                     echo '</div>';
-                }
 
                 echo '</li>';
             }

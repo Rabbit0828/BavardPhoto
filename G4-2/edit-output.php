@@ -35,12 +35,10 @@ try {
                 } while (file_exists($dest_path));
 
                 if (!move_uploaded_file($fileTmpPath, $dest_path)) {
-                    error_log("ファイルのアップロードに失敗しました。");
-                    exit();
+                    showErrorAndRedirect("ファイルのアップロードに失敗しました。");
                 }
             } else {
-                error_log("アップロードできるファイル形式は: " . implode(',', $allowedfileExtensions) . "です。");
-                exit();
+                showErrorAndRedirect("アップロードできるファイル形式は: " . implode(',', $allowedfileExtensions) . "です。");
             }
         }
     }
@@ -50,19 +48,31 @@ try {
     $update_sql->execute([$name, $syoukai, $newFileName, $user_id]);
 
     // ユーザー情報を更新してセッションに再設定
-    //$select_sql = $pdo->prepare("SELECT * FROM UserTable WHERE user_id = ?");
-    //$select_sql->execute([$user_id]);
-    //$row = $select_sql->fetch(PDO::FETCH_ASSOC);
+    // $select_sql = $pdo->prepare("SELECT * FROM UserTable WHERE user_id = ?");
+    // $select_sql->execute([$user_id]);
+    // $row = $select_sql->fetch(PDO::FETCH_ASSOC);
 
-    //if ($row) {
-
+    // if ($row) {
     //    header('Location: myprofile.php');
     //    exit();
-    //} else {
-    //    error_log("変更後のデータが見つかりませんでした");
-    //}
-//} catch (PDOException $e) {
-//    error_log("データベースエラー: " . $e->getMessage());
-//}
-?>
+    // } else {
+    //    showErrorAndRedirect("変更後のデータが見つかりませんでした");
+    // }
 
+} catch (PDOException $e) {
+    showErrorAndRedirect("データベースエラー: " . $e->getMessage());
+}
+
+function showErrorAndRedirect($message) {
+    echo '<div style="text-align:center;margin-top:20px;">';
+    echo '<p>' . htmlspecialchars($message) . '</p>';
+    echo '<p>数秒後に前の画面に戻ります...</p>';
+    echo '</div>';
+    echo '<script>
+            setTimeout(function() {
+                window.history.back();
+            }, 3000);
+          </script>';
+    exit();
+}
+?>

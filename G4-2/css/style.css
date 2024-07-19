@@ -112,7 +112,7 @@ p {
 
 .text-content {
     display: -webkit-box;
-    /*-webkit-line-clamp: 3;  表示する行数 */
+    /* -webkit-line-clamp: 3;  表示する行数 */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -149,6 +149,8 @@ p {
 ul.user-list {
     list-style: none;
     padding: 0;
+    padding-left: 400px; /* 左側に余白を追加 */
+    padding-right: 400px; /* 右側に余白を追加 */
 }
 
 ul.user-list li {
@@ -169,7 +171,9 @@ ul.user-list li a {
     color: black; /* リンクの文字色を黒に設定 */
     text-decoration: none; /* アンダーラインを消す */
 }
-
+h2{
+    text-align: center;
+}
 a {
     color: black; /* リンクの文字色を黒に設定 */
     text-decoration: none; /* アンダーラインを消す */
@@ -248,34 +252,39 @@ a {
     text-decoration: none;
     cursor: pointer;
 }
-ul.user-list li {
+/* .chat-button のスタイルを追加 */
+.chat-button {
+    margin-left: auto; /* ボタンを右端に移動 */
+}
+
+.user-list li {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* 要素間にスペースを追加 */
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    justify-content: space-between; /* ボタンを右端に配置 */
 }
 
-ul.user-list li img {
-    width: 40px; /* アイコンの幅を設定 */
-    height: 40px; /* アイコンの高さを設定 */
-    border-radius: 50%; /* 丸くする */
-    margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
-}
-
-ul.user-list li a {
-    color: black; /* リンクの文字色を黒に設定 */
-    text-decoration: none; /* アンダーラインを消す */
-}
-
-.message-button {
-    background-color: #91a3ef;
+.chat-button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px; 
+    padding: 0 20px; 
     color: #333;
-    font-size: 20px;
+    font-size: 20px; 
     font-weight: 700;
     text-decoration: none;
+    background-color: #91a3ef;
     border-radius: 10px;
-    padding: 10px 20px; /* 必要に応じてパディングを調整 */
-    white-space: nowrap;
-    margin-left: auto; /* ボタンを右に押し出す */
+}
+
+.center-text {
+    text-align: center;
+}
+
+ul.user-list li:nth-child(odd) {
+    background-color: #ffffff; /* 白色 */
+}
+
+ul.user-list li:nth-child(even) {
+    background-color: #b3e5fc; /* 水色 */
 }

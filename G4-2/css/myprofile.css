@@ -123,14 +123,10 @@ p {
 
 #read-more {
     background: none;
-    color: blue;
+    color: black; /* 黒字で表示 */
     border: none;
     cursor: pointer;
-    position: absolute;
-    bottom: 0;
-    right: 0;
     padding: 0 5px;
-    background-color: white;
     display: inline;
 }
 

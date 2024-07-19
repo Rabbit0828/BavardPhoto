@@ -53,8 +53,7 @@ p {
 }
 .profile_actions {
     display: block;
-    margin:15px auto 0;
-    transform: translateX(150%); /* 要素を右に移動 */
+    margin:15px auto 0 105%;
 }
 
 .profile_actions .not_follow a,

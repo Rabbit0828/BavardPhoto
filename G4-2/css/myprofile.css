@@ -233,3 +233,14 @@ a {
     border-color:#fd80ff; /* ホバー時の枠線色 */
     color:white;
 }
+
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 必要に応じて調整 */
+}
+.center-image img {
+    max-width: 100%;
+    height: auto;
+}

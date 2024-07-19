@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/chat_list.css">
 </head>
 <body>
-    <?php require './G4-2/dbconnect.php'; ?>
+    <?php require '../G4-2/dbconnect.php'; ?>
     <?php 
     try {
         // すべてのユーザーを取得
@@ -28,7 +28,7 @@
                 
                 // チャットリンクを追加
                 echo '<div class="chat-button">';
-                echo '<a href="../chat/chat.php?user_id=', $user['user_id'], '">チャット</a>';
+                echo '<a href="../chat/chat.php?user_id=', $user['user_id'], '" class="message-button">チャット</a>';
                 echo '</div>';
 
                 echo '</li>';
@@ -43,3 +43,4 @@
     ?>
 </body>
 </html>
+

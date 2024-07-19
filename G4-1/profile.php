@@ -43,13 +43,13 @@ try {
         <div class="profile_head_count">
             <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=followers">
                 <span>フォロワー</span>
-                <span><?php echo htmlspecialchars($follower_count ?? '', ENT_QUOTES, 'UTF-8'); ?></span> <!-- フォロワー数 -->
+                <?php echo htmlspecialchars($follower_count ?? '', ENT_QUOTES, 'UTF-8'); ?> <!-- フォロワー数 -->
             </a>
         </div>
         <div class="profile_head_count">
             <a href="ff.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>&type=following">
                 <span>フォロー中</span>
-                <span><?php echo htmlspecialchars($following_count ?? '', ENT_QUOTES, 'UTF-8'); ?></span> <!-- フォロー数 -->
+                <?php echo htmlspecialchars($following_count ?? '', ENT_QUOTES, 'UTF-8'); ?> <!-- フォロー数 -->
             </a>
         </div>
         <div class="private-name"><?php echo htmlspecialchars($user['private_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?></div>

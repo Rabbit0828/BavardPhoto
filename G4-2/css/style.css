@@ -1,3 +1,7 @@
+body{
+    max-width:1100px;
+    margin:8% auto 0;
+}
 .profile_name {
     text-align: center;
     font-size: 30px;

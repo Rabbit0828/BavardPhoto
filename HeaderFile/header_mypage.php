@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 200px; /* 左に余白を追加 */
+    margin-left: 0px; /* 左に余白を追加 */
   }
   .icon-container {
     display: flex;
@@ -35,7 +35,7 @@
   .menu-toggle {
     display: flex;
     align-items: center;
-    margin-right: 280px; /* 左に20px移動 */
+    margin-right: 50px; /* 左に20px移動 */
   }
   .menu-toggle-button {
     display: flex;

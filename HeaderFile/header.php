@@ -35,7 +35,7 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 300px; /* 左に余白を追加 */
+    margin-left: 0px; /* 左に余白を追加 */
   }
 
   .logo img {
@@ -71,7 +71,7 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
   .menu-toggle {
     display: flex;
     align-items: center;
-    margin-right:380px;
+    margin-right:50px;
   }
 
   .menu-toggle-button {

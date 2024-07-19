@@ -1,3 +1,12 @@
+<?php
+if (!isset($_SESSION['UserTable']['id'])) {
+    // Handle the case where the user is not logged in
+    header('Location: ../G1-1/G1-1-input.php');
+    exit;
+}
+$user_id = $_SESSION['UserTable']['id'];
+$icon_path = '../images/' . $_SESSION['UserTable']['icon'];
+?>
 <style>
   /* Header style */
   
@@ -15,10 +24,16 @@
     align-items: center;
     padding: 0 20px;
   }
-  .icon-container, .menu-toggle {
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0px; /* 左に余白を追加 */
+  }
+  .icon-container {
     display: flex;
     gap: 10px;
-    margin-right: 40px; /* 左に20px移動 */
+    margin-right: 10px; /* 左に20px移動 */
   }
   .icon img {
     height: 70px;
@@ -29,7 +44,7 @@
   .menu-toggle {
     display: flex;
     align-items: center;
-    margin-left: -20px; /* 左に20px移動 */
+    margin-right: 50px; /* 左に20px移動 */
   }
   .menu-toggle-button {
     display: flex;
@@ -149,9 +164,18 @@
 
   <!-- アイコンに枠線を追加 -->
   <div class="icon-container">
+  <div class="icon icon1">
+      <a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>" id="username" target="_self">
+        <img src="<?php echo $icon_path; ?>" alt="ログイン">
+      </a>
+    </div>
 
     <!-- 位置情報に枠線を追加 -->
-    
+    <div class="icon icon1">
+      <a href="../G2-1/G2-1-Nice.php?id=<?php echo $user_id; ?>" id="username" target="_self">
+        <img src="../images/love.png" alt="love">
+      </a>
+    </div>
 
     <!-- アップロードを追加 -->
     <div class="icon icon2">
@@ -159,6 +183,8 @@
         <img src="../images/photo_upp_button.png" alt="カート" style="height: 70px;width:75px;" border="0">
       </a>
     </div>
+
+    
   </div>
 
   <div class="menu-toggle">
@@ -173,6 +199,7 @@
       <li><a href="../G5-1/input.php">Post</a></li>
       <li><a href="../G4-2/myprofile.php?id=<?php echo $user_id; ?>">My Page</a></li>
       <li><a href="../G1-4-1/G1-4-1-input.php">Logout</a></li>
+      <li><a href="../G6-2/input.php">利用規約</a></li>
     </ul>
   </div>
 </div>

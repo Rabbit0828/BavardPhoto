@@ -222,6 +222,11 @@ $icon_path = '../images/' . $_SESSION['UserTable']['icon'];
         <img src="../images/photo_upp_button.png" alt="カート">
       </a>
     </div>
+    <div class="icon icon3">           
+      <a href="../chat/chat_list.php" target="_self">
+        <img src="../images/chat.png" alt="チャット" style="height: 70px;width:75px;" border="0">
+      </a>
+    </div>
   </div>
 
   <div class="menu-toggle">

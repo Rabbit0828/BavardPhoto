@@ -40,15 +40,15 @@
 
         // フォローとフォロワーのリストを表示
         if ($type == 'following') {
+            echo '<h2 class="center-text">フォロー中</h2>';
             $sql = 'SELECT UserTable.* FROM FollowRelationship 
                     JOIN UserTable ON FollowRelationship.user_id = UserTable.user_id 
                     WHERE FollowRelationship.follow_id = :user_id';
-            echo '<h2>フォロー中</h2>';
         } else {
+            echo '<h2 class="center-text">フォロワー</h2>';
             $sql = 'SELECT UserTable.* FROM FollowRelationship 
                     JOIN UserTable ON FollowRelationship.follow_id = UserTable.user_id 
                     WHERE FollowRelationship.user_id = :user_id';
-            echo '<h2>フォロワー</h2>';
         }
 
         $stmt = $pdo->prepare($sql);

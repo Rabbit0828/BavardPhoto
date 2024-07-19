@@ -6,6 +6,17 @@
     <title>BavardPhoto</title>
     <?php require '../HeaderFile/header.php'?>
     <link rel="stylesheet" href="css/chat_list.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#searchUser").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".user-list li").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <?php require '../G4-2/dbconnect.php'; ?>
@@ -19,6 +30,7 @@
 
         // ユーザー名の表示
         echo '<h2>ユーザー一覧</h2>';
+        echo '<input type="text" id="searchUser" placeholder="ユーザー検索">';
 
         if ($users) {
             echo '<ul class="user-list">';
@@ -43,4 +55,5 @@
     ?>
 </body>
 </html>
+
 

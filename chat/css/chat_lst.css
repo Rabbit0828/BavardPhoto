@@ -1,3 +1,6 @@
+body{
+    margin-top:5%;
+}
 ul.user-list {
     list-style: none;
     padding: 0;
@@ -33,4 +36,13 @@ ul.user-list li a {
     padding: 10px 20px; /* 必要に応じてパディングを調整 */
     white-space: nowrap;
     margin-left: auto; /* ボタンを右に押し出す */
+}
+
+#searchUser {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }

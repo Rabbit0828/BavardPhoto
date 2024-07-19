@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <?php require 'dbconnect.php'; ?>
+    <?php require './G4-2/dbconnect.php'; ?>
     <?php 
     try {
         // すべてのユーザーを取得

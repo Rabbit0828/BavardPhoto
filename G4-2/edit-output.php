@@ -48,16 +48,16 @@ try {
     $update_sql->execute([$name, $syoukai, $newFileName, $user_id]);
 
     // ユーザー情報を更新してセッションに再設定
-    // $select_sql = $pdo->prepare("SELECT * FROM UserTable WHERE user_id = ?");
-    // $select_sql->execute([$user_id]);
-    // $row = $select_sql->fetch(PDO::FETCH_ASSOC);
+     $select_sql = $pdo->prepare("SELECT * FROM UserTable WHERE user_id = ?");
+     $select_sql->execute([$user_id]);
+     $row = $select_sql->fetch(PDO::FETCH_ASSOC);
 
-    // if ($row) {
-    //    header('Location: myprofile.php');
-    //    exit();
-    // } else {
-    //    showErrorAndRedirect("変更後のデータが見つかりませんでした");
-    // }
+     if ($row) {
+        header('Location: myprofile.php');
+        exit();
+     } else {
+        showErrorAndRedirect("変更後のデータが見つかりませんでした");
+     }
 
 } catch (PDOException $e) {
     showErrorAndRedirect("データベースエラー: " . $e->getMessage());

@@ -23,8 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo = new PDO($connect, USER, PASS);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        // メッセージ送信処理
         $stmt = $pdo->prepare('INSERT INTO ChatMessage (sender_id, recipient_id, message, sent_at) VALUES (?, ?, ?, NOW())');
         $stmt->execute([$sender_id, $recipient_id, $message]);
+        // 通知登録処理
+        $stmt = $pdo->prepare('INSERT INTO Notifications (user_id, sender_id) VALUES (?, ?)');
+        $stmt->execute([$recipient_id, $sender_id]);
 
         echo 'メッセージを送信しました';
     } catch (PDOException $e) {
@@ -32,3 +36,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+

@@ -1,8 +1,11 @@
-body{
-    margin-top:5%;
-    max-width:1100px;
-    margin:8% auto 0;
+/* 既存のスタイル */
+
+body {
+    margin-top: 5%;
+    max-width: 1100px;
+    margin: 8% auto 0;
 }
+
 ul.user-list {
     list-style: none;
     padding: 0;
@@ -47,4 +50,44 @@ ul.user-list li a {
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 5px;
+}
+
+/* タブのスタイル */
+.tab {
+    overflow: hidden;
+    background-color: #f7d3e0; /* 淡いピンク背景 */
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.tab button {
+    background-color: #fbd4d8; /* 薄いピンク */
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    cursor: pointer;
+    float: left;
+    border-radius: 10px 10px 0 0; /* タブの角を丸くする */
+    transition: background-color 0.3s ease;
+}
+
+.tab button:hover {
+    background-color: #f9b2b7; /* ホバー時の濃いピンク */
+}
+
+.tab button.active {
+    background-color: #f5a7a9; /* アクティブタブの背景色 */
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #f5a7a9; /* アクティブタブのボーダー色と合わせる */
+    border-top: none;
+    border-radius: 0 0 10px 10px; /* タブの角を丸くする */
+    background-color: #fef6f8; /* 淡い背景色 */
+}
+
+.tabcontent img {
+    vertical-align: middle;
 }

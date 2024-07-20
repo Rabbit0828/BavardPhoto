@@ -54,20 +54,22 @@ try {
         </div>
         <div class="private-name"><?php echo htmlspecialchars($user['private_name'] ?? '', ENT_QUOTES, 'UTF-8'); ?></div>
         <div class="profile_actions">
-            <?php
-            $sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE user_id = :user_id AND follow_id = :my_id';
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([':my_id' => $my_id, ':user_id' => $user_id]);
-            $isFollowing = $stmt->fetchColumn();
+    <?php
+    $sql = 'SELECT COUNT(*) FROM FollowRelationship WHERE user_id = :user_id AND follow_id = :my_id';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':my_id' => $my_id, ':user_id' => $user_id]);
+    $isFollowing = $stmt->fetchColumn();
 
-            if ($isFollowing) {
-                echo '<div class="follow"><a href="follow_delete.php?id=', htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'), '">フォロー中</a></div>';
-            } else {
-                echo '<div class="not_follow"><a href="follow.php?id=', htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'), '">フォロー</a></div>';
-            }
-            ?>
-            
-        </div>
+    if ($isFollowing) {
+        echo '<div class="follow"><a href="follow_delete.php?id=', htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'), '">フォロー中</a></div>';
+    } else {
+        echo '<div class="not_follow"><a href="follow.php?id=', htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'), '">フォロー</a></div>';
+    }
+    ?>
+    <div class="chat_button">
+        <a href="../chat/chat.php?user_id=<?php echo htmlspecialchars($user_id, ENT_QUOTES, 'UTF-8'); ?>" class="message-button">チャット</a>
+    </div>
+</div>
     </div>
 
     <!-- ここに「続きを読む」機能を追加 -->

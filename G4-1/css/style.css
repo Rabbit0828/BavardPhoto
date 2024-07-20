@@ -1,8 +1,9 @@
-body{
-    margin-top:6%;
-    max-width:1100px;
-    margin:8% auto 0;
+body {
+    margin-top: 6%;
+    max-width: 1100px;
+    margin: 8% auto 0;
 }
+
 .profile_name {
     text-align: center;
     font-size: 30px;
@@ -10,20 +11,23 @@ body{
     margin-top: 5px;
     margin-bottom: 10px;
 }
+
 .profile_head_icon img {
     display: block;
     width: 150px;
     height: 150px;
     border-radius: 60%;
-    margin:auto;
-    border:1px solid #c0c0c0;
+    margin: auto;
+    border: 1px solid #c0c0c0;
 }
+
 .profile_head_text {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
     flex: auto;
 }
+
 .profile_head_count {
     font-size: 30px;
     font-weight: bold;
@@ -34,67 +38,60 @@ p {
     font-size: 25px;
     margin-left: 3%;
 }
+
 .profile_body {
     display: flex;
 }
+
 .profile_body_text a {
     color: #6f6969;
     text-decoration: none;
 }
+
 .profile_body_text ul li {
     font-size: 15px;
     padding-left: 1em;
     position: relative;
     list-style: none;
 }
+
 .profile_body_text ul li::before {
     content: "-";
     position: absolute;
     inset: 0 auto auto 0;
 }
+
 .profile_actions {
-    display: block;
-    margin:15px auto 0 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; /* ボタン間のスペースを調整 */
+    margin: 15px auto 0 10%; /* 左にずらすためのマージン調整 */
 }
 
 .profile_actions .not_follow a,
-.profile_actions .message a,
-.profile_actions .follow a {
+.profile_actions .follow a,
+.profile_actions .chat_button a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px; 
-    padding: 0 20px; 
-    color: #333;
-    font-size: 20px; 
+    height: 40px;
+    padding: 0 20px;
+    color: white; /* ボタンの文字色を白に統一 */
+    font-size: 20px;
     font-weight: 700;
     text-decoration: none;
     border-radius: 10px;
     white-space: nowrap;
-}
-.profile_actions .not_follow a {
-    border: 2px solid #DC34E0; /* 枠線を追加 */
-    color: #000; /* テキストカラーを黒に */
-    background-color: white; 
+    background-color: #ee19f2; /* 背景色をピンクに統一 */
+    border: 2px solid #fd80ff; /* 境界線をピンクに統一 */
 }
 
-.profile_actions .follow a {
-    background-color: #ee19f2; 
-    border-color:#fd80ff; 
-    color:white;
-}
-
-.profile_actions .message a {
-    margin-left: 40px;
-    background-color: #91a3ef;
-}
-
-.private-name{
+.private-name {
     font-size: 30px;
-    margin:11px auto 0;
+    margin: 11px auto 0;
 }
 
-.vio{
+.vio {
     margin-left: 83px;
     font-size: 18px;
 }
@@ -104,6 +101,7 @@ p {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 5px;
 }
+
 .post img {
     display: block;
     width: 100%;
@@ -115,7 +113,6 @@ p {
 
 .text-content {
     display: -webkit-box;
-     /* -webkit-line-clamp: 3;  表示する行数 */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -125,7 +122,7 @@ p {
 
 #read-more {
     background: none;
-    color: black; /* 黒字で表示 */
+    color: black;
     border: none;
     cursor: pointer;
     padding: 0 5px;
@@ -162,35 +159,34 @@ ul.user-list li {
 }
 
 ul.user-list li img {
-    width: 40px; /* アイコンの幅を設定 */
-    height: 40px; /* アイコンの高さを設定 */
-    border-radius: 50%; /* 丸くする */
-    margin-right: 10px; /* 画像とテキストの間にスペースを追加 */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 ul.user-list li a {
-    color: black; /* リンクの文字色を黒に設定 */
-    text-decoration: none; /* アンダーラインを消す */
+    color: black;
+    text-decoration: none;
 }
 
 a {
-    color: black; /* リンクの文字色を黒に設定 */
-    text-decoration: none; /* アンダーラインを消す */
+    color: black;
+    text-decoration: none;
 }
 
-/* モーダルウィンドウのスタイル */
 .modal {
-    display: none; /* 初期状態では非表示 */
-    position: fixed; /* スクロールしても常に表示 */
-    z-index: 1; /* 他のコンテンツの上に表示 */
-    padding-top: 60px; /* モーダルコンテンツの位置を調整 */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 60px;
     left: 0;
     top: 0;
-    width: 100%; /* 横幅を100%に設定 */
-    height: 100%; /* 高さを100%に設定 */
-    overflow: auto; /* 必要に応じてスクロール */
-    background-color: rgb(0,0,0); /* 背景色 */
-    background-color: rgba(0,0,0,0.9); /* 背景色に透明度を追加 */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
 }
 
 .modal-content {
@@ -217,6 +213,18 @@ a {
     cursor: pointer;
 }
 
+.center-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.center-image img {
+    max-width: 100%;
+    height: auto;
+}
+
 .profile_head_count {
     font-size: 30px;
     font-weight: bold;
@@ -225,40 +233,14 @@ a {
     flex-direction: column;
     align-items: center;
 }
+
 .profile_head_count span {
     font-size: 22px;
     font-weight: normal;
     display: block;
 }
+
 .profile_head_count a {
     text-decoration: none;
     color: inherit;
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.center-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* 必要に応じて調整 */
-}
-.center-image img {
-    max-width: 100%;
-    height: auto;
 }

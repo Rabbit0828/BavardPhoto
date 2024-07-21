@@ -8,13 +8,14 @@ if (!isset($_SESSION['UserTable']['id'])) {
     exit;
 }
 
-const SERVER = 'mysql304.phy.lolipop.lan';
-const DBNAME = 'LAA1517469-photos';
-const USER = 'LAA1517469';
-const PASS = 'Pass1234';
+// 定数の再定義を防ぐ
+if (!defined('SERVER')) define('SERVER', 'mysql304.phy.lolipop.lan');
+if (!defined('DBNAME')) define('DBNAME', 'LAA1517469-photos');
+if (!defined('USER')) define('USER', 'LAA1517469');
+if (!defined('PASS')) define('PASS', 'Pass1234');
 
 $sender_id = $_SESSION['UserTable']['id'];
-$recipient_id = isset($_GET['user_id']) ? $_GET['user_id'] : '';
+$recipient_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : '';
 
 try {
     $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';

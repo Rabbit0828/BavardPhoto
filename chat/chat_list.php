@@ -1,10 +1,13 @@
-<?php session_start(); ?>
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>BavardPhoto</title>
-    <?php require '../HeaderFile/header.php'?>
+    <?php require '../HeaderFile/header.php'; ?>
     <link rel="stylesheet" href="css/chat_list.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -30,11 +33,17 @@
     </script>
 </head>
 <body>
-    <?php require '../G4-2/dbconnect.php'; ?>
-    <?php 
+    <?php
+    require '../G4-2/dbconnect.php'; 
+    
     try {
         // 自分のIDを取得
-        $my_id = $_SESSION['user_id']; // セッションから自分のIDを取得
+        if (isset($_SESSION['UserTable']['id'])) {
+            $my_id = $_SESSION['UserTable']['id']; // セッションから自分のIDを取得
+        } else {
+            echo 'エラー: ユーザーIDがセッションに存在しません。';
+            exit;
+        }
 
         // すべてのユーザーを取得
         $sql_users = 'SELECT * FROM UserTable';
@@ -61,9 +70,9 @@
             echo '<ul class="user-list">';
             foreach ($users as $user) {
                 echo '<li>';
-                echo '<a href="../G4-1/profile.php?id=', $user['user_id'], '"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a>';
+                echo '<a href="../G4-1/profile.php?id=', htmlspecialchars($user['user_id']), '"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a>';
                 echo '<div class="chat-button">';
-                echo '<a href="../chat/chat.php?user_id=', $user['user_id'], '" class="message-button">チャット</a>';
+                echo '<a href="../chat/chat.php?user_id=', htmlspecialchars($user['user_id']), '" class="message-button">チャット</a>';
                 echo '</div>';
                 echo '</li>';
             }
@@ -86,9 +95,9 @@
 
                 if ($sender) {
                     echo '<li>';
-                    echo '<a href="../G4-1/profile.php?id=', $sender['user_id'], '"><img src="../images/', htmlspecialchars($sender['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($sender['user_name'] ?? ''), '</a>';
+                    echo '<a href="../G4-1/profile.php?id=', htmlspecialchars($sender['user_id']), '"><img src="../images/', htmlspecialchars($sender['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($sender['user_name'] ?? ''), '</a>';
                     echo '<div class="chat-button">';
-                    echo '<a href="../chat/chat.php?user_id=', $sender['user_id'], '" class="message-button">チャット</a>';
+                    echo '<a href="../chat/chat.php?user_id=', htmlspecialchars($sender['user_id']), '" class="message-button">チャット</a>';
                     echo '</div>';
                     echo '</li>';
                 }

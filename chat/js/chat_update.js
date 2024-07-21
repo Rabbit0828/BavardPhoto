@@ -1,20 +1,18 @@
-// chat_update.js
 $(document).ready(function() {
     function updateChatHistory() {
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        const recipient_id = params.get('user_id'); 
+
         $.ajax({
             url: 'chat_message.php',
             method: 'GET',
+            data: { user_id: recipient_id },
             success: function(response) {
-                console.log(response);
                 $('#chat-history').html(response);
             }
         });
     }
 
-    // 3秒ごとにチャット履歴を更新
-    setInterval(updateChatHistory, 3000); 
+    setInterval(updateChatHistory,1000); 
 });
-
-
-
-

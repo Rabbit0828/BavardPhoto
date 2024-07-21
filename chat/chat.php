@@ -2,6 +2,34 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+if (!isset($_SESSION['UserTable']['id'])) {
+    echo 'エラー: セッションが有効ではありません。ログインしてください。';
+    exit;
+}
+
+// 定数の再定義を防ぐ
+if (!defined('SERVER')) define('SERVER', 'mysql304.phy.lolipop.lan');
+if (!defined('DBNAME')) define('DBNAME', 'LAA1517469-photos');
+if (!defined('USER')) define('USER', 'LAA1517469');
+if (!defined('PASS')) define('PASS', 'Pass1234');
+
+$sender_id = $_SESSION['UserTable']['id'];
+$recipient_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+
+try {
+    $connect = 'mysql:host=' . SERVER . ';dbname=' . DBNAME . ';charset=utf8';
+    $pdo = new PDO($connect, USER, PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // チャットページがロードされたときに通知削除
+    if ($recipient_id > 0) {
+        $stmt = $pdo->prepare('DELETE FROM Notifications WHERE user_id = ? AND sender_id = ?');
+        $stmt->execute([$sender_id, $recipient_id]);
+    }
+} catch (PDOException $e) {
+    echo 'エラー: ' . $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">

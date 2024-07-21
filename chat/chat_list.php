@@ -80,7 +80,7 @@ session_start();
                     echo '<li>';
                     echo '<a href="../G4-1/profile.php?id=', htmlspecialchars($sender['user_id']), '"><img src="../images/', htmlspecialchars($sender['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($sender['user_name'] ?? ''), '</a>';
                     echo '<div class="chat-button">';
-                    echo '<a href="../chat/chat.php?user_id=', htmlspecialchars($sender['user_id']), '" class="message-button">チャット</a>';
+                    echo '<a href="../chat/chat.php?user_id=', htmlspecialchars($sender['user_id']), '"><img src="../images/sousin.png" alt="チャット" class="message-button"></a>';
                     echo '</div>';
                     echo '</li>';
                 }
@@ -100,7 +100,7 @@ session_start();
                 echo '<li>';
                 echo '<a href="../G4-1/profile.php?id=', htmlspecialchars($user['user_id']), '"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a>';
                 echo '<div class="chat-button">';
-                echo '<a href="../chat/chat.php?user_id=', htmlspecialchars($user['user_id']), '" class="message-button">チャット</a>';
+                echo '<a href="../chat/chat.php?user_id=', htmlspecialchars($user['user_id']), '"><img src="../images/sousin.png" alt="メッセージ" class="message-button"></a>';
                 echo '</div>';
                 echo '</li>';
             }

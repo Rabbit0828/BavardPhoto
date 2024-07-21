@@ -42,8 +42,6 @@ try {
     <script src="js/chat_update.js"></script>
 </head>
 <body>
-    <button id="backButton" onclick="history.back()">🔙 戻る</button>
-    
     <div id="chat-container">
         <div id="chat-history">
             <?php require_once 'chat_message.php'; ?>
@@ -98,4 +96,4 @@ try {
         });
     </script>
 </body>
-</html>
+</html> 

@@ -13,10 +13,12 @@ session_start();
     <script>
         $(document).ready(function(){
             // タブ切り替え機能
-            $(".tablinks").on("click", function() {
+            $(".tab button").on("click", function() {
                 var tabId = $(this).attr("data-tab");
                 $(".tabcontent").hide(); // すべてのタブコンテンツを非表示
                 $("#" + tabId).show(); // クリックされたタブのコンテンツのみ表示
+                $(".tab button").removeClass("active"); // すべてのタブからアクティブクラスを削除
+                $(this).addClass("active"); // クリックされたタブにアクティブクラスを追加
             });
 
             // ユーザー検索機能
@@ -28,7 +30,7 @@ session_start();
             });
 
             // 初期表示: 最初のタブを表示
-            $(".tablinks").first().click();
+            $(".tab button").first().click();
         });
     </script>
 </head>
@@ -59,27 +61,8 @@ session_start();
 
         // タブメニューの表示
         echo '<div class="tab">';
+        echo '<button class="tablinks" data-tab="notifications">通知　　　</button>';
         echo '<button class="tablinks" data-tab="userList">ユーザー一覧</button>';
-        echo '<button class="tablinks" data-tab="notifications">通知</button>';
-        echo '</div>';
-
-        // ユーザー一覧タブのコンテンツ
-        echo '<div id="userList" class="tabcontent">';
-        echo '<input type="text" id="searchUser" placeholder="ユーザー検索">';
-        if ($users) {
-            echo '<ul class="user-list">';
-            foreach ($users as $user) {
-                echo '<li>';
-                echo '<a href="../G4-1/profile.php?id=', htmlspecialchars($user['user_id']), '"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a>';
-                echo '<div class="chat-button">';
-                echo '<a href="../chat/chat.php?user_id=', htmlspecialchars($user['user_id']), '" class="message-button">チャット</a>';
-                echo '</div>';
-                echo '</li>';
-            }
-            echo '</ul>';
-        } else {
-            echo 'ユーザーが見つかりません。';
-        }
         echo '</div>';
 
         // 通知タブのコンテンツ
@@ -108,10 +91,28 @@ session_start();
         }
         echo '</div>';
 
+        // ユーザー一覧タブのコンテンツ
+        echo '<div id="userList" class="tabcontent">';
+        echo '<input type="text" id="searchUser" placeholder="ユーザー検索">';
+        if ($users) {
+            echo '<ul class="user-list">';
+            foreach ($users as $user) {
+                echo '<li>';
+                echo '<a href="../G4-1/profile.php?id=', htmlspecialchars($user['user_id']), '"><img src="../images/', htmlspecialchars($user['icon'] ?? 'default-icon.png'), '" alt="プロフィール写真">', htmlspecialchars($user['user_name'] ?? ''), '</a>';
+                echo '<div class="chat-button">';
+                echo '<a href="../chat/chat.php?user_id=', htmlspecialchars($user['user_id']), '" class="message-button">チャット</a>';
+                echo '</div>';
+                echo '</li>';
+            }
+            echo '</ul>';
+        } else {
+            echo 'ユーザーが見つかりません。';
+        }
+        echo '</div>';
+
     } catch (PDOException $e) {
         echo 'データベースエラー: ' . htmlspecialchars($e->getMessage());
     }
     ?>
 </body>
 </html>
-

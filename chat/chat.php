@@ -42,6 +42,8 @@ try {
     <script src="js/chat_update.js"></script>
 </head>
 <body>
+    <button id="backButton" onclick="history.back()">🔙 戻る</button>
+    
     <div id="chat-container">
         <div id="chat-history">
             <?php require_once 'chat_message.php'; ?>
@@ -56,7 +58,8 @@ try {
     
     <script>
         $(document).ready(function() {
-            $('#sendButton').click(function() {
+            // メッセージ送信を処理する関数
+            function sendMessage() {
                 const url = new URL(window.location.href);
                 const params = url.searchParams;
                 const recipient_id = params.get('user_id'); 
@@ -75,9 +78,22 @@ try {
                         $('#message').val('');
                     },
                     error: function(xhr, status, error) {
-                        console.log('Error:', error);
+                        console.log('エラー:', error);
                     }
                 });
+            }
+
+            // 送信ボタンのクリックイベントリスナー
+            $('#sendButton').click(function() {
+                sendMessage();
+            });
+
+            // Enterキーの押下イベントリスナー
+            $('#message').keydown(function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // デフォルトの動作（例: 入力フィールドに改行を追加）を防ぐ
+                    sendMessage();
+                }
             });
         });
     </script>

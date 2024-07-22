@@ -64,8 +64,8 @@ p {
 .profile_actions {
     display: flex;
     justify-content: flex-start;
-    gap: 10px; /* ボタン間のスペースを調整 */
-    margin: 15px auto 0 10%; /* 左にずらすためのマージン調整 */
+    gap: 35%; /* ボタン間のスペースを調整 */
+    margin: 15px auto 0 55%; /* 左にずらすためのマージン調整 */
 }
 
 .profile_actions .not_follow a,
@@ -78,12 +78,13 @@ p {
     padding: 0 20px;
     color: white; /* ボタンの文字色を白に統一 */
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 550;
     text-decoration: none;
     border-radius: 10px;
     white-space: nowrap;
     background-color: #ee19f2; /* 背景色をピンクに統一 */
     border: 2px solid #fd80ff; /* 境界線をピンクに統一 */
+    width:5em;
 }
 
 .private-name {

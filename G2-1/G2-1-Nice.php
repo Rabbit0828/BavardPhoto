@@ -6,32 +6,27 @@
 <title>画像の下にポップアップ</title>
 </head>
 <body>
-<div class="search-container">
-    <form method="get">
-        <input type="text" name="search" size="40" placeholder="キーワード検索" style="height: 40px;">
-    </form>
-</div>
+
 
 <?php
-
-if (isset($_GET['search']) && !empty($_GET['search'])) {
-    $search = $_GET['search'];
-    $sql = "SELECT * FROM Post WHERE image_id = :search OR user_id = :search OR user_name = :search";
-} else {
-    $sql = "SELECT * FROM Post";
-}
 
 try {
     $pdo = new PDO($connect, USER, PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // ログインしているユーザーのuser_idを取得
+    $user_id = $_SESSION['UserTable']['id'];
+
+    // ログインユーザーがいいねをしたPostを取得
+    $sql = 'SELECT Post.image_id, Post.user_id, Post.image_name, Post.image_name2, Post.image_name3, Post.image_name4, Post.time, Post.comment
+            FROM Nice
+            JOIN Post ON Nice.image_id = Post.image_id
+            WHERE Nice.user_id = :user_id';
+
     $stmt = $pdo->prepare($sql);
-
-    if (isset($search)) {
-        $stmt->bindParam(':search', $search, PDO::PARAM_STR);
-    }
-
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
+
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($posts) {
@@ -74,12 +69,12 @@ try {
             $comment_count_stmt->bindParam(':image_id', $image_id, PDO::PARAM_INT);
             $comment_count_stmt->execute();
             $comment_count = $comment_count_stmt->fetch(PDO::FETCH_ASSOC)['comment_count'];
+
             // Check if the logged-in user has liked this post
             $check_like_sql = "SELECT COUNT(*) FROM Nice WHERE image_id = ? AND user_id = ?";
             $check_like_stmt = $pdo->prepare($check_like_sql);
             $check_like_stmt->execute([$image_id, $_SESSION['UserTable']['id']]);
             $liked_by_user = (bool) $check_like_stmt->fetchColumn();
-
             ?>
 
             <div class="popup" id="Post<?php echo $image_id; ?>">
@@ -142,7 +137,7 @@ try {
             <?php
         }
     } else {
-        echo "検索結果がありません。";
+        echo "いいねしたPostがありません。";
     }
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
@@ -174,7 +169,7 @@ try {
 <script>
     const userIcon = <?php echo json_encode($_SESSION['UserTable']['icon']); ?>;
     const userName = <?php echo json_encode($_SESSION['UserTable']['name']); ?>;
-    
+
     function openModal(src) {
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImage");

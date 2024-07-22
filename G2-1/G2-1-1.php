@@ -82,10 +82,10 @@ try {
             <div class="popup" id="Post<?php echo $image_id; ?>">
                 <div class="popup-content" data-image-id="<?php echo $image_id; ?>">
                     <div class="slide-container">
-                        <?php if (!empty($image_name)) echo '<img src="../images/' . htmlspecialchars($image_name) . '" alt="No.1">'; ?>
-                        <?php if (!empty($image_name2)) echo '<img src="../images/' . htmlspecialchars($image_name2) . '" alt="No.2">'; ?>
-                        <?php if (!empty($image_name3)) echo '<img src="../images/' . htmlspecialchars($image_name3) . '" alt="No.3">'; ?>
-                        <?php if (!empty($image_name4)) echo '<img src="../images/' . htmlspecialchars($image_name4) . '" alt="No.4">'; ?>
+                        <?php if (!empty($image_name)) echo '<img src="../images/' . htmlspecialchars($image_name) . '" alt="No.1" onclick="openModal(this.src)">'; ?>
+                        <?php if (!empty($image_name2)) echo '<img src="../images/' . htmlspecialchars($image_name2) . '" alt="No.2" onclick="openModal(this.src)">'; ?>
+                        <?php if (!empty($image_name3)) echo '<img src="../images/' . htmlspecialchars($image_name3) . '" alt="No.3" onclick="openModal(this.src)">'; ?>
+                        <?php if (!empty($image_name4)) echo '<img src="../images/' . htmlspecialchars($image_name4) . '" alt="No.4" onclick="openModal(this.src)">'; ?>
                         <a class="prev" onclick="plusSlides(-1, <?php echo $image_id; ?>)">❮</a>
                         <a class="next" onclick="plusSlides(1, <?php echo $image_id; ?>)">❯</a>
                     </div>
@@ -145,6 +145,12 @@ try {
 }
 ?>
 
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <div id="caption"></div>
+</div>
+
 <div class="comment-popup" id="commentPopup">
     <div class="comment-popup-content">
         <button class="close-btn" onclick="closeCommentPopup()">×</button>
@@ -172,6 +178,18 @@ function goBack() {
 <script>
     const userIcon = <?php echo json_encode($_SESSION['UserTable']['icon']); ?>;
     const userName = <?php echo json_encode($_SESSION['UserTable']['name']); ?>;
+
+    function openModal(src) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        modal.style.display = "block";
+        modalImg.src = src;
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+    }
 </script>
 <script src="G2-1.js"></script>
 

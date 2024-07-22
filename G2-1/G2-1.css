@@ -362,6 +362,11 @@ body {
 }
 
 .nonice {
-    margin-top: 200px;
     text-align: center;
+}
+
+.nonice img{
+  width: 80%; /* 画像の幅を調整 */
+  max-width: 600px; /* 最大幅を設定 */
+  height: auto; /* アスペクト比を維持 */
 }

@@ -137,7 +137,9 @@ try {
             <?php
         }
     } else {
-        echo "いいねしたPostがありません。";
+        echo "<div class='nonice'>";
+        echo "<img src='../images/NoNice.png' alt='nonice'>";
+        echo "</div>";
     }
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();

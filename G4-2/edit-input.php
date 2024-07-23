@@ -70,43 +70,6 @@
 <a href="../G2-1/G2-1.php" target="_self">
       <img src="../images/logo.png" alt="ホーム" style="display:block; height: 66px; width:245px; margin:1% auto;">
 </a>
-<form id="profileImageForm" action="edit-output.php" method="POST" enctype="multipart/form-data">
-    <div>
-        <img id="image-preview" src="../images/<?php echo $icon;?>" alt="画像プレビュー" style="cursor: pointer;" onclick="document.getElementById('profileImageInput').click();">
-    </div>
-    <div>
-        <span>画像</span>
-        <input type="file" name="profile_image" id="profileImageInput" accept="image/*" style="display: none;" onchange="previewImage(event)" required>
-    </div>
-    <div>
-        <span>名前</span>
-        <input type="text" name="name" placeholder="名前を変更" required>
-    </div>
-    <div>
-        <span>自己紹介</span>
-        <input type="text" name="syoukai" placeholder="自由に変更" required>
-    </div>
-    <button type="submit">変更</button>
-    <button type="button" onclick="history.back()">戻る</button>
-</form>
-
-<script>
-    function previewImage(event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const imagePreview = document.getElementById('image-preview');
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-</script>
-</body>
-</html>
-<!--
 <script>
         function previewImage(event) {
             var reader = new FileReader();
@@ -140,4 +103,5 @@
         <button type="submit">変更</button>
         <button type="button" onclick="history.back()">戻る</button>
     </form>
-    -->
+</body>
+</html>

@@ -30,8 +30,9 @@
             echo '<div class="content">';
             echo '<div class="profile_head_text">';
 
+            $icon=!empty($user['icon'])?htmlspecialchars($user['icon']):'image/free.png';
 
-            echo '<div class="profile_head_icon"><span><img src="../images/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
+            echo '<div class="profile_head_icon"><span><img src="../images/'. $icon. '"></span></div>';
             echo '<div class="profile_head_count">';
 
 

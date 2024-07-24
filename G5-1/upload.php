@@ -95,19 +95,22 @@ if (isset($_FILES['files']) && isset($_POST['comment'])) {
                             $stmt->bindParam(':comment', $comment);
                             break;
                         case 1:
-                            $stmt = $pdo->prepare("UPDATE Post SET image_name2 = :image_name2 WHERE user_id = :user_id");
+                            $stmt = $pdo->prepare("UPDATE Post SET image_name2 = :image_name2 WHERE user_id = :user_id AND image_id = :image_id");
                             $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                             $stmt->bindParam(':image_name2', $newFileName);
+                            $stmt->bindParam(':image_id', $image_id, PDO::PARAM_INT); // 新しいパラメータを追加
                             break;
                         case 2:
-                            $stmt = $pdo->prepare("UPDATE Post SET image_name3 = :image_name3 WHERE user_id = :user_id");
+                            $stmt = $pdo->prepare("UPDATE Post SET image_name3 = :image_name3 WHERE user_id = :user_id AND image_id = :image_id");
                             $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                             $stmt->bindParam(':image_name3', $newFileName);
+                            $stmt->bindParam(':image_id', $image_id, PDO::PARAM_INT); // 新しいパラメータを追加
                             break;
                         case 3:
-                            $stmt = $pdo->prepare("UPDATE Post SET image_name4 = :image_name4 WHERE user_id = :user_id");
+                            $stmt = $pdo->prepare("UPDATE Post SET image_name4 = :image_name4 WHERE user_id = :user_id AND image_id = :image_id");
                             $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
                             $stmt->bindParam(':image_name4', $newFileName);
+                            $stmt->bindParam(':image_id', $image_id, PDO::PARAM_INT); // 新しいパラメータを追加
                             break;
                         default:
                             continue 2; // 4枚目以降は無視する

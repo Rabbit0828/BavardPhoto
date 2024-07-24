@@ -76,15 +76,21 @@ p {
     align-items: center;
     height: 40px;
     padding: 0 20px;
-    color: white; /* ボタンの文字色を白に統一 */
-    font-size: 20px;
-    font-weight: 550;
+    color: black; /* ボタンの文字色を白に統一 */
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 5px;
     white-space: nowrap;
-    background-color: #ee19f2; /* 背景色をピンクに統一 */
+    background-color: white; /* 背景色をピンクに統一 */
     border: 2px solid #fd80ff; /* 境界線をピンクに統一 */
     width:5em;
+}
+
+.profile_actions .not_follow a:hover,
+.profile_actions .follow a:hover,
+.profile_actions .chat_button a:hover{
+    background-color: #ee19f2; /* ホバー時の背景色 */
+    border-color:#fd80ff; /* ホバー時の枠線色 */
+    color:white;
 }
 
 .private-name {

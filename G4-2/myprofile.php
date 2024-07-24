@@ -30,8 +30,7 @@
             echo '<div class="content">';
             echo '<div class="profile_head_text">';
 
-
-            echo '<div class="profile_head_icon"><span><img src="../images/', htmlspecialchars($user['icon'] ?? ''), '"></span></div>';
+            echo '<div class="profile_head_icon"><span><img src="../images/',htmlspecialchars($user['icon']??''), '"></span></div>';
             echo '<div class="profile_head_count">';
 
 

@@ -66,7 +66,11 @@
             background-position: 50% 48%;
         }
     </style>
-    <script>
+<body>
+<a href="../G2-1/G2-1.php" target="_self">
+      <img src="../images/logo.png" alt="ホーム" style="display:block; height: 66px; width:245px; margin:1% auto;">
+</a>
+<script>
         function previewImage(event) {
             var reader = new FileReader();
             reader.onload = function() {
@@ -79,9 +83,7 @@
     </script>
 </head>
 <body>
-    <a href="../G2-1/G2-1.php" target="_self">
-      <img src="../images/logo.png" alt="ホーム" style="display:block; height: 66px; width:245px; margin:1% auto;">
-    </a>
+
     <form action="edit-output.php" method="POST" enctype="multipart/form-data">
         <div>
             <img id="image-preview" alt="画像プレビュー">
